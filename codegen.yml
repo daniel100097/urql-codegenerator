@@ -1,0 +1,11 @@
+schema: 'https://hm.localhost/api/graphql'
+documents: 'gql/**/*.gql'
+overwrite: true
+generates:
+    generated/graphql.generated.tsx:
+        config:
+            noNamespaces: true
+        plugins:
+            - 'typescript'
+            - 'typescript-operations'
+            - dist/index.js
