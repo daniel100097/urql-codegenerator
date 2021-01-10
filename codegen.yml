@@ -6,6 +6,4 @@ generates:
         config:
             noNamespaces: true
         plugins:
-            - 'typescript'
-            - 'typescript-operations'
             - dist/index.js
