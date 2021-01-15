@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml && npx prettier generated/graphql.generated.tsx --write"
+        "generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml && npx prettier generated/graphql.generated.tsx --write",
+        "build": "npx tsc"
     },
     "keywords": [],
     "author": "",
