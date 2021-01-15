@@ -1,11 +1,16 @@
-type Maybe<T> = T | null;
-type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+import gql from 'graphql-tag';
+import * as Urql from 'urql';
+export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = {
+    [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
     { [SubKey in K]?: Maybe<T[SubKey]> };
-type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
     { [SubKey in K]: Maybe<T[SubKey]> };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
-type Scalars = {
+export type Scalars = {
     ID: string;
     String: string;
     Boolean: boolean;
@@ -17,7 +22,7 @@ type Scalars = {
     JSON: any;
 };
 
-type HostNodeTask = {
+export type HostNodeTask = {
     __typename?: 'HostNodeTask';
     finish: Scalars['Boolean'];
     running: Scalars['Boolean'];
@@ -36,7 +41,7 @@ type HostNodeTask = {
     user: User;
 };
 
-type HostNodePort = {
+export type HostNodePort = {
     __typename?: 'HostNodePort';
     id: Scalars['ID'];
     port: Scalars['Int'];
@@ -46,7 +51,7 @@ type HostNodePort = {
     teamspeak?: Maybe<ProductTeamspeak>;
 };
 
-type ProductTemplateOption = {
+export type ProductTemplateOption = {
     __typename?: 'ProductTemplateOption';
     id: Scalars['ID'];
     title: Scalars['String'];
@@ -56,11 +61,11 @@ type ProductTemplateOption = {
     variants: Array<ProductTemplateOptionVariant>;
 };
 
-type ProductTemplateOptionVariantsArgs = {
+export type ProductTemplateOptionVariantsArgs = {
     includeHidden?: Maybe<Scalars['Boolean']>;
 };
 
-type ProductTemplateOptionVariant = {
+export type ProductTemplateOptionVariant = {
     __typename?: 'ProductTemplateOptionVariant';
     id: Scalars['ID'];
     priceMultiplier: Scalars['Float'];
@@ -76,7 +81,7 @@ type ProductTemplateOptionVariant = {
     siblings: Array<ProductTemplateOptionVariant>;
 };
 
-type ProductVserverIp = {
+export type ProductVserverIp = {
     __typename?: 'ProductVserverIp';
     id: Scalars['String'];
     create: Scalars['DateTime'];
@@ -89,7 +94,7 @@ type ProductVserverIp = {
     assigned: Scalars['Boolean'];
 };
 
-type Acl = {
+export type Acl = {
     __typename?: 'Acl';
     id: Scalars['ID'];
     acl: Scalars['String'];
@@ -97,7 +102,7 @@ type Acl = {
     update: Scalars['DateTime'];
 };
 
-type Role = {
+export type Role = {
     __typename?: 'Role';
     id: Scalars['String'];
     name: Scalars['String'];
@@ -105,7 +110,7 @@ type Role = {
     users: Array<User>;
 };
 
-type SupportTicketMessage = {
+export type SupportTicketMessage = {
     __typename?: 'SupportTicketMessage';
     userAvatar: Scalars['String'];
     userPublicName: Scalars['String'];
@@ -117,7 +122,7 @@ type SupportTicketMessage = {
     userId?: Maybe<Scalars['String']>;
 };
 
-type SupportTicket = {
+export type SupportTicket = {
     __typename?: 'SupportTicket';
     reviserName?: Maybe<Scalars['String']>;
     open: Scalars['Boolean'];
@@ -138,7 +143,7 @@ type SupportTicket = {
     unreadReviserMessages: Scalars['Int'];
 };
 
-type File = {
+export type File = {
     __typename?: 'File';
     hasExpired: Scalars['Boolean'];
     url: Scalars['String'];
@@ -153,7 +158,7 @@ type File = {
     uploader: User;
 };
 
-type ProductVserverImage = {
+export type ProductVserverImage = {
     __typename?: 'ProductVserverImage';
     id: Scalars['String'];
     create: Scalars['DateTime'];
@@ -166,7 +171,7 @@ type ProductVserverImage = {
     meta: Scalars['JSON'];
 };
 
-type ProductGameserverScript = {
+export type ProductGameserverScript = {
     __typename?: 'ProductGameserverScript';
     id: Scalars['ID'];
     title: Scalars['String'];
@@ -182,7 +187,7 @@ type ProductGameserverScript = {
     hidden: Scalars['Boolean'];
 };
 
-type ProductGameserverTemplate = {
+export type ProductGameserverTemplate = {
     __typename?: 'ProductGameserverTemplate';
     id: Scalars['String'];
     title: Scalars['String'];
@@ -199,7 +204,7 @@ type ProductGameserverTemplate = {
     defaultCustomParameter: Scalars['String'];
 };
 
-type ProductTemplateGameserver = {
+export type ProductTemplateGameserver = {
     __typename?: 'ProductTemplateGameserver';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -221,7 +226,7 @@ type ProductTemplateGameserver = {
     logos: Array<File>;
 };
 
-type ProductTemplateTeamspeak = {
+export type ProductTemplateTeamspeak = {
     __typename?: 'ProductTemplateTeamspeak';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -239,7 +244,7 @@ type ProductTemplateTeamspeak = {
     availablePeriods: Array<ProductTemplateExtendPeriod>;
 };
 
-type ProductTemplateExtendPeriod = {
+export type ProductTemplateExtendPeriod = {
     __typename?: 'ProductTemplateExtendPeriod';
     id: Scalars['ID'];
     expression: Scalars['String'];
@@ -251,7 +256,7 @@ type ProductTemplateExtendPeriod = {
     minutes: Scalars['Float'];
 };
 
-type ProductTemplateVserver = {
+export type ProductTemplateVserver = {
     __typename?: 'ProductTemplateVserver';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -271,7 +276,7 @@ type ProductTemplateVserver = {
     availablePeriods: Array<ProductTemplateExtendPeriod>;
 };
 
-type ProductGameserverBackup = {
+export type ProductGameserverBackup = {
     __typename?: 'ProductGameserverBackup';
     sizeInMb?: Maybe<Scalars['Int']>;
     id: Scalars['ID'];
@@ -281,7 +286,7 @@ type ProductGameserverBackup = {
     restorable: Scalars['Boolean'];
 };
 
-type BackupServer = {
+export type BackupServer = {
     __typename?: 'BackupServer';
     deletable: Scalars['Boolean'];
     id: Scalars['String'];
@@ -297,7 +302,7 @@ type BackupServer = {
     update: Scalars['DateTime'];
 };
 
-type ProductVserverBackup = {
+export type ProductVserverBackup = {
     __typename?: 'ProductVserverBackup';
     sizeInMb?: Maybe<Scalars['Int']>;
     id: Scalars['ID'];
@@ -307,7 +312,7 @@ type ProductVserverBackup = {
     restorable: Scalars['Boolean'];
 };
 
-type EmailTemplate = {
+export type EmailTemplate = {
     __typename?: 'EmailTemplate';
     id: Scalars['ID'];
     sender: Scalars['String'];
@@ -316,7 +321,7 @@ type EmailTemplate = {
     templateContent: Scalars['String'];
 };
 
-type ProductTemplateDomain = {
+export type ProductTemplateDomain = {
     __typename?: 'ProductTemplateDomain';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -335,7 +340,7 @@ type ProductTemplateDomain = {
     availablePeriods: Array<ProductTemplateExtendPeriod>;
 };
 
-type ProductDomain = {
+export type ProductDomain = {
     __typename?: 'ProductDomain';
     name: Scalars['String'];
     registered: Scalars['Boolean'];
@@ -350,7 +355,7 @@ type ProductDomain = {
     productTemplate: ProductTemplateDomain;
 };
 
-type ProductTemplateSimple = {
+export type ProductTemplateSimple = {
     __typename?: 'ProductTemplateSimple';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -370,7 +375,7 @@ type ProductTemplateSimple = {
     options: Array<ProductTemplateOption>;
 };
 
-type ProductSimple = {
+export type ProductSimple = {
     __typename?: 'ProductSimple';
     name: Scalars['String'];
     id: Scalars['ID'];
@@ -383,7 +388,7 @@ type ProductSimple = {
     description?: Maybe<Scalars['String']>;
 };
 
-type ProductVserver = {
+export type ProductVserver = {
     __typename?: 'ProductVserver';
     name: Scalars['String'];
     cores: Scalars['String'];
@@ -410,12 +415,12 @@ type ProductVserver = {
     trafficTransferredInMB?: Maybe<Scalars['Int']>;
 };
 
-type ProductVserverTrafficTransferredInMbArgs = {
+export type ProductVserverTrafficTransferredInMbArgs = {
     to?: Maybe<Scalars['String']>;
     from?: Maybe<Scalars['String']>;
 };
 
-type FinanceTransactionItem = {
+export type FinanceTransactionItem = {
     __typename?: 'FinanceTransactionItem';
     isPut: Scalars['Boolean'];
     isPull: Scalars['Boolean'];
@@ -431,7 +436,7 @@ type FinanceTransactionItem = {
     getExclVat: Scalars['Float'];
 };
 
-type UserAddress = {
+export type UserAddress = {
     __typename?: 'UserAddress';
     id: Scalars['ID'];
     street1?: Maybe<Scalars['String']>;
@@ -456,14 +461,14 @@ type UserAddress = {
     vat?: Maybe<Scalars['Int']>;
 };
 
-type Pdf = {
+export type Pdf = {
     __typename?: 'Pdf';
     url: Scalars['String'];
     id: Scalars['String'];
     create: Scalars['DateTime'];
 };
 
-type PdfTemplate = {
+export type PdfTemplate = {
     __typename?: 'PdfTemplate';
     id: Scalars['String'];
     templateFile: Scalars['String'];
@@ -473,7 +478,7 @@ type PdfTemplate = {
     templateContent: Scalars['String'];
 };
 
-type FinanceDonationLink = {
+export type FinanceDonationLink = {
     __typename?: 'FinanceDonationLink';
     id: Scalars['String'];
     create: Scalars['DateTime'];
@@ -485,7 +490,7 @@ type FinanceDonationLink = {
     url: Scalars['String'];
 };
 
-type FinanceDonation = {
+export type FinanceDonation = {
     __typename?: 'FinanceDonation';
     id: Scalars['String'];
     create: Scalars['DateTime'];
@@ -494,7 +499,7 @@ type FinanceDonation = {
     donationLink: FinanceDonationLink;
 };
 
-type FinanceCharge = {
+export type FinanceCharge = {
     __typename?: 'FinanceCharge';
     verified: Scalars['Boolean'];
     id: Scalars['String'];
@@ -508,7 +513,7 @@ type FinanceCharge = {
     donation?: Maybe<FinanceDonation>;
 };
 
-type FinanceTransaction = {
+export type FinanceTransaction = {
     __typename?: 'FinanceTransaction';
     totalExclVat: Scalars['Float'];
     totalInclVat: Scalars['Float'];
@@ -531,7 +536,7 @@ type FinanceTransaction = {
     donation?: Maybe<Scalars['Boolean']>;
 };
 
-type Product = {
+export type Product = {
     __typename?: 'Product';
     isProductDowngradable: Scalars['Boolean'];
     availablePeriods: Array<ProductTemplateExtendPeriod>;
@@ -558,7 +563,7 @@ type Product = {
     forceExtendIntervalId?: Maybe<Scalars['ID']>;
 };
 
-type ProductTemplateAbstract = {
+export type ProductTemplateAbstract = {
     __typename?: 'ProductTemplateAbstract';
     id: Scalars['ID'];
     meta: Scalars['JSON'];
@@ -572,7 +577,7 @@ type ProductTemplateAbstract = {
     create: Scalars['DateTime'];
 };
 
-type ProductTeamspeak = {
+export type ProductTeamspeak = {
     __typename?: 'ProductTeamspeak';
     name: Scalars['String'];
     ts3Link?: Maybe<Scalars['String']>;
@@ -591,7 +596,7 @@ type ProductTeamspeak = {
     locked: Scalars['Boolean'];
 };
 
-type HostNode = {
+export type HostNode = {
     __typename?: 'HostNode';
     cpuInfo: Scalars['String'];
     cpuCores: Scalars['Float'];
@@ -617,7 +622,7 @@ type HostNode = {
     isDaemonVersionBehind: Scalars['Boolean'];
 };
 
-type ProductGameserverMysql = {
+export type ProductGameserverMysql = {
     __typename?: 'ProductGameserverMysql';
     id: Scalars['ID'];
     create: Scalars['DateTime'];
@@ -627,7 +632,7 @@ type ProductGameserverMysql = {
     hostNode: HostNode;
 };
 
-type ProductGameserver = {
+export type ProductGameserver = {
     __typename?: 'ProductGameserver';
     name: Scalars['String'];
     customParameter: Scalars['String'];
@@ -659,7 +664,7 @@ type ProductGameserver = {
     amIOwner: Scalars['Boolean'];
 };
 
-type ProductGameserverAccess = {
+export type ProductGameserverAccess = {
     __typename?: 'ProductGameserverAccess';
     id: Scalars['ID'];
     gameserver: ProductGameserver;
@@ -668,7 +673,7 @@ type ProductGameserverAccess = {
     userEmail: Scalars['String'];
 };
 
-type FinanceEffort = {
+export type FinanceEffort = {
     __typename?: 'FinanceEffort';
     id: Scalars['ID'];
     user: User;
@@ -678,7 +683,7 @@ type FinanceEffort = {
     total: Scalars['Float'];
 };
 
-type UserOauthToken = {
+export type UserOauthToken = {
     __typename?: 'UserOauthToken';
     id: Scalars['ID'];
     service: Scalars['String'];
@@ -686,14 +691,14 @@ type UserOauthToken = {
     confirmed: Scalars['Boolean'];
 };
 
-type UserComment = {
+export type UserComment = {
     __typename?: 'UserComment';
     id: Scalars['String'];
     create: Scalars['DateTime'];
     message: Scalars['String'];
 };
 
-type User = {
+export type User = {
     __typename?: 'User';
     vat?: Maybe<Scalars['Int']>;
     avatar: Scalars['String'];
@@ -734,14 +739,14 @@ type User = {
     canMakeFeedback: Scalars['Boolean'];
 };
 
-type CordPageInfo = {
+export type CordPageInfo = {
     __typename?: 'CordPageInfo';
     totalCount: Scalars['Float'];
     hasNextPage: Scalars['Boolean'];
     hasPreviousPage: Scalars['Boolean'];
 };
 
-type Blogfeed = {
+export type Blogfeed = {
     __typename?: 'Blogfeed';
     html: Scalars['String'];
     link: Scalars['String'];
@@ -749,7 +754,7 @@ type Blogfeed = {
     pubDate: Scalars['DateTime'];
 };
 
-type Translation = {
+export type Translation = {
     __typename?: 'Translation';
     id: Scalars['ID'];
     key: Scalars['String'];
@@ -758,13 +763,13 @@ type Translation = {
     create: Scalars['DateTime'];
 };
 
-type ProductGameserverUsageDto = {
+export type ProductGameserverUsageDto = {
     __typename?: 'ProductGameserverUsageDto';
     diskPoints: Array<ProductGameserverUsageDtoDiskEntry>;
     usagePoints: Array<ProductGameserverUsageDtoEntry>;
 };
 
-type ProductGameserverUsageDtoEntry = {
+export type ProductGameserverUsageDtoEntry = {
     __typename?: 'ProductGameserverUsageDtoEntry';
     globalUsage: Scalars['Float'];
     perCore: Scalars['Float'];
@@ -772,24 +777,24 @@ type ProductGameserverUsageDtoEntry = {
     memoryUsageInMb: Scalars['Float'];
 };
 
-type ProductGameserverUsageDtoDiskEntry = {
+export type ProductGameserverUsageDtoDiskEntry = {
     __typename?: 'ProductGameserverUsageDtoDiskEntry';
     usageInMb: Scalars['Float'];
     date: Scalars['DateTime'];
 };
 
-type ProductTeamspeakOutputToken = {
+export type ProductTeamspeakOutputToken = {
     __typename?: 'ProductTeamspeakOutputToken';
     group: Scalars['String'];
     token: Scalars['String'];
 };
 
-type ProductTemplateBundle = {
+export type ProductTemplateBundle = {
     __typename?: 'ProductTemplateBundle';
     id: Scalars['ID'];
 };
 
-type VserverStatsEntry = {
+export type VserverStatsEntry = {
     __typename?: 'VserverStatsEntry';
     cpu?: Maybe<Scalars['Float']>;
     cpus?: Maybe<Scalars['Float']>;
@@ -814,20 +819,20 @@ type VserverStatsEntry = {
     vmid?: Maybe<Scalars['String']>;
 };
 
-type ProductAdminInfoPointMapDto = {
+export type ProductAdminInfoPointMapDto = {
     __typename?: 'ProductAdminInfoPointMapDto';
     label: Scalars['String'];
     value: Scalars['Float'];
 };
 
-type HostNodeTypeInfoUsageDto = {
+export type HostNodeTypeInfoUsageDto = {
     __typename?: 'HostNodeTypeInfoUsageDto';
     filter?: Maybe<Scalars['String']>;
     type: Scalars['String'];
     free: Scalars['Float'];
 };
 
-type ProductAdminInfoResultDto = {
+export type ProductAdminInfoResultDto = {
     __typename?: 'ProductAdminInfoResultDto';
     gameservers: Scalars['Float'];
     teamspeaks: Scalars['Float'];
@@ -843,14 +848,14 @@ type ProductAdminInfoResultDto = {
     hostNodeFree: Array<HostNodeTypeInfoUsageDto>;
 };
 
-type BonusCredits = {
+export type BonusCredits = {
     __typename?: 'BonusCredits';
     minCredits: Scalars['Float'];
     threshold: Scalars['Float'];
     bonus: Scalars['Float'];
 };
 
-type PaymentMethod = {
+export type PaymentMethod = {
     __typename?: 'PaymentMethod';
     method: Scalars['String'];
     logo: Scalars['String'];
@@ -865,25 +870,25 @@ type PaymentMethod = {
     transactionFee?: Maybe<Scalars['Float']>;
 };
 
-type HostNodeInstancesOutput = {
+export type HostNodeInstancesOutput = {
     __typename?: 'HostNodeInstancesOutput';
     gamesevers: Array<ProductGameserver>;
 };
 
-type SupportTicketPriorityEnum = {
+export type SupportTicketPriorityEnum = {
     __typename?: 'SupportTicketPriorityEnum';
     id: Scalars['ID'];
     priority: Scalars['Int'];
     label: Scalars['String'];
 };
 
-type SupportTicketReviserEnum = {
+export type SupportTicketReviserEnum = {
     __typename?: 'SupportTicketReviserEnum';
     id: Scalars['ID'];
     name: Scalars['String'];
 };
 
-type SupportQuickResponse = {
+export type SupportQuickResponse = {
     __typename?: 'SupportQuickResponse';
     id: Scalars['ID'];
     content: Scalars['String'];
@@ -892,7 +897,7 @@ type SupportQuickResponse = {
     update: Scalars['DateTime'];
 };
 
-type Query = {
+export type Query = {
     __typename?: 'Query';
     aclById: Acl;
     acls: AclResultMany;
@@ -1026,107 +1031,107 @@ type Query = {
     supportQuickResponses: SupportQuickResponseResultMany;
 };
 
-type QueryAclByIdArgs = {
+export type QueryAclByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryAclsArgs = {
+export type QueryAclsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryAcl_Has_AclArgs = {
+export type QueryAcl_Has_AclArgs = {
     acl: Scalars['String'];
 };
 
-type QueryRoleByIdArgs = {
+export type QueryRoleByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryRolesArgs = {
+export type QueryRolesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryUserByIdArgs = {
+export type QueryUserByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryUsersArgs = {
+export type QueryUsersArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryUserArgs = {
+export type QueryUserArgs = {
     id: Scalars['String'];
 };
 
-type QueryEmailTemplateByIdArgs = {
+export type QueryEmailTemplateByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryEmailTemplatesArgs = {
+export type QueryEmailTemplatesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryEmail_TemplateArgs = {
+export type QueryEmail_TemplateArgs = {
     id: Scalars['String'];
 };
 
-type QueryUserAddressByIdArgs = {
+export type QueryUserAddressByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryUserAddresssArgs = {
+export type QueryUserAddresssArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryUserCommentByIdArgs = {
+export type QueryUserCommentByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryUserCommentsArgs = {
+export type QueryUserCommentsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryUserCommentsByUserArgs = {
+export type QueryUserCommentsByUserArgs = {
     userId: Scalars['ID'];
 };
 
-type QueryTranslationByIdArgs = {
+export type QueryTranslationByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryTranslationsArgs = {
+export type QueryTranslationsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductDomainByIdArgs = {
+export type QueryProductDomainByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductDomainsArgs = {
+export type QueryProductDomainsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductDomainCheckArgs = {
+export type QueryProductDomainCheckArgs = {
     tld: Scalars['String'];
 };
 
-type QueryProductGameserverAccessesByGameserverIdArgs = {
+export type QueryProductGameserverAccessesByGameserverIdArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductGameserverMysqlByGameserverArgs = {
+export type QueryProductGameserverMysqlByGameserverArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductGameserverScriptByIdArgs = {
+export type QueryProductGameserverScriptByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductGameserverScriptsArgs = {
+export type QueryProductGameserverScriptsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProduct_Gameserver_ScriptsArgs = {
+export type QueryProduct_Gameserver_ScriptsArgs = {
     templateId?: Maybe<Scalars['ID']>;
     search?: Maybe<Scalars['String']>;
     take?: Maybe<Scalars['Float']>;
@@ -1135,19 +1140,19 @@ type QueryProduct_Gameserver_ScriptsArgs = {
     order?: Maybe<Scalars['String']>;
 };
 
-type QueryProduct_Gameservers_ScriptsArgs = {
+export type QueryProduct_Gameservers_ScriptsArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductGameserverTemplateByIdArgs = {
+export type QueryProductGameserverTemplateByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductGameserverTemplatesArgs = {
+export type QueryProductGameserverTemplatesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProduct_Gameserver_TemplatesArgs = {
+export type QueryProduct_Gameserver_TemplatesArgs = {
     search?: Maybe<Scalars['String']>;
     limit?: Maybe<Scalars['Float']>;
     offset?: Maybe<Scalars['Float']>;
@@ -1155,334 +1160,334 @@ type QueryProduct_Gameserver_TemplatesArgs = {
     order?: Maybe<Scalars['String']>;
 };
 
-type QueryProduct_Gameserver_Templates_AvailableArgs = {
+export type QueryProduct_Gameserver_Templates_AvailableArgs = {
     search?: Maybe<Scalars['String']>;
     claimId: Scalars['ID'];
 };
 
-type QueryProduct_Gameserver_TemplateArgs = {
+export type QueryProduct_Gameserver_TemplateArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductGameserverByIdArgs = {
+export type QueryProductGameserverByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductGameserversArgs = {
+export type QueryProductGameserversArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProduct_Gameserver_LogArgs = {
+export type QueryProduct_Gameserver_LogArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProduct_Gameserver_RunningArgs = {
+export type QueryProduct_Gameserver_RunningArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductGameserverUsageArgs = {
+export type QueryProductGameserverUsageArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProduct_Gameserver_ExistArgs = {
+export type QueryProduct_Gameserver_ExistArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductSimpleByIdArgs = {
+export type QueryProductSimpleByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductSimplesArgs = {
+export type QueryProductSimplesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTeamspeakByIdArgs = {
+export type QueryProductTeamspeakByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTeamspeaksArgs = {
+export type QueryProductTeamspeaksArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTeamspeakRunningArgs = {
+export type QueryProductTeamspeakRunningArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type QueryProductTeamspeakExistArgs = {
+export type QueryProductTeamspeakExistArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type QueryProductTeamspeakTokensArgs = {
+export type QueryProductTeamspeakTokensArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type QueryProductTemplateBundleByIdArgs = {
+export type QueryProductTemplateBundleByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateBundlesArgs = {
+export type QueryProductTemplateBundlesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateDomainByIdArgs = {
+export type QueryProductTemplateDomainByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateDomainsArgs = {
+export type QueryProductTemplateDomainsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateDomainByUrlKeyArgs = {
+export type QueryProductTemplateDomainByUrlKeyArgs = {
     urlKey: Scalars['String'];
 };
 
-type QueryProductTemplateExtendPeriodByIdArgs = {
+export type QueryProductTemplateExtendPeriodByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateExtendPeriodsArgs = {
+export type QueryProductTemplateExtendPeriodsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateGameserverByIdArgs = {
+export type QueryProductTemplateGameserverByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateGameserversArgs = {
+export type QueryProductTemplateGameserversArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateGameserverByUrlKeyArgs = {
+export type QueryProductTemplateGameserverByUrlKeyArgs = {
     urlKey: Scalars['String'];
 };
 
-type QueryProductTemplateOptionVariantByIdArgs = {
+export type QueryProductTemplateOptionVariantByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateOptionVariantsArgs = {
+export type QueryProductTemplateOptionVariantsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateOptionVariantByIdsArgs = {
+export type QueryProductTemplateOptionVariantByIdsArgs = {
     ids: Array<Scalars['ID']>;
 };
 
-type QueryProductTemplateOptionByIdArgs = {
+export type QueryProductTemplateOptionByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateOptionsArgs = {
+export type QueryProductTemplateOptionsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateSimpleByIdArgs = {
+export type QueryProductTemplateSimpleByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateSimplesArgs = {
+export type QueryProductTemplateSimplesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateSimpleByUrlKeyArgs = {
+export type QueryProductTemplateSimpleByUrlKeyArgs = {
     urlKey: Scalars['String'];
 };
 
-type QueryProductTemplateTeamspeakByIdArgs = {
+export type QueryProductTemplateTeamspeakByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateTeamspeaksArgs = {
+export type QueryProductTemplateTeamspeaksArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateTeamspeakByUrlKeyArgs = {
+export type QueryProductTemplateTeamspeakByUrlKeyArgs = {
     urlKey: Scalars['String'];
 };
 
-type QueryProductVserverImageByIdArgs = {
+export type QueryProductVserverImageByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductVserverImagesArgs = {
+export type QueryProductVserverImagesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductVserverImagePlatformImagesArgs = {
+export type QueryProductVserverImagePlatformImagesArgs = {
     search?: Maybe<Scalars['String']>;
     platform: Scalars['String'];
 };
 
-type QueryProductVserverIpByIdArgs = {
+export type QueryProductVserverIpByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductVserverIpsArgs = {
+export type QueryProductVserverIpsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductVserverByIdArgs = {
+export type QueryProductVserverByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductVserversArgs = {
+export type QueryProductVserversArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductVserverExistArgs = {
+export type QueryProductVserverExistArgs = {
     vserverId: Scalars['ID'];
 };
 
-type QueryProductVserverRunningArgs = {
+export type QueryProductVserverRunningArgs = {
     vserverId: Scalars['ID'];
 };
 
-type QueryProductVserverStatsArgs = {
+export type QueryProductVserverStatsArgs = {
     vserverId: Scalars['ID'];
 };
 
-type QueryProductByIdArgs = {
+export type QueryProductByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductsArgs = {
+export type QueryProductsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryFinanceChargeByIdArgs = {
+export type QueryFinanceChargeByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryFinanceChargesArgs = {
+export type QueryFinanceChargesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryFinanceTransactionByIdArgs = {
+export type QueryFinanceTransactionByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryFinanceTransactionsArgs = {
+export type QueryFinanceTransactionsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryFinanceDonationLinkByIdArgs = {
+export type QueryFinanceDonationLinkByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateVserverByIdArgs = {
+export type QueryProductTemplateVserverByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryProductTemplateVserversArgs = {
+export type QueryProductTemplateVserversArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryProductTemplateVserversByPlatformArgs = {
+export type QueryProductTemplateVserversByPlatformArgs = {
     platform: Scalars['String'];
 };
 
-type QueryProductGameserverFsReadIndexArgs = {
+export type QueryProductGameserverFsReadIndexArgs = {
     reloadIndex?: Maybe<Scalars['Boolean']>;
     gameserverId: Scalars['ID'];
 };
 
-type QueryProductGameserverFsReadArgs = {
+export type QueryProductGameserverFsReadArgs = {
     file: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type QueryBackupServerByIdArgs = {
+export type QueryBackupServerByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryBackupServersArgs = {
+export type QueryBackupServersArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryBackupServerArgs = {
+export type QueryBackupServerArgs = {
     id: Scalars['ID'];
 };
 
-type QueryHostNodeTaskByIdArgs = {
+export type QueryHostNodeTaskByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryHostNodeTasksArgs = {
+export type QueryHostNodeTasksArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryHostNodeTasksMyArgs = {
+export type QueryHostNodeTasksMyArgs = {
     take?: Maybe<Scalars['Int']>;
 };
 
-type QueryHost_Node_Task_RunningArgs = {
+export type QueryHost_Node_Task_RunningArgs = {
     identifier: Scalars['ID'];
 };
 
-type QueryHostNodeByIdArgs = {
+export type QueryHostNodeByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryHostNodesArgs = {
+export type QueryHostNodesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryHost_NodeArgs = {
+export type QueryHost_NodeArgs = {
     id: Scalars['ID'];
 };
 
-type QueryHostNodeTestFindNodeArgs = {
+export type QueryHostNodeTestFindNodeArgs = {
     filterKey?: Maybe<Scalars['String']>;
     type: Scalars['String'];
 };
 
-type QueryFileByIdArgs = {
+export type QueryFileByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryFilesArgs = {
+export type QueryFilesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryPdfTemplateByIdArgs = {
+export type QueryPdfTemplateByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QueryPdfTemplatesArgs = {
+export type QueryPdfTemplatesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QueryPdf_TemplateArgs = {
+export type QueryPdf_TemplateArgs = {
     id: Scalars['ID'];
 };
 
-type QuerySupportTicketByIdArgs = {
+export type QuerySupportTicketByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QuerySupportTicketsArgs = {
+export type QuerySupportTicketsArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type QuerySupport_TicketArgs = {
+export type QuerySupport_TicketArgs = {
     id: Scalars['ID'];
 };
 
-type QuerySupportQuickResponseByIdArgs = {
+export type QuerySupportQuickResponseByIdArgs = {
     id: Scalars['ID'];
 };
 
-type QuerySupportQuickResponsesArgs = {
+export type QuerySupportQuickResponsesArgs = {
     filter?: Maybe<CordFilter>;
 };
 
-type AclResultMany = {
+export type AclResultMany = {
     __typename?: 'AclResultMany';
     edges: Array<Acl>;
     pageInfo: CordPageInfo;
 };
 
-type CordFilter = {
+export type CordFilter = {
     order?: Maybe<Scalars['String']>;
     orderBy?: Maybe<Scalars['String']>;
     take?: Maybe<Scalars['Int']>;
@@ -1492,216 +1497,216 @@ type CordFilter = {
     searchInRelations?: Maybe<Scalars['Boolean']>;
 };
 
-type CordFilterValue = {
+export type CordFilterValue = {
     key: Scalars['String'];
     value?: Maybe<Scalars['String']>;
 };
 
-type RoleResultMany = {
+export type RoleResultMany = {
     __typename?: 'RoleResultMany';
     edges: Array<Role>;
     pageInfo: CordPageInfo;
 };
 
-type UserResultMany = {
+export type UserResultMany = {
     __typename?: 'UserResultMany';
     edges: Array<User>;
     pageInfo: CordPageInfo;
 };
 
-type EmailTemplateResultMany = {
+export type EmailTemplateResultMany = {
     __typename?: 'EmailTemplateResultMany';
     edges: Array<EmailTemplate>;
     pageInfo: CordPageInfo;
 };
 
-type UserAddressResultMany = {
+export type UserAddressResultMany = {
     __typename?: 'UserAddressResultMany';
     edges: Array<UserAddress>;
     pageInfo: CordPageInfo;
 };
 
-type UserCommentResultMany = {
+export type UserCommentResultMany = {
     __typename?: 'UserCommentResultMany';
     edges: Array<UserComment>;
     pageInfo: CordPageInfo;
 };
 
-type TranslationResultMany = {
+export type TranslationResultMany = {
     __typename?: 'TranslationResultMany';
     edges: Array<Translation>;
     pageInfo: CordPageInfo;
 };
 
-type ProductDomainResultMany = {
+export type ProductDomainResultMany = {
     __typename?: 'ProductDomainResultMany';
     edges: Array<ProductDomain>;
     pageInfo: CordPageInfo;
 };
 
-type ProductGameserverScriptResultMany = {
+export type ProductGameserverScriptResultMany = {
     __typename?: 'ProductGameserverScriptResultMany';
     edges: Array<ProductGameserverScript>;
     pageInfo: CordPageInfo;
 };
 
-type ProductGameserverTemplateResultMany = {
+export type ProductGameserverTemplateResultMany = {
     __typename?: 'ProductGameserverTemplateResultMany';
     edges: Array<ProductGameserverTemplate>;
     pageInfo: CordPageInfo;
 };
 
-type ProductGameserverResultMany = {
+export type ProductGameserverResultMany = {
     __typename?: 'ProductGameserverResultMany';
     edges: Array<ProductGameserver>;
     pageInfo: CordPageInfo;
 };
 
-type ProductSimpleResultMany = {
+export type ProductSimpleResultMany = {
     __typename?: 'ProductSimpleResultMany';
     edges: Array<ProductSimple>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTeamspeakResultMany = {
+export type ProductTeamspeakResultMany = {
     __typename?: 'ProductTeamspeakResultMany';
     edges: Array<ProductTeamspeak>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateBundleResultMany = {
+export type ProductTemplateBundleResultMany = {
     __typename?: 'ProductTemplateBundleResultMany';
     edges: Array<ProductTemplateBundle>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateDomainResultMany = {
+export type ProductTemplateDomainResultMany = {
     __typename?: 'ProductTemplateDomainResultMany';
     edges: Array<ProductTemplateDomain>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateExtendPeriodResultMany = {
+export type ProductTemplateExtendPeriodResultMany = {
     __typename?: 'ProductTemplateExtendPeriodResultMany';
     edges: Array<ProductTemplateExtendPeriod>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateGameserverResultMany = {
+export type ProductTemplateGameserverResultMany = {
     __typename?: 'ProductTemplateGameserverResultMany';
     edges: Array<ProductTemplateGameserver>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateOptionVariantResultMany = {
+export type ProductTemplateOptionVariantResultMany = {
     __typename?: 'ProductTemplateOptionVariantResultMany';
     edges: Array<ProductTemplateOptionVariant>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateOptionResultMany = {
+export type ProductTemplateOptionResultMany = {
     __typename?: 'ProductTemplateOptionResultMany';
     edges: Array<ProductTemplateOption>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateSimpleResultMany = {
+export type ProductTemplateSimpleResultMany = {
     __typename?: 'ProductTemplateSimpleResultMany';
     edges: Array<ProductTemplateSimple>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateTeamspeakResultMany = {
+export type ProductTemplateTeamspeakResultMany = {
     __typename?: 'ProductTemplateTeamspeakResultMany';
     edges: Array<ProductTemplateTeamspeak>;
     pageInfo: CordPageInfo;
 };
 
-type ProductVserverImageResultMany = {
+export type ProductVserverImageResultMany = {
     __typename?: 'ProductVserverImageResultMany';
     edges: Array<ProductVserverImage>;
     pageInfo: CordPageInfo;
 };
 
-type ProductVserverIpResultMany = {
+export type ProductVserverIpResultMany = {
     __typename?: 'ProductVserverIpResultMany';
     edges: Array<ProductVserverIp>;
     pageInfo: CordPageInfo;
 };
 
-type ProductVserverResultMany = {
+export type ProductVserverResultMany = {
     __typename?: 'ProductVserverResultMany';
     edges: Array<ProductVserver>;
     pageInfo: CordPageInfo;
 };
 
-type ProductResultMany = {
+export type ProductResultMany = {
     __typename?: 'ProductResultMany';
     edges: Array<Product>;
     pageInfo: CordPageInfo;
 };
 
-type FinanceChargeResultMany = {
+export type FinanceChargeResultMany = {
     __typename?: 'FinanceChargeResultMany';
     edges: Array<FinanceCharge>;
     pageInfo: CordPageInfo;
 };
 
-type FinanceTransactionResultMany = {
+export type FinanceTransactionResultMany = {
     __typename?: 'FinanceTransactionResultMany';
     edges: Array<FinanceTransaction>;
     pageInfo: CordPageInfo;
 };
 
-type ProductTemplateVserverResultMany = {
+export type ProductTemplateVserverResultMany = {
     __typename?: 'ProductTemplateVserverResultMany';
     edges: Array<ProductTemplateVserver>;
     pageInfo: CordPageInfo;
 };
 
-type BackupServerResultMany = {
+export type BackupServerResultMany = {
     __typename?: 'BackupServerResultMany';
     edges: Array<BackupServer>;
     pageInfo: CordPageInfo;
 };
 
-type HostNodeTaskResultMany = {
+export type HostNodeTaskResultMany = {
     __typename?: 'HostNodeTaskResultMany';
     edges: Array<HostNodeTask>;
     pageInfo: CordPageInfo;
 };
 
-type HostNodeResultMany = {
+export type HostNodeResultMany = {
     __typename?: 'HostNodeResultMany';
     edges: Array<HostNode>;
     pageInfo: CordPageInfo;
 };
 
-type FileResultMany = {
+export type FileResultMany = {
     __typename?: 'FileResultMany';
     edges: Array<File>;
     pageInfo: CordPageInfo;
 };
 
-type PdfTemplateResultMany = {
+export type PdfTemplateResultMany = {
     __typename?: 'PdfTemplateResultMany';
     edges: Array<PdfTemplate>;
     pageInfo: CordPageInfo;
 };
 
-type SupportTicketResultMany = {
+export type SupportTicketResultMany = {
     __typename?: 'SupportTicketResultMany';
     edges: Array<SupportTicket>;
     pageInfo: CordPageInfo;
 };
 
-type SupportQuickResponseResultMany = {
+export type SupportQuickResponseResultMany = {
     __typename?: 'SupportQuickResponseResultMany';
     edges: Array<SupportQuickResponse>;
     pageInfo: CordPageInfo;
 };
 
-type Mutation = {
+export type Mutation = {
     __typename?: 'Mutation';
     aclRefillAclCache: Scalars['Boolean'];
     role_role_edit: Role;
@@ -1861,315 +1866,315 @@ type Mutation = {
     supportQuickResponseDelete: Scalars['Boolean'];
 };
 
-type MutationRole_Role_EditArgs = {
+export type MutationRole_Role_EditArgs = {
     data: RoleNewInput;
 };
 
-type MutationRole_Role_DeleteArgs = {
+export type MutationRole_Role_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationRoleAssignAclArgs = {
+export type MutationRoleAssignAclArgs = {
     aclsId: Array<Scalars['ID']>;
     id: Scalars['ID'];
 };
 
-type MutationRoleUnAssignAclArgs = {
+export type MutationRoleUnAssignAclArgs = {
     aclsId: Array<Scalars['ID']>;
     id: Scalars['ID'];
 };
 
-type MutationRoleAddUserArgs = {
+export type MutationRoleAddUserArgs = {
     userId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationRoleRemoveUserArgs = {
+export type MutationRoleRemoveUserArgs = {
     userId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationUserSetActiveArgs = {
+export type MutationUserSetActiveArgs = {
     active: Scalars['Boolean'];
     id: Scalars['ID'];
 };
 
-type MutationUserTestMyPasswordArgs = {
+export type MutationUserTestMyPasswordArgs = {
     password: Scalars['String'];
 };
 
-type MutationUserEditSelfGeneralArgs = {
+export type MutationUserEditSelfGeneralArgs = {
     localAvatarId?: Maybe<Scalars['ID']>;
     forceEmailLogin?: Maybe<Scalars['Boolean']>;
     nickname: Scalars['String'];
     new_password?: Maybe<Scalars['String']>;
 };
 
-type MutationUserEditSelfAddressArgs = {
+export type MutationUserEditSelfAddressArgs = {
     data: UserInputUserEditAddress;
 };
 
-type MutationUserEditSelfEmailArgs = {
+export type MutationUserEditSelfEmailArgs = {
     password: Scalars['String'];
     email: Scalars['String'];
 };
 
-type MutationUser_RegisterArgs = {
+export type MutationUser_RegisterArgs = {
     googleCaptcha: Scalars['String'];
     data: UserInputRegister;
 };
 
-type MutationUser_VerifyArgs = {
+export type MutationUser_VerifyArgs = {
     token: Scalars['String'];
 };
 
-type MutationUser_Reset_PasswordArgs = {
+export type MutationUser_Reset_PasswordArgs = {
     captcha: Scalars['String'];
     email: Scalars['String'];
 };
 
-type MutationUser_Reset_Password_TokenArgs = {
+export type MutationUser_Reset_Password_TokenArgs = {
     password: Scalars['String'];
     token: Scalars['String'];
 };
 
-type MutationUserAddressAddVerifyDocumentArgs = {
+export type MutationUserAddressAddVerifyDocumentArgs = {
     fileId: Scalars['ID'];
 };
 
-type MutationUserMakeFeedbackArgs = {
+export type MutationUserMakeFeedbackArgs = {
     feedbackMessage?: Maybe<Scalars['String']>;
     feedbackSatisfied?: Maybe<Scalars['Boolean']>;
     availableForMoreFeedback?: Maybe<Scalars['Boolean']>;
 };
 
-type MutationEmail_Template_NewArgs = {
+export type MutationEmail_Template_NewArgs = {
     data: EmailTemplateInputNew;
 };
 
-type MutationEmail_Template_EditArgs = {
+export type MutationEmail_Template_EditArgs = {
     data: EmailTemplateInputEdit;
 };
 
-type MutationEmail_Template_DeleteArgs = {
+export type MutationEmail_Template_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationUserAddressConfirmVerifyArgs = {
+export type MutationUserAddressConfirmVerifyArgs = {
     id: Scalars['ID'];
 };
 
-type MutationUserAddressRejectVerifyArgs = {
+export type MutationUserAddressRejectVerifyArgs = {
     id: Scalars['ID'];
 };
 
-type MutationUserCommentCreateArgs = {
+export type MutationUserCommentCreateArgs = {
     message: Scalars['String'];
     userId: Scalars['ID'];
 };
 
-type MutationUserOauthTokenConfirmArgs = {
+export type MutationUserOauthTokenConfirmArgs = {
     id: Scalars['ID'];
     password: Scalars['String'];
 };
 
-type MutationUserOAuthDeleteTokenArgs = {
+export type MutationUserOAuthDeleteTokenArgs = {
     id: Scalars['ID'];
 };
 
-type MutationUserLoginWithEmailTokenArgs = {
+export type MutationUserLoginWithEmailTokenArgs = {
     password: Scalars['String'];
     username: Scalars['String'];
 };
 
-type MutationUser_Admin_LoginArgs = {
+export type MutationUser_Admin_LoginArgs = {
     id: Scalars['ID'];
 };
 
-type MutationTranslationEditArgs = {
+export type MutationTranslationEditArgs = {
     language: Scalars['String'];
     value: Scalars['String'];
     key: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationTranslationDeleteArgs = {
+export type MutationTranslationDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductDomainSetAuthcodeArgs = {
+export type MutationProductDomainSetAuthcodeArgs = {
     authcode: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductDomainRequestNewAuthcodeArgs = {
+export type MutationProductDomainRequestNewAuthcodeArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductDomainDeleteArgs = {
+export type MutationProductDomainDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverAccessInviteArgs = {
+export type MutationProductGameserverAccessInviteArgs = {
     captcha: Scalars['String'];
     emailOfInvitedUser: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationProductGameserverAccessRevokeArgs = {
+export type MutationProductGameserverAccessRevokeArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverMysqlCreateArgs = {
+export type MutationProductGameserverMysqlCreateArgs = {
     password: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationProductGameserverMysqlDeleteArgs = {
+export type MutationProductGameserverMysqlDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverMysqlChangeLabelArgs = {
+export type MutationProductGameserverMysqlChangeLabelArgs = {
     label: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_Script_DeleteArgs = {
+export type MutationProduct_Gameserver_Script_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_Script_EditArgs = {
+export type MutationProduct_Gameserver_Script_EditArgs = {
     data: ProductGameserverScriptEditInput;
 };
 
-type MutationProduct_Gameserver_Script_NewArgs = {
+export type MutationProduct_Gameserver_Script_NewArgs = {
     data: ProductGameserverScriptNewInput;
 };
 
-type MutationProduct_Gameserver_Template_EditArgs = {
+export type MutationProduct_Gameserver_Template_EditArgs = {
     data: ProductGameserverTemplateEditInput;
 };
 
-type MutationProduct_Gameserver_Template_DeleteArgs = {
+export type MutationProduct_Gameserver_Template_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_Template_Set_Default_ScriptArgs = {
+export type MutationProduct_Gameserver_Template_Set_Default_ScriptArgs = {
     scriptId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_Change_LabelArgs = {
+export type MutationProduct_Gameserver_Change_LabelArgs = {
     label: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverBackupDownloadArgs = {
+export type MutationProductGameserverBackupDownloadArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverSetAutorestartsArgs = {
+export type MutationProductGameserverSetAutorestartsArgs = {
     restarts: Array<Scalars['Int']>;
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverFailureAutorestartArgs = {
+export type MutationProductGameserverFailureAutorestartArgs = {
     restart: Scalars['Boolean'];
     id: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_StartArgs = {
+export type MutationProduct_Gameserver_StartArgs = {
     scriptId?: Maybe<Scalars['ID']>;
     gameserverId: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_StopArgs = {
+export type MutationProduct_Gameserver_StopArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_Change_PasswordArgs = {
+export type MutationProduct_Gameserver_Change_PasswordArgs = {
     password: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationProduct_Gameserver_ConsoleArgs = {
+export type MutationProduct_Gameserver_ConsoleArgs = {
     command: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationProductGameserverBackupCreateArgs = {
+export type MutationProductGameserverBackupCreateArgs = {
     gameserverId: Scalars['ID'];
 };
 
-type MutationProductGameserverBackupDeleteArgs = {
+export type MutationProductGameserverBackupDeleteArgs = {
     backupId: Scalars['ID'];
 };
 
-type MutationProductGameserverBackupRestoreArgs = {
+export type MutationProductGameserverBackupRestoreArgs = {
     backupId: Scalars['ID'];
 };
 
-type MutationProductGameserverInstallArgs = {
+export type MutationProductGameserverInstallArgs = {
     gameserverTemplateId: Scalars['ID'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationProductGameserverDeleteArgs = {
+export type MutationProductGameserverDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverSetCustomAttributeArgs = {
+export type MutationProductGameserverSetCustomAttributeArgs = {
     value: Scalars['String'];
     key: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductSimpleDeleteArgs = {
+export type MutationProductSimpleDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductSimpleEditLabelArgs = {
+export type MutationProductSimpleEditLabelArgs = {
     label: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductSimpleSetStateArgs = {
+export type MutationProductSimpleSetStateArgs = {
     state: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductTeamspeakChangeLabelArgs = {
+export type MutationProductTeamspeakChangeLabelArgs = {
     label: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductTeamspeakStartArgs = {
+export type MutationProductTeamspeakStartArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type MutationProductTeamspeakStopArgs = {
+export type MutationProductTeamspeakStopArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type MutationProductTeamspeakInstallArgs = {
+export type MutationProductTeamspeakInstallArgs = {
     teamspeakId: Scalars['ID'];
 };
 
-type MutationProductTeamspeakTokenDeleteArgs = {
+export type MutationProductTeamspeakTokenDeleteArgs = {
     token: Scalars['String'];
     teamspeakId: Scalars['ID'];
 };
 
-type MutationProductTeamspeakTokenCreateArgs = {
+export type MutationProductTeamspeakTokenCreateArgs = {
     group: Scalars['String'];
     teamspeakId: Scalars['ID'];
 };
 
-type MutationProductTeamspeakRemoveArgs = {
+export type MutationProductTeamspeakRemoveArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateDomainCreateArgs = {
+export type MutationProductTemplateDomainCreateArgs = {
     active: Scalars['Boolean'];
     gTld: Scalars['String'];
     urlKey: Scalars['String'];
@@ -2178,7 +2183,7 @@ type MutationProductTemplateDomainCreateArgs = {
     title: Scalars['String'];
 };
 
-type MutationProductTemplateDomainEditArgs = {
+export type MutationProductTemplateDomainEditArgs = {
     active: Scalars['Boolean'];
     basePrice: Scalars['Float'];
     gTld: Scalars['String'];
@@ -2188,18 +2193,18 @@ type MutationProductTemplateDomainEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateDomainDeleteArgs = {
+export type MutationProductTemplateDomainDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateExtendPeriodCreateArgs = {
+export type MutationProductTemplateExtendPeriodCreateArgs = {
     discount: Scalars['Float'];
     discountFactor: Scalars['Float'];
     globalGroup: Scalars['String'];
     expression: Scalars['String'];
 };
 
-type MutationProductTemplateExtendPeriodEditArgs = {
+export type MutationProductTemplateExtendPeriodEditArgs = {
     discount: Scalars['Float'];
     discountFactor: Scalars['Float'];
     globalGroup?: Maybe<Scalars['String']>;
@@ -2207,11 +2212,11 @@ type MutationProductTemplateExtendPeriodEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateExtendPeriodDeleteArgs = {
+export type MutationProductTemplateExtendPeriodDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateGameserverCreateArgs = {
+export type MutationProductTemplateGameserverCreateArgs = {
     hostNodeFilterKey?: Maybe<Scalars['String']>;
     memoryOptionId?: Maybe<Scalars['ID']>;
     slotOptionId?: Maybe<Scalars['ID']>;
@@ -2222,7 +2227,7 @@ type MutationProductTemplateGameserverCreateArgs = {
     title: Scalars['String'];
 };
 
-type MutationProductTemplateGameserverEditArgs = {
+export type MutationProductTemplateGameserverEditArgs = {
     optionIds?: Maybe<Array<Scalars['ID']>>;
     hostNodeFilterKey?: Maybe<Scalars['String']>;
     assignedGameserverTemplates?: Maybe<Array<Scalars['ID']>>;
@@ -2236,11 +2241,11 @@ type MutationProductTemplateGameserverEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateGameserverDeleteArgs = {
+export type MutationProductTemplateGameserverDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateOptionVariantCreateArgs = {
+export type MutationProductTemplateOptionVariantCreateArgs = {
     priceSetup: Scalars['Float'];
     priceMultiplier: Scalars['Float'];
     price: Scalars['Float'];
@@ -2250,7 +2255,7 @@ type MutationProductTemplateOptionVariantCreateArgs = {
     optionId: Scalars['ID'];
 };
 
-type MutationProductTemplateOptionVariantEditArgs = {
+export type MutationProductTemplateOptionVariantEditArgs = {
     hidden?: Maybe<Scalars['Boolean']>;
     priceSetup: Scalars['Float'];
     priceMultiplier: Scalars['Float'];
@@ -2262,27 +2267,27 @@ type MutationProductTemplateOptionVariantEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateOptionVariantDeleteArgs = {
+export type MutationProductTemplateOptionVariantDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateOptionCreateArgs = {
+export type MutationProductTemplateOptionCreateArgs = {
     display: Scalars['String'];
     title: Scalars['String'];
 };
 
-type MutationProductTemplateOptionEditArgs = {
+export type MutationProductTemplateOptionEditArgs = {
     upgradeable: Scalars['Boolean'];
     display: Scalars['String'];
     title: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateSimpleDeleteArgs = {
+export type MutationProductTemplateSimpleDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateSimpleCreateArgs = {
+export type MutationProductTemplateSimpleCreateArgs = {
     active: Scalars['Boolean'];
     urlKey: Scalars['String'];
     basePrice: Scalars['Float'];
@@ -2290,7 +2295,7 @@ type MutationProductTemplateSimpleCreateArgs = {
     title: Scalars['String'];
 };
 
-type MutationProductTemplateSimpleEditArgs = {
+export type MutationProductTemplateSimpleEditArgs = {
     extendIntervalIds?: Maybe<Array<Scalars['ID']>>;
     includedGTld?: Maybe<Scalars['String']>;
     optionIds?: Maybe<Array<Scalars['ID']>>;
@@ -2302,7 +2307,7 @@ type MutationProductTemplateSimpleEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateTeamspeakCreateArgs = {
+export type MutationProductTemplateTeamspeakCreateArgs = {
     slotOptionId: Scalars['ID'];
     active: Scalars['Boolean'];
     urlKey: Scalars['String'];
@@ -2311,7 +2316,7 @@ type MutationProductTemplateTeamspeakCreateArgs = {
     title: Scalars['String'];
 };
 
-type MutationProductTemplateTeamspeakEditArgs = {
+export type MutationProductTemplateTeamspeakEditArgs = {
     slotOptionId: Scalars['ID'];
     active: Scalars['Boolean'];
     basePrice: Scalars['Float'];
@@ -2321,28 +2326,28 @@ type MutationProductTemplateTeamspeakEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateTeamspeakDeleteArgs = {
+export type MutationProductTemplateTeamspeakDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverImageCreateArgs = {
+export type MutationProductVserverImageCreateArgs = {
     data: ProductVserverImageCreateInput;
 };
 
-type MutationProductVserverImageEditArgs = {
+export type MutationProductVserverImageEditArgs = {
     data: ProductVserverImageEditInput;
 };
 
-type MutationProductVserverImageDeleteArgs = {
+export type MutationProductVserverImageDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverIpReassignIpArgs = {
+export type MutationProductVserverIpReassignIpArgs = {
     newId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProductVserverIpCreateArgs = {
+export type MutationProductVserverIpCreateArgs = {
     gateway: Scalars['String'];
     netmask: Scalars['String'];
     active: Scalars['Boolean'];
@@ -2351,7 +2356,7 @@ type MutationProductVserverIpCreateArgs = {
     ip: Scalars['String'];
 };
 
-type MutationProductVserverIpEditArgs = {
+export type MutationProductVserverIpEditArgs = {
     vserverId?: Maybe<Scalars['ID']>;
     gateway: Scalars['String'];
     netmask: Scalars['String'];
@@ -2361,172 +2366,172 @@ type MutationProductVserverIpEditArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverIpDeleteArgs = {
+export type MutationProductVserverIpDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverDeleteArgs = {
+export type MutationProductVserverDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverMakeVncPortArgs = {
+export type MutationProductVserverMakeVncPortArgs = {
     vserverId: Scalars['ID'];
 };
 
-type MutationProductVserverBackupDownloadArgs = {
+export type MutationProductVserverBackupDownloadArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverUnlockNetworkSpeedArgs = {
+export type MutationProductVserverUnlockNetworkSpeedArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverChangeLabelArgs = {
+export type MutationProductVserverChangeLabelArgs = {
     label: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationProductVserverSetSshPasswordArgs = {
+export type MutationProductVserverSetSshPasswordArgs = {
     password: Scalars['String'];
     vserverId: Scalars['ID'];
 };
 
-type MutationProductVserverStartArgs = {
+export type MutationProductVserverStartArgs = {
     withImages?: Maybe<Scalars['Boolean']>;
     vserverId: Scalars['ID'];
 };
 
-type MutationProductVserverStopArgs = {
+export type MutationProductVserverStopArgs = {
     vserverId: Scalars['ID'];
 };
 
-type MutationProductVserverInstallArgs = {
+export type MutationProductVserverInstallArgs = {
     recreate?: Maybe<Scalars['Boolean']>;
     vserverId: Scalars['ID'];
 };
 
-type MutationProductVserverAddImageArgs = {
+export type MutationProductVserverAddImageArgs = {
     imageId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProductVserverRemoveImageArgs = {
+export type MutationProductVserverRemoveImageArgs = {
     imageId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProductVserverBackupCreateArgs = {
+export type MutationProductVserverBackupCreateArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductVserverBackupRestoreArgs = {
+export type MutationProductVserverBackupRestoreArgs = {
     backupId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProductVserverBackupDeleteArgs = {
+export type MutationProductVserverBackupDeleteArgs = {
     backupId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationProductUpgradeGameserverArgs = {
+export type MutationProductUpgradeGameserverArgs = {
     intervalId: Scalars['ID'];
     variantIds: Array<ProductUpgradeGameserverVaraintMapping>;
     id: Scalars['ID'];
 };
 
-type MutationProductUpgradeTeamspeakArgs = {
+export type MutationProductUpgradeTeamspeakArgs = {
     intervalId: Scalars['ID'];
     variantIds: Array<ProductUpgradeGameserverVaraintMapping>;
     id: Scalars['ID'];
 };
 
-type MutationProductBuyGameserverArgs = {
+export type MutationProductBuyGameserverArgs = {
     product: ProductBuyGameserverInput;
 };
 
-type MutationProductBuyTeamspeakArgs = {
+export type MutationProductBuyTeamspeakArgs = {
     product: ProductBuyTeamspeakInput;
 };
 
-type MutationProductBuySimpleArgs = {
+export type MutationProductBuySimpleArgs = {
     product: ProductBuySimpleInput;
 };
 
-type MutationProductBuyVserverArgs = {
+export type MutationProductBuyVserverArgs = {
     product: ProductBuyVserverInput;
 };
 
-type MutationProductBuyDomainArgs = {
+export type MutationProductBuyDomainArgs = {
     product: ProductBuyDomainInput;
 };
 
-type MutationProductEditArgs = {
+export type MutationProductEditArgs = {
     data: ProductEditInput;
 };
 
-type MutationProductSetAutorenewIntervalArgs = {
+export type MutationProductSetAutorenewIntervalArgs = {
     intervalId?: Maybe<Scalars['ID']>;
     id: Scalars['ID'];
 };
 
-type MutationProductExtendBuyArgs = {
+export type MutationProductExtendBuyArgs = {
     data: ProductExtendBuyInput;
 };
 
-type MutationFinanceChargeVerifyArgs = {
+export type MutationFinanceChargeVerifyArgs = {
     description?: Maybe<Scalars['String']>;
     id: Scalars['ID'];
 };
 
-type MutationFinanceChargeDeleteArgs = {
+export type MutationFinanceChargeDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationFinanceTransactionCreateArgs = {
+export type MutationFinanceTransactionCreateArgs = {
     data: FinanceTransactionCreateInput;
 };
 
-type MutationFinanceDonationLinkCreateArgs = {
+export type MutationFinanceDonationLinkCreateArgs = {
     label?: Maybe<Scalars['String']>;
     message: Scalars['String'];
 };
 
-type MutationFinanceDonationLinkDeleteArgs = {
+export type MutationFinanceDonationLinkDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductTemplateVserverCreateArgs = {
+export type MutationProductTemplateVserverCreateArgs = {
     data: ProductTemplateVserverCreateInput;
 };
 
-type MutationProductTemplateVserverEditArgs = {
+export type MutationProductTemplateVserverEditArgs = {
     data: ProductTemplateVserverEditInput;
 };
 
-type MutationProductTemplateVserverDeleteArgs = {
+export type MutationProductTemplateVserverDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationProductGameserverFsWriteArgs = {
+export type MutationProductGameserverFsWriteArgs = {
     base64Content: Scalars['String'];
     file: Scalars['String'];
     gameserverId: Scalars['ID'];
 };
 
-type MutationBackupServerCreateArgs = {
+export type MutationBackupServerCreateArgs = {
     data: BackupServerInputCreate;
 };
 
-type MutationBackupServerEditArgs = {
+export type MutationBackupServerEditArgs = {
     data: BackupServerInputEdit;
 };
 
-type MutationBackupServerDeleteArgs = {
+export type MutationBackupServerDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationHostNodeUpdateDaemonArgs = {
+export type MutationHostNodeUpdateDaemonArgs = {
     version?: Maybe<Scalars['String']>;
     sshRsaKey?: Maybe<Scalars['String']>;
     sshPassword?: Maybe<Scalars['String']>;
@@ -2534,100 +2539,100 @@ type MutationHostNodeUpdateDaemonArgs = {
     hostNodeId: Scalars['ID'];
 };
 
-type MutationHost_Node_EditArgs = {
+export type MutationHost_Node_EditArgs = {
     data: HostNodeEditInput;
 };
 
-type MutationHost_Node_InstancesArgs = {
+export type MutationHost_Node_InstancesArgs = {
     id: Scalars['ID'];
 };
 
-type MutationHost_Node_DeleteArgs = {
+export type MutationHost_Node_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationFileDeleteFileArgs = {
+export type MutationFileDeleteFileArgs = {
     id: Scalars['ID'];
 };
 
-type MutationDsgvoAnonymizeAccountArgs = {
+export type MutationDsgvoAnonymizeAccountArgs = {
     id: Scalars['ID'];
 };
 
-type MutationPdf_Template_EditArgs = {
+export type MutationPdf_Template_EditArgs = {
     data: PdfTemplateNewEditInput;
 };
 
-type MutationPdf_Template_DeleteArgs = {
+export type MutationPdf_Template_DeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketResetUnreadCounterArgs = {
+export type MutationSupportTicketResetUnreadCounterArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupport_Ticket_NewArgs = {
+export type MutationSupport_Ticket_NewArgs = {
     data: SupportTicketNewInput;
 };
 
-type MutationSupportTicketAddFileArgs = {
+export type MutationSupportTicketAddFileArgs = {
     fileId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketDeleteArgs = {
+export type MutationSupportTicketDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketDeleteMessageArgs = {
+export type MutationSupportTicketDeleteMessageArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupport_Ticket_Add_MessageArgs = {
+export type MutationSupport_Ticket_Add_MessageArgs = {
     data: SupportTicketAddMessage;
 };
 
-type MutationSupport_Ticket_EditArgs = {
+export type MutationSupport_Ticket_EditArgs = {
     data: SupportTicketEdit;
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketAssignToArgs = {
+export type MutationSupportTicketAssignToArgs = {
     userId: Scalars['ID'];
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketSetStatusArgs = {
+export type MutationSupportTicketSetStatusArgs = {
     status: Scalars['String'];
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketCloseArgs = {
+export type MutationSupportTicketCloseArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupportTicketReopenArgs = {
+export type MutationSupportTicketReopenArgs = {
     id: Scalars['ID'];
 };
 
-type MutationSupportQuickResponseCreateArgs = {
+export type MutationSupportQuickResponseCreateArgs = {
     dto: SupportQuickResponseCreateDto;
 };
 
-type MutationSupportQuickResponseEditArgs = {
+export type MutationSupportQuickResponseEditArgs = {
     dto: SupportQuickResponseEditDto;
 };
 
-type MutationSupportQuickResponseDeleteArgs = {
+export type MutationSupportQuickResponseDeleteArgs = {
     id: Scalars['ID'];
 };
 
-type RoleNewInput = {
+export type RoleNewInput = {
     name: Scalars['String'];
     id?: Maybe<Scalars['ID']>;
 };
 
-type UserInputUserEditAddress = {
+export type UserInputUserEditAddress = {
     birthdate?: Maybe<Scalars['String']>;
     street1?: Maybe<Scalars['String']>;
     phone?: Maybe<Scalars['String']>;
@@ -2641,14 +2646,14 @@ type UserInputUserEditAddress = {
     city?: Maybe<Scalars['String']>;
 };
 
-type UserInputRegister = {
+export type UserInputRegister = {
     email: Scalars['String'];
     password: Scalars['String'];
     nickname?: Maybe<Scalars['String']>;
     userAddress?: Maybe<UserInputRegisterAddress>;
 };
 
-type UserInputRegisterAddress = {
+export type UserInputRegisterAddress = {
     birthdate?: Maybe<Scalars['String']>;
     street1?: Maybe<Scalars['String']>;
     phone?: Maybe<Scalars['String']>;
@@ -2663,14 +2668,14 @@ type UserInputRegisterAddress = {
     country?: Maybe<Scalars['String']>;
 };
 
-type EmailTemplateInputNew = {
+export type EmailTemplateInputNew = {
     subject: Scalars['String'];
     sender: Scalars['String'];
     template: Scalars['String'];
     templateContent?: Maybe<Scalars['String']>;
 };
 
-type EmailTemplateInputEdit = {
+export type EmailTemplateInputEdit = {
     id: Scalars['ID'];
     subject: Scalars['String'];
     sender: Scalars['String'];
@@ -2678,7 +2683,7 @@ type EmailTemplateInputEdit = {
     templateContent?: Maybe<Scalars['String']>;
 };
 
-type ProductGameserverScriptEditInput = {
+export type ProductGameserverScriptEditInput = {
     id: Scalars['ID'];
     script: Scalars['String'];
     standaloneBtn: Scalars['Boolean'];
@@ -2691,13 +2696,13 @@ type ProductGameserverScriptEditInput = {
     disableAutoRestart?: Maybe<Scalars['Boolean']>;
 };
 
-type ProductGameserverScriptNewInput = {
+export type ProductGameserverScriptNewInput = {
     script: Scalars['String'];
     templateId: Scalars['ID'];
     title: Scalars['String'];
 };
 
-type ProductGameserverTemplateEditInput = {
+export type ProductGameserverTemplateEditInput = {
     id?: Maybe<Scalars['ID']>;
     title: Scalars['String'];
     platform: Scalars['String'];
@@ -2709,7 +2714,7 @@ type ProductGameserverTemplateEditInput = {
     canUpdateOnStart: Scalars['Boolean'];
 };
 
-type ProductVserverImageCreateInput = {
+export type ProductVserverImageCreateInput = {
     active: Scalars['Boolean'];
     title: Scalars['String'];
     platform: Scalars['String'];
@@ -2717,7 +2722,7 @@ type ProductVserverImageCreateInput = {
     resourceUrl: Scalars['String'];
 };
 
-type ProductVserverImageEditInput = {
+export type ProductVserverImageEditInput = {
     active: Scalars['Boolean'];
     title: Scalars['String'];
     platform: Scalars['String'];
@@ -2726,36 +2731,36 @@ type ProductVserverImageEditInput = {
     id: Scalars['ID'];
 };
 
-type ProductUpgradeGameserverVaraintMapping = {
+export type ProductUpgradeGameserverVaraintMapping = {
     optionId: Scalars['ID'];
     newId: Scalars['ID'];
 };
 
-type ProductBuyGameserverInput = {
+export type ProductBuyGameserverInput = {
     templateId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     options: Array<ProductBuyGameserverInputOption>;
     price: Scalars['Float'];
 };
 
-type ProductBuyGameserverInputOption = {
+export type ProductBuyGameserverInputOption = {
     optionId: Scalars['ID'];
     variantId: Scalars['ID'];
 };
 
-type ProductBuyTeamspeakInput = {
+export type ProductBuyTeamspeakInput = {
     templateId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     options: Array<ProductBuyTeamspeakInputOption>;
     price: Scalars['Float'];
 };
 
-type ProductBuyTeamspeakInputOption = {
+export type ProductBuyTeamspeakInputOption = {
     optionId: Scalars['ID'];
     variantId: Scalars['ID'];
 };
 
-type ProductBuySimpleInput = {
+export type ProductBuySimpleInput = {
     templateId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     options: Array<ProductBuySimpleInputOption>;
@@ -2764,18 +2769,18 @@ type ProductBuySimpleInput = {
     price: Scalars['Float'];
 };
 
-type ProductBuySimpleInputOption = {
+export type ProductBuySimpleInputOption = {
     optionId: Scalars['ID'];
     variantId: Scalars['ID'];
 };
 
-type ProductBuyVserverInput = {
+export type ProductBuyVserverInput = {
     templateId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     price: Scalars['Float'];
 };
 
-type ProductBuyDomainInput = {
+export type ProductBuyDomainInput = {
     templateId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     price: Scalars['Float'];
@@ -2783,18 +2788,18 @@ type ProductBuyDomainInput = {
     authcode?: Maybe<Scalars['String']>;
 };
 
-type ProductEditInput = {
+export type ProductEditInput = {
     expire: Scalars['DateTime'];
     id: Scalars['ID'];
 };
 
-type ProductExtendBuyInput = {
+export type ProductExtendBuyInput = {
     productId: Scalars['ID'];
     paymentIntervalId: Scalars['ID'];
     price: Scalars['Float'];
 };
 
-type FinanceTransactionCreateInput = {
+export type FinanceTransactionCreateInput = {
     positions: Array<FinanceTransactionItemInput>;
     endDate: Scalars['DateTime'];
     type: Scalars['String'];
@@ -2802,13 +2807,13 @@ type FinanceTransactionCreateInput = {
     userId: Scalars['ID'];
 };
 
-type FinanceTransactionItemInput = {
+export type FinanceTransactionItemInput = {
     amount: Scalars['Float'];
     vat: Scalars['Float'];
     title: Scalars['String'];
 };
 
-type ProductTemplateVserverCreateInput = {
+export type ProductTemplateVserverCreateInput = {
     active: Scalars['Boolean'];
     basePrice: Scalars['Float'];
     coresId: Scalars['ID'];
@@ -2820,7 +2825,7 @@ type ProductTemplateVserverCreateInput = {
     platform: Scalars['String'];
 };
 
-type ProductTemplateVserverEditInput = {
+export type ProductTemplateVserverEditInput = {
     active: Scalars['Boolean'];
     basePrice: Scalars['Float'];
     coresId: Scalars['ID'];
@@ -2834,7 +2839,7 @@ type ProductTemplateVserverEditInput = {
     hostNodeFilterKey?: Maybe<Scalars['String']>;
 };
 
-type BackupServerInputCreate = {
+export type BackupServerInputCreate = {
     backupPath: Scalars['String'];
     name?: Maybe<Scalars['String']>;
     port: Scalars['Int'];
@@ -2844,7 +2849,7 @@ type BackupServerInputCreate = {
     localHost: Scalars['String'];
 };
 
-type BackupServerInputEdit = {
+export type BackupServerInputEdit = {
     id: Scalars['ID'];
     backupPath?: Maybe<Scalars['String']>;
     name?: Maybe<Scalars['String']>;
@@ -2855,7 +2860,7 @@ type BackupServerInputEdit = {
     localHost?: Maybe<Scalars['String']>;
 };
 
-type HostNodeEditInput = {
+export type HostNodeEditInput = {
     id?: Maybe<Scalars['ID']>;
     name: Scalars['String'];
     remoteAddress: Scalars['String'];
@@ -2866,13 +2871,13 @@ type HostNodeEditInput = {
     forcePublicBackupTranfer?: Maybe<Scalars['Boolean']>;
 };
 
-type PdfTemplateNewEditInput = {
+export type PdfTemplateNewEditInput = {
     id?: Maybe<Scalars['ID']>;
     template: Scalars['String'];
     templateContent?: Maybe<Scalars['String']>;
 };
 
-type SupportTicketNewInput = {
+export type SupportTicketNewInput = {
     subject: Scalars['String'];
     category: Scalars['String'];
     fileIds: Array<Scalars['ID']>;
@@ -2880,38 +2885,41 @@ type SupportTicketNewInput = {
     message: Scalars['String'];
 };
 
-type SupportTicketAddMessage = {
+export type SupportTicketAddMessage = {
     id: Scalars['ID'];
     message: Scalars['String'];
 };
 
-type SupportTicketEdit = {
+export type SupportTicketEdit = {
     status?: Maybe<Scalars['String']>;
     priority?: Maybe<Scalars['Int']>;
 };
 
-type SupportQuickResponseCreateDto = {
+export type SupportQuickResponseCreateDto = {
     content: Scalars['String'];
     title?: Maybe<Scalars['String']>;
 };
 
-type SupportQuickResponseEditDto = {
+export type SupportQuickResponseEditDto = {
     content: Scalars['String'];
     title?: Maybe<Scalars['String']>;
     id: Scalars['String'];
 };
 
-type MeHasAclQueryVariables = Exact<{
+export type Me_Has_AclQueryVariables = Exact<{
     acl: Scalars['String'];
 }>;
 
-type MeHasAclQuery = { __typename?: 'Query' } & Pick<Query, 'acl_has_acl'>;
+export type Me_Has_AclQuery = { __typename?: 'Query' } & Pick<
+    Query,
+    'acl_has_acl'
+>;
 
-type AclsQueryVariables = Exact<{
+export type AclsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type AclsQuery = { __typename?: 'Query' } & {
+export type AclsQuery = { __typename?: 'Query' } & {
     acls: { __typename?: 'AclResultMany' } & {
         edges: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -2921,14 +2929,16 @@ type AclsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type AclRefillAclCacheMutationVariables = Exact<{ [key: string]: never }>;
+export type AclRefillAclCacheMutationVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type AclRefillAclCacheMutation = { __typename?: 'Mutation' } & Pick<
+export type AclRefillAclCacheMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'aclRefillAclCache'
 >;
 
-type CreateBackupServerMutationVariables = Exact<{
+export type CreateBackupServerMutationVariables = Exact<{
     backupPath: Scalars['String'];
     name?: Maybe<Scalars['String']>;
     port: Scalars['Int'];
@@ -2938,14 +2948,14 @@ type CreateBackupServerMutationVariables = Exact<{
     localHost: Scalars['String'];
 }>;
 
-type CreateBackupServerMutation = { __typename?: 'Mutation' } & {
+export type CreateBackupServerMutation = { __typename?: 'Mutation' } & {
     backupServerCreate: { __typename?: 'BackupServer' } & Pick<
         BackupServer,
         'id'
     >;
 };
 
-type EditBackupServerMutationVariables = Exact<{
+export type EditBackupServerMutationVariables = Exact<{
     id: Scalars['ID'];
     backupPath?: Maybe<Scalars['String']>;
     name?: Maybe<Scalars['String']>;
@@ -2956,27 +2966,27 @@ type EditBackupServerMutationVariables = Exact<{
     localHost: Scalars['String'];
 }>;
 
-type EditBackupServerMutation = { __typename?: 'Mutation' } & {
+export type EditBackupServerMutation = { __typename?: 'Mutation' } & {
     backupServerEdit: { __typename?: 'BackupServer' } & Pick<
         BackupServer,
         'id'
     >;
 };
 
-type DeleteBackupServerByIdMutationVariables = Exact<{
+export type DeleteBackupServerByIdMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteBackupServerByIdMutation = { __typename?: 'Mutation' } & Pick<
+export type DeleteBackupServerByIdMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'backupServerDelete'
 >;
 
-type BackupServersQueryVariables = Exact<{
+export type BackupServersQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type BackupServersQuery = { __typename?: 'Query' } & {
+export type BackupServersQuery = { __typename?: 'Query' } & {
     backupServers: { __typename?: 'BackupServerResultMany' } & {
         edges: Array<
             { __typename?: 'BackupServer' } & Pick<
@@ -2997,11 +3007,11 @@ type BackupServersQuery = { __typename?: 'Query' } & {
     };
 };
 
-type BackupServerByIdQueryVariables = Exact<{
+export type BackupServerByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type BackupServerByIdQuery = { __typename?: 'Query' } & {
+export type BackupServerByIdQuery = { __typename?: 'Query' } & {
     backupServer: { __typename?: 'BackupServer' } & Pick<
         BackupServer,
         | 'id'
@@ -3017,9 +3027,9 @@ type BackupServerByIdQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type BlogPostReadQueryVariables = Exact<{ [key: string]: never }>;
+export type BlogPostReadQueryVariables = Exact<{ [key: string]: never }>;
 
-type BlogPostReadQuery = { __typename?: 'Query' } & {
+export type BlogPostReadQuery = { __typename?: 'Query' } & {
     blogPostRead: Array<
         { __typename?: 'Blogfeed' } & Pick<
             Blogfeed,
@@ -3028,7 +3038,7 @@ type BlogPostReadQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductDomainPartFragment = { __typename?: 'ProductDomain' } & Pick<
+export type ProductDomainPartFragment = { __typename?: 'ProductDomain' } & Pick<
     ProductDomain,
     | 'id'
     | 'attributes'
@@ -3040,11 +3050,11 @@ type ProductDomainPartFragment = { __typename?: 'ProductDomain' } & Pick<
     | 'tld'
 > & { product: { __typename?: 'Product' } & Pick<Product, 'id' | 'expire'> };
 
-type ProductDomainsQueryVariables = Exact<{
+export type ProductDomainsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductDomainsQuery = { __typename?: 'Query' } & {
+export type ProductDomainsQuery = { __typename?: 'Query' } & {
     productDomains: { __typename?: 'ProductDomainResultMany' } & {
         edges: Array<
             { __typename?: 'ProductDomain' } & Pick<
@@ -3064,19 +3074,19 @@ type ProductDomainsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductDomainByIdQueryVariables = Exact<{
+export type ProductDomainByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductDomainByIdQuery = { __typename?: 'Query' } & {
+export type ProductDomainByIdQuery = { __typename?: 'Query' } & {
     productDomainById: {
         __typename?: 'ProductDomain';
     } & ProductDomainPartFragment;
 };
 
-type MyProductDomainsQueryVariables = Exact<{ [key: string]: never }>;
+export type MyProductDomainsQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyProductDomainsQuery = { __typename?: 'Query' } & {
+export type MyProductDomainsQuery = { __typename?: 'Query' } & {
     productDomainsMy: Array<
         { __typename?: 'ProductDomain' } & Pick<
             ProductDomain,
@@ -3090,55 +3100,57 @@ type MyProductDomainsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductDomainRequestNewAuthcodeMutationVariables = Exact<{
+export type ProductDomainRequestNewAuthcodeMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductDomainRequestNewAuthcodeMutation = { __typename?: 'Mutation' } & {
+export type ProductDomainRequestNewAuthcodeMutation = {
+    __typename?: 'Mutation';
+} & {
     productDomainRequestNewAuthcode: {
         __typename?: 'ProductDomain';
     } & ProductDomainPartFragment;
 };
 
-type ProductDomainDeleteMutationVariables = Exact<{
+export type ProductDomainDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductDomainDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type ProductDomainDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'productDomainDelete'
 >;
 
-type ProductDomainSetAuthcodeMutationVariables = Exact<{
+export type ProductDomainSetAuthcodeMutationVariables = Exact<{
     id: Scalars['ID'];
     authcode: Scalars['String'];
 }>;
 
-type ProductDomainSetAuthcodeMutation = { __typename?: 'Mutation' } & {
+export type ProductDomainSetAuthcodeMutation = { __typename?: 'Mutation' } & {
     productDomainSetAuthcode: {
         __typename?: 'ProductDomain';
     } & ProductDomainPartFragment;
 };
 
-type DsgvoAnonymizeAccountMutationVariables = Exact<{
+export type DsgvoAnonymizeAccountMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DsgvoAnonymizeAccountMutation = { __typename?: 'Mutation' } & Pick<
+export type DsgvoAnonymizeAccountMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'dsgvoAnonymizeAccount'
 >;
 
-type EmailTemplatePartFragment = { __typename?: 'EmailTemplate' } & Pick<
+export type EmailTemplatePartFragment = { __typename?: 'EmailTemplate' } & Pick<
     EmailTemplate,
     'id' | 'sender' | 'subject' | 'template'
 >;
 
-type EmailTemplatesQueryVariables = Exact<{
+export type EmailTemplatesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type EmailTemplatesQuery = { __typename?: 'Query' } & {
+export type EmailTemplatesQuery = { __typename?: 'Query' } & {
     emailTemplates: { __typename?: 'EmailTemplateResultMany' } & {
         edges: Array<
             { __typename?: 'EmailTemplate' } & EmailTemplatePartFragment
@@ -3150,11 +3162,11 @@ type EmailTemplatesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type EmailTemplateByIdQueryVariables = Exact<{
+export type EmailTemplateByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type EmailTemplateByIdQuery = { __typename?: 'Query' } & {
+export type EmailTemplateByIdQuery = { __typename?: 'Query' } & {
     emailTemplateById: { __typename?: 'EmailTemplate' } & Pick<
         EmailTemplate,
         'templateContent'
@@ -3162,14 +3174,14 @@ type EmailTemplateByIdQuery = { __typename?: 'Query' } & {
         EmailTemplatePartFragment;
 };
 
-type NewEmailTemplateMutationVariables = Exact<{
+export type NewEmailTemplateMutationVariables = Exact<{
     sender: Scalars['String'];
     subject: Scalars['String'];
     template: Scalars['String'];
     templateContent?: Maybe<Scalars['String']>;
 }>;
 
-type NewEmailTemplateMutation = { __typename?: 'Mutation' } & {
+export type NewEmailTemplateMutation = { __typename?: 'Mutation' } & {
     email_template_new: { __typename?: 'EmailTemplate' } & Pick<
         EmailTemplate,
         'templateContent'
@@ -3177,16 +3189,16 @@ type NewEmailTemplateMutation = { __typename?: 'Mutation' } & {
         EmailTemplatePartFragment;
 };
 
-type DeleteEmailTemplateMutationVariables = Exact<{
+export type DeleteEmailTemplateMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteEmailTemplateMutation = { __typename?: 'Mutation' } & Pick<
+export type DeleteEmailTemplateMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'email_template_delete'
 >;
 
-type EditEmailTemplateMutationVariables = Exact<{
+export type EditEmailTemplateMutationVariables = Exact<{
     id: Scalars['ID'];
     sender: Scalars['String'];
     subject: Scalars['String'];
@@ -3194,7 +3206,7 @@ type EditEmailTemplateMutationVariables = Exact<{
     templateContent?: Maybe<Scalars['String']>;
 }>;
 
-type EditEmailTemplateMutation = { __typename?: 'Mutation' } & {
+export type EditEmailTemplateMutation = { __typename?: 'Mutation' } & {
     email_template_edit: { __typename?: 'EmailTemplate' } & Pick<
         EmailTemplate,
         'templateContent'
@@ -3202,18 +3214,18 @@ type EditEmailTemplateMutation = { __typename?: 'Mutation' } & {
         EmailTemplatePartFragment;
 };
 
-type FileDeleteFileMutationVariables = Exact<{
+export type FileDeleteFileMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type FileDeleteFileMutation = { __typename?: 'Mutation' } & Pick<
+export type FileDeleteFileMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'FileDeleteFile'
 >;
 
-type MyFilesQueryVariables = Exact<{ [key: string]: never }>;
+export type MyFilesQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyFilesQuery = { __typename?: 'Query' } & {
+export type MyFilesQuery = { __typename?: 'Query' } & {
     myFiles: Array<
         { __typename?: 'File' } & Pick<
             File,
@@ -3229,9 +3241,11 @@ type MyFilesQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type FinancePaymentMethodsQueryVariables = Exact<{ [key: string]: never }>;
+export type FinancePaymentMethodsQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type FinancePaymentMethodsQuery = { __typename?: 'Query' } & {
+export type FinancePaymentMethodsQuery = { __typename?: 'Query' } & {
     FinancePaymentMethods: Array<
         { __typename?: 'PaymentMethod' } & Pick<
             PaymentMethod,
@@ -3257,7 +3271,7 @@ type FinancePaymentMethodsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type FinanceTransactionPartFragment = {
+export type FinanceTransactionPartFragment = {
     __typename?: 'FinanceTransaction';
 } & Pick<
     FinanceTransaction,
@@ -3280,11 +3294,11 @@ type FinanceTransactionPartFragment = {
         >;
     };
 
-type FinanceTransactionsQueryVariables = Exact<{
+export type FinanceTransactionsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type FinanceTransactionsQuery = { __typename?: 'Query' } & {
+export type FinanceTransactionsQuery = { __typename?: 'Query' } & {
     financeTransactions: { __typename?: 'FinanceTransactionResultMany' } & {
         edges: Array<
             {
@@ -3298,29 +3312,31 @@ type FinanceTransactionsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type FinanceTransactionByIdQueryVariables = Exact<{
+export type FinanceTransactionByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type FinanceTransactionByIdQuery = { __typename?: 'Query' } & {
+export type FinanceTransactionByIdQuery = { __typename?: 'Query' } & {
     financeTransactionById: {
         __typename?: 'FinanceTransaction';
     } & FinanceTransactionPartFragment;
 };
 
-type CreateFinanceTransactionMutationVariables = Exact<{
+export type CreateFinanceTransactionMutationVariables = Exact<{
     data: FinanceTransactionCreateInput;
 }>;
 
-type CreateFinanceTransactionMutation = { __typename?: 'Mutation' } & {
+export type CreateFinanceTransactionMutation = { __typename?: 'Mutation' } & {
     financeTransactionCreate: {
         __typename?: 'FinanceTransaction';
     } & FinanceTransactionPartFragment;
 };
 
-type MyFinanceTransactionsQueryVariables = Exact<{ [key: string]: never }>;
+export type MyFinanceTransactionsQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type MyFinanceTransactionsQuery = { __typename?: 'Query' } & {
+export type MyFinanceTransactionsQuery = { __typename?: 'Query' } & {
     user_me: { __typename?: 'User' } & Pick<User, 'id' | 'credits'> & {
             transactions: Array<
                 { __typename?: 'FinanceTransaction' } & Pick<
@@ -3332,7 +3348,7 @@ type MyFinanceTransactionsQuery = { __typename?: 'Query' } & {
         };
 };
 
-type FinanceChargePartFragment = { __typename?: 'FinanceCharge' } & Pick<
+export type FinanceChargePartFragment = { __typename?: 'FinanceCharge' } & Pick<
     FinanceCharge,
     'id' | 'create' | 'amount' | 'method' | 'verified' | 'meta'
 > & {
@@ -3345,11 +3361,11 @@ type FinanceChargePartFragment = { __typename?: 'FinanceCharge' } & Pick<
         >;
     };
 
-type FinanceChargesQueryVariables = Exact<{
+export type FinanceChargesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type FinanceChargesQuery = { __typename?: 'Query' } & {
+export type FinanceChargesQuery = { __typename?: 'Query' } & {
     financeCharges: { __typename?: 'FinanceChargeResultMany' } & {
         edges: Array<
             { __typename?: 'FinanceCharge' } & {
@@ -3368,39 +3384,41 @@ type FinanceChargesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type FinanceChargeByIdQueryVariables = Exact<{
+export type FinanceChargeByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type FinanceChargeByIdQuery = { __typename?: 'Query' } & {
+export type FinanceChargeByIdQuery = { __typename?: 'Query' } & {
     financeChargeById: {
         __typename?: 'FinanceCharge';
     } & FinanceChargePartFragment;
 };
 
-type FinanceChargeVerifyMutationVariables = Exact<{
+export type FinanceChargeVerifyMutationVariables = Exact<{
     id: Scalars['ID'];
     description?: Maybe<Scalars['String']>;
 }>;
 
-type FinanceChargeVerifyMutation = { __typename?: 'Mutation' } & {
+export type FinanceChargeVerifyMutation = { __typename?: 'Mutation' } & {
     financeChargeVerify: {
         __typename?: 'FinanceCharge';
     } & FinanceChargePartFragment;
 };
 
-type FinanceChargeDeleteMutationVariables = Exact<{
+export type FinanceChargeDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type FinanceChargeDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type FinanceChargeDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'financeChargeDelete'
 >;
 
-type FinanceDonationLinksMyQueryVariables = Exact<{ [key: string]: never }>;
+export type FinanceDonationLinksMyQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type FinanceDonationLinksMyQuery = { __typename?: 'Query' } & {
+export type FinanceDonationLinksMyQuery = { __typename?: 'Query' } & {
     financeDonationLinksMy: Array<
         { __typename?: 'FinanceDonationLink' } & Pick<
             FinanceDonationLink,
@@ -3409,28 +3427,27 @@ type FinanceDonationLinksMyQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type FinanceDonationLinkCreateMutationVariables = Exact<{
+export type FinanceDonationLinkCreateMutationVariables = Exact<{
     message: Scalars['String'];
     label?: Maybe<Scalars['String']>;
 }>;
 
-type FinanceDonationLinkCreateMutation = { __typename?: 'Mutation' } & {
+export type FinanceDonationLinkCreateMutation = { __typename?: 'Mutation' } & {
     financeDonationLinkCreate: { __typename?: 'FinanceDonationLink' } & Pick<
         FinanceDonationLink,
         'id' | 'create' | 'message' | 'url' | 'totalDonationSum'
     >;
 };
 
-type FinanceDonationLinkDeleteMutationVariables = Exact<{
+export type FinanceDonationLinkDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type FinanceDonationLinkDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'financeDonationLinkDelete'
->;
+export type FinanceDonationLinkDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'financeDonationLinkDelete'>;
 
-type ProductGameserverPartFragment = {
+export type ProductGameserverPartFragment = {
     __typename?: 'ProductGameserver';
 } & Pick<
     ProductGameserver,
@@ -3481,34 +3498,36 @@ type ProductGameserverPartFragment = {
         >;
     };
 
-type ProductGameserverStartMutationVariables = Exact<{
+export type ProductGameserverStartMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     scriptId?: Maybe<Scalars['ID']>;
 }>;
 
-type ProductGameserverStartMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverStartMutation = { __typename?: 'Mutation' } & {
     product_gameserver_start: {
         __typename?: 'ProductGameserver';
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverSetAutorestartsMutationVariables = Exact<{
+export type ProductGameserverSetAutorestartsMutationVariables = Exact<{
     id: Scalars['ID'];
     restarts: Array<Scalars['Int']> | Scalars['Int'];
 }>;
 
-type ProductGameserverSetAutorestartsMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverSetAutorestartsMutation = {
+    __typename?: 'Mutation';
+} & {
     productGameserverSetAutorestarts: {
         __typename?: 'ProductGameserver';
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverFailureAutorestartMutationVariables = Exact<{
+export type ProductGameserverFailureAutorestartMutationVariables = Exact<{
     id: Scalars['ID'];
     restart: Scalars['Boolean'];
 }>;
 
-type ProductGameserverFailureAutorestartMutation = {
+export type ProductGameserverFailureAutorestartMutation = {
     __typename?: 'Mutation';
 } & {
     productGameserverFailureAutorestart: {
@@ -3516,59 +3535,58 @@ type ProductGameserverFailureAutorestartMutation = {
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverRunningQueryVariables = Exact<{
+export type ProductGameserverRunningQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverRunningQuery = { __typename?: 'Query' } & Pick<
+export type ProductGameserverRunningQuery = { __typename?: 'Query' } & Pick<
     Query,
     'product_gameserver_running'
 >;
 
-type ProductGameserverLogQueryVariables = Exact<{
+export type ProductGameserverLogQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverLogQuery = { __typename?: 'Query' } & Pick<
+export type ProductGameserverLogQuery = { __typename?: 'Query' } & Pick<
     Query,
     'product_gameserver_log'
 >;
 
-type ProductGameserverStopMutationVariables = Exact<{
+export type ProductGameserverStopMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverStopMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverStopMutation = { __typename?: 'Mutation' } & {
     product_gameserver_stop: {
         __typename?: 'ProductGameserver';
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverConsoleMutationVariables = Exact<{
+export type ProductGameserverConsoleMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     command: Scalars['String'];
 }>;
 
-type ProductGameserverConsoleMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'product_gameserver_console'
->;
+export type ProductGameserverConsoleMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'product_gameserver_console'>;
 
-type ProductGameserverExistQueryVariables = Exact<{
+export type ProductGameserverExistQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverExistQuery = { __typename?: 'Query' } & Pick<
+export type ProductGameserverExistQuery = { __typename?: 'Query' } & Pick<
     Query,
     'product_gameserver_exist'
 >;
 
-type ProductGameserverChangeFtpPasswordMutationVariables = Exact<{
+export type ProductGameserverChangeFtpPasswordMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     password: Scalars['String'];
 }>;
 
-type ProductGameserverChangeFtpPasswordMutation = {
+export type ProductGameserverChangeFtpPasswordMutation = {
     __typename?: 'Mutation';
 } & {
     product_gameserver_change_password: {
@@ -3576,11 +3594,11 @@ type ProductGameserverChangeFtpPasswordMutation = {
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverQueryVariables = Exact<{
+export type ProductGameserverQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverQuery = { __typename?: 'Query' } & {
+export type ProductGameserverQuery = { __typename?: 'Query' } & {
     productGameserverById: { __typename?: 'ProductGameserver' } & {
         availableGameserverTemplates: Array<
             { __typename?: 'ProductGameserverTemplate' } & Pick<
@@ -3595,11 +3613,11 @@ type ProductGameserverQuery = { __typename?: 'Query' } & {
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverUsageQueryVariables = Exact<{
+export type ProductGameserverUsageQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverUsageQuery = { __typename?: 'Query' } & {
+export type ProductGameserverUsageQuery = { __typename?: 'Query' } & {
     productGameserverUsage: { __typename?: 'ProductGameserverUsageDto' } & {
         usagePoints: Array<
             { __typename?: 'ProductGameserverUsageDtoEntry' } & Pick<
@@ -3616,11 +3634,11 @@ type ProductGameserverUsageQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductGameserverAddonsQueryVariables = Exact<{
+export type ProductGameserverAddonsQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverAddonsQuery = { __typename?: 'Query' } & {
+export type ProductGameserverAddonsQuery = { __typename?: 'Query' } & {
     product_gameservers_scripts: Array<
         { __typename?: 'ProductGameserverScript' } & Pick<
             ProductGameserverScript,
@@ -3629,13 +3647,13 @@ type ProductGameserverAddonsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverSetCustomAttributeMutationVariables = Exact<{
+export type ProductGameserverSetCustomAttributeMutationVariables = Exact<{
     id: Scalars['ID'];
     key: Scalars['String'];
     value: Scalars['String'];
 }>;
 
-type ProductGameserverSetCustomAttributeMutation = {
+export type ProductGameserverSetCustomAttributeMutation = {
     __typename?: 'Mutation';
 } & {
     productGameserverSetCustomAttribute: {
@@ -3643,69 +3661,71 @@ type ProductGameserverSetCustomAttributeMutation = {
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverChangeLabelMutationVariables = Exact<{
+export type ProductGameserverChangeLabelMutationVariables = Exact<{
     id: Scalars['ID'];
     label: Scalars['String'];
 }>;
 
-type ProductGameserverChangeLabelMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverChangeLabelMutation = {
+    __typename?: 'Mutation';
+} & {
     product_gameserver_change_label: {
         __typename?: 'ProductGameserver';
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverBackupCreateMutationVariables = Exact<{
+export type ProductGameserverBackupCreateMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverBackupCreateMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverBackupCreateMutation = {
+    __typename?: 'Mutation';
+} & {
     productGameserverBackupCreate: {
         __typename?: 'ProductGameserverBackup';
     } & Pick<ProductGameserverBackup, 'id'>;
 };
 
-type ProductGameserverBackupDeleteMutationVariables = Exact<{
+export type ProductGameserverBackupDeleteMutationVariables = Exact<{
     backupId: Scalars['ID'];
 }>;
 
-type ProductGameserverBackupDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productGameserverBackupDelete'
->;
+export type ProductGameserverBackupDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productGameserverBackupDelete'>;
 
-type ProductGameserverBackupRestoreMutationVariables = Exact<{
+export type ProductGameserverBackupRestoreMutationVariables = Exact<{
     backupId: Scalars['ID'];
 }>;
 
-type ProductGameserverBackupRestoreMutation = {
+export type ProductGameserverBackupRestoreMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productGameserverBackupRestore'>;
 
-type ProductGameserverDeleteMutationVariables = Exact<{
+export type ProductGameserverDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productGameserverDelete'
->;
+export type ProductGameserverDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productGameserverDelete'>;
 
-type ProductGameserverInstallMutationVariables = Exact<{
+export type ProductGameserverInstallMutationVariables = Exact<{
     id: Scalars['ID'];
     gameserverTemplateId: Scalars['ID'];
 }>;
 
-type ProductGameserverInstallMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverInstallMutation = { __typename?: 'Mutation' } & {
     productGameserverInstall: {
         __typename?: 'ProductGameserver';
     } & ProductGameserverPartFragment;
 };
 
-type ProductGameserverBackupsQueryVariables = Exact<{
+export type ProductGameserverBackupsQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverBackupsQuery = { __typename?: 'Query' } & {
+export type ProductGameserverBackupsQuery = { __typename?: 'Query' } & {
     productGameserverById: { __typename?: 'ProductGameserver' } & Pick<
         ProductGameserver,
         'id'
@@ -3719,19 +3739,19 @@ type ProductGameserverBackupsQuery = { __typename?: 'Query' } & {
         };
 };
 
-type ProductGameserverBackupDownloadMutationVariables = Exact<{
+export type ProductGameserverBackupDownloadMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverBackupDownloadMutation = {
+export type ProductGameserverBackupDownloadMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productGameserverBackupDownload'>;
 
-type ProductGameserversQueryVariables = Exact<{
+export type ProductGameserversQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductGameserversQuery = { __typename?: 'Query' } & {
+export type ProductGameserversQuery = { __typename?: 'Query' } & {
     productGameservers: { __typename?: 'ProductGameserverResultMany' } & {
         edges: Array<
             { __typename?: 'ProductGameserver' } & Pick<
@@ -3765,9 +3785,11 @@ type ProductGameserversQuery = { __typename?: 'Query' } & {
     };
 };
 
-type MyProductGameserversQueryVariables = Exact<{ [key: string]: never }>;
+export type MyProductGameserversQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type MyProductGameserversQuery = { __typename?: 'Query' } & {
+export type MyProductGameserversQuery = { __typename?: 'Query' } & {
     productGameserversMy: Array<
         { __typename?: 'ProductGameserver' } & Pick<
             ProductGameserver,
@@ -3793,11 +3815,11 @@ type MyProductGameserversQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type MyProductGameserverAccessesQueryVariables = Exact<{
+export type MyProductGameserverAccessesQueryVariables = Exact<{
     [key: string]: never;
 }>;
 
-type MyProductGameserverAccessesQuery = { __typename?: 'Query' } & {
+export type MyProductGameserverAccessesQuery = { __typename?: 'Query' } & {
     myProductGameserverAccesses: Array<
         { __typename?: 'ProductGameserverAccess' } & Pick<
             ProductGameserverAccess,
@@ -3825,11 +3847,13 @@ type MyProductGameserverAccessesQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverAccessesByGameserverIdQueryVariables = Exact<{
+export type ProductGameserverAccessesByGameserverIdQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverAccessesByGameserverIdQuery = { __typename?: 'Query' } & {
+export type ProductGameserverAccessesByGameserverIdQuery = {
+    __typename?: 'Query';
+} & {
     productGameserverAccessesByGameserverId: Array<
         { __typename?: 'ProductGameserverAccess' } & Pick<
             ProductGameserverAccess,
@@ -3843,13 +3867,15 @@ type ProductGameserverAccessesByGameserverIdQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverAccessInviteMutationVariables = Exact<{
+export type ProductGameserverAccessInviteMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     emailOfInvitedUser: Scalars['String'];
     captcha: Scalars['String'];
 }>;
 
-type ProductGameserverAccessInviteMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverAccessInviteMutation = {
+    __typename?: 'Mutation';
+} & {
     productGameserverAccessInvite: {
         __typename?: 'ProductGameserverAccess';
     } & Pick<ProductGameserverAccess, 'accept' | 'id' | 'userEmail'> & {
@@ -3860,20 +3886,21 @@ type ProductGameserverAccessInviteMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type ProductGameserverAccessRevokeMutationVariables = Exact<{
+export type ProductGameserverAccessRevokeMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverAccessRevokeMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productGameserverAccessRevoke'
->;
+export type ProductGameserverAccessRevokeMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productGameserverAccessRevoke'>;
 
-type ProductGameserverMysqlByGameserverQueryVariables = Exact<{
+export type ProductGameserverMysqlByGameserverQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
 }>;
 
-type ProductGameserverMysqlByGameserverQuery = { __typename?: 'Query' } & {
+export type ProductGameserverMysqlByGameserverQuery = {
+    __typename?: 'Query';
+} & {
     productGameserverMysqlByGameserver: Array<
         { __typename?: 'ProductGameserverMysql' } & Pick<
             ProductGameserverMysql,
@@ -3882,45 +3909,48 @@ type ProductGameserverMysqlByGameserverQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverMysqlCreateMutationVariables = Exact<{
+export type ProductGameserverMysqlCreateMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     password: Scalars['String'];
 }>;
 
-type ProductGameserverMysqlCreateMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverMysqlCreateMutation = {
+    __typename?: 'Mutation';
+} & {
     productGameserverMysqlCreate: {
         __typename?: 'ProductGameserverMysql';
     } & Pick<ProductGameserverMysql, 'id' | 'label' | 'host' | 'create'>;
 };
 
-type ProductGameserverMysqlChangeLabelMutationVariables = Exact<{
+export type ProductGameserverMysqlChangeLabelMutationVariables = Exact<{
     id: Scalars['ID'];
     label: Scalars['String'];
 }>;
 
-type ProductGameserverMysqlChangeLabelMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverMysqlChangeLabelMutation = {
+    __typename?: 'Mutation';
+} & {
     productGameserverMysqlChangeLabel: {
         __typename?: 'ProductGameserverMysql';
     } & Pick<ProductGameserverMysql, 'id' | 'label' | 'create' | 'host'>;
 };
 
-type ProductGameserverMysqlDeleteMutationVariables = Exact<{
+export type ProductGameserverMysqlDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverMysqlDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productGameserverMysqlDelete'
->;
+export type ProductGameserverMysqlDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productGameserverMysqlDelete'>;
 
-type ProductGameserverScriptsQueryVariables = Exact<{
+export type ProductGameserverScriptsQueryVariables = Exact<{
     search?: Maybe<Scalars['String']>;
     orderBy?: Maybe<Scalars['String']>;
     order?: Maybe<Scalars['String']>;
     templateId?: Maybe<Scalars['ID']>;
 }>;
 
-type ProductGameserverScriptsQuery = { __typename?: 'Query' } & {
+export type ProductGameserverScriptsQuery = { __typename?: 'Query' } & {
     product_gameserver_scripts: Array<
         { __typename?: 'ProductGameserverScript' } & Pick<
             ProductGameserverScript,
@@ -3929,7 +3959,7 @@ type ProductGameserverScriptsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverScriptEditMutationVariables = Exact<{
+export type ProductGameserverScriptEditMutationVariables = Exact<{
     title: Scalars['String'];
     script: Scalars['String'];
     standaloneBtn: Scalars['Boolean'];
@@ -3942,7 +3972,9 @@ type ProductGameserverScriptEditMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverScriptEditMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverScriptEditMutation = {
+    __typename?: 'Mutation';
+} & {
     product_gameserver_script_edit: {
         __typename?: 'ProductGameserverScript';
     } & Pick<
@@ -3951,20 +3983,19 @@ type ProductGameserverScriptEditMutation = { __typename?: 'Mutation' } & {
     >;
 };
 
-type ProductGameserverScriptDeleteMutationVariables = Exact<{
+export type ProductGameserverScriptDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverScriptDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'product_gameserver_script_delete'
->;
+export type ProductGameserverScriptDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'product_gameserver_script_delete'>;
 
-type ProductGameserverScriptByIdQueryVariables = Exact<{
+export type ProductGameserverScriptByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverScriptByIdQuery = { __typename?: 'Query' } & {
+export type ProductGameserverScriptByIdQuery = { __typename?: 'Query' } & {
     productGameserverScriptById: {
         __typename?: 'ProductGameserverScript';
     } & Pick<
@@ -3981,7 +4012,7 @@ type ProductGameserverScriptByIdQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductGameserverTemplatePartFragment = {
+export type ProductGameserverTemplatePartFragment = {
     __typename?: 'ProductGameserverTemplate';
 } & Pick<
     ProductGameserverTemplate,
@@ -4004,21 +4035,21 @@ type ProductGameserverTemplatePartFragment = {
         logo?: Maybe<{ __typename?: 'File' } & Pick<File, 'id'>>;
     };
 
-type ProductGameserverTemplateQueryVariables = Exact<{
+export type ProductGameserverTemplateQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverTemplateQuery = { __typename?: 'Query' } & {
+export type ProductGameserverTemplateQuery = { __typename?: 'Query' } & {
     product_gameserver_template: {
         __typename?: 'ProductGameserverTemplate';
     } & ProductGameserverTemplatePartFragment;
 };
 
-type ProductGameserverTemplatesQueryVariables = Exact<{
+export type ProductGameserverTemplatesQueryVariables = Exact<{
     filter: CordFilter;
 }>;
 
-type ProductGameserverTemplatesQuery = { __typename?: 'Query' } & {
+export type ProductGameserverTemplatesQuery = { __typename?: 'Query' } & {
     productGameserverTemplates: {
         __typename?: 'ProductGameserverTemplateResultMany';
     } & {
@@ -4039,7 +4070,7 @@ type ProductGameserverTemplatesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductGameserverTemplateEditMutationVariables = Exact<{
+export type ProductGameserverTemplateEditMutationVariables = Exact<{
     id?: Maybe<Scalars['ID']>;
     title: Scalars['String'];
     platform: Scalars['String'];
@@ -4051,26 +4082,28 @@ type ProductGameserverTemplateEditMutationVariables = Exact<{
     canUpdateOnStart: Scalars['Boolean'];
 }>;
 
-type ProductGameserverTemplateEditMutation = { __typename?: 'Mutation' } & {
+export type ProductGameserverTemplateEditMutation = {
+    __typename?: 'Mutation';
+} & {
     product_gameserver_template_edit: {
         __typename?: 'ProductGameserverTemplate';
     } & ProductGameserverTemplatePartFragment;
 };
 
-type ProductGameserverTemplateDeleteMutationVariables = Exact<{
+export type ProductGameserverTemplateDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductGameserverTemplateDeleteMutation = {
+export type ProductGameserverTemplateDeleteMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'product_gameserver_template_delete'>;
 
-type ProductGameserverTemplateSetDefaultScriptMutationVariables = Exact<{
+export type ProductGameserverTemplateSetDefaultScriptMutationVariables = Exact<{
     id: Scalars['ID'];
     scriptId: Scalars['ID'];
 }>;
 
-type ProductGameserverTemplateSetDefaultScriptMutation = {
+export type ProductGameserverTemplateSetDefaultScriptMutation = {
     __typename?: 'Mutation';
 } & {
     product_gameserver_template_set_default_script: {
@@ -4078,11 +4111,11 @@ type ProductGameserverTemplateSetDefaultScriptMutation = {
     } & Pick<ProductGameserverTemplate, 'id'>;
 };
 
-type HostNodeByIdQueryVariables = Exact<{
+export type HostNodeByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type HostNodeByIdQuery = { __typename?: 'Query' } & {
+export type HostNodeByIdQuery = { __typename?: 'Query' } & {
     host_node: { __typename?: 'HostNode' } & Pick<
         HostNode,
         | 'id'
@@ -4101,11 +4134,11 @@ type HostNodeByIdQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type HostNodesQueryVariables = Exact<{
+export type HostNodesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type HostNodesQuery = { __typename?: 'Query' } & {
+export type HostNodesQuery = { __typename?: 'Query' } & {
     hostNodes: { __typename?: 'HostNodeResultMany' } & {
         edges: Array<
             { __typename?: 'HostNode' } & Pick<
@@ -4128,12 +4161,12 @@ type HostNodesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type HostNodeTestFindNodeQueryVariables = Exact<{
+export type HostNodeTestFindNodeQueryVariables = Exact<{
     type: Scalars['String'];
     filterKey?: Maybe<Scalars['String']>;
 }>;
 
-type HostNodeTestFindNodeQuery = { __typename?: 'Query' } & {
+export type HostNodeTestFindNodeQuery = { __typename?: 'Query' } & {
     hostNodeTestFindNode?: Maybe<
         { __typename?: 'HostNode' } & Pick<
             HostNode,
@@ -4147,11 +4180,11 @@ type HostNodeTestFindNodeQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type EditCreateHostNodeMutationVariables = Exact<{
+export type EditCreateHostNodeMutationVariables = Exact<{
     data: HostNodeEditInput;
 }>;
 
-type EditCreateHostNodeMutation = { __typename?: 'Mutation' } & {
+export type EditCreateHostNodeMutation = { __typename?: 'Mutation' } & {
     host_node_edit: { __typename?: 'HostNode' } & Pick<
         HostNode,
         | 'id'
@@ -4170,16 +4203,16 @@ type EditCreateHostNodeMutation = { __typename?: 'Mutation' } & {
     >;
 };
 
-type DeleteHostNodeByIdMutationVariables = Exact<{
+export type DeleteHostNodeByIdMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteHostNodeByIdMutation = { __typename?: 'Mutation' } & Pick<
+export type DeleteHostNodeByIdMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'host_node_delete'
 >;
 
-type HostNodeUpdateDaemonMutationVariables = Exact<{
+export type HostNodeUpdateDaemonMutationVariables = Exact<{
     version?: Maybe<Scalars['String']>;
     hostNodeId: Scalars['ID'];
     sshUsername: Scalars['String'];
@@ -4187,16 +4220,16 @@ type HostNodeUpdateDaemonMutationVariables = Exact<{
     sshRsaKey?: Maybe<Scalars['String']>;
 }>;
 
-type HostNodeUpdateDaemonMutation = { __typename?: 'Mutation' } & Pick<
+export type HostNodeUpdateDaemonMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'hostNodeUpdateDaemon'
 >;
 
-type HostNodeTasksMyQueryVariables = Exact<{
+export type HostNodeTasksMyQueryVariables = Exact<{
     take?: Maybe<Scalars['Int']>;
 }>;
 
-type HostNodeTasksMyQuery = { __typename?: 'Query' } & {
+export type HostNodeTasksMyQuery = { __typename?: 'Query' } & {
     hostNodeTasksMy: Array<
         { __typename?: 'HostNodeTask' } & Pick<
             HostNodeTask,
@@ -4212,11 +4245,11 @@ type HostNodeTasksMyQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type HostNodeTaskByIdQueryVariables = Exact<{
+export type HostNodeTaskByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type HostNodeTaskByIdQuery = { __typename?: 'Query' } & {
+export type HostNodeTaskByIdQuery = { __typename?: 'Query' } & {
     hostNodeTaskById: { __typename?: 'HostNodeTask' } & Pick<
         HostNodeTask,
         'id' | 'update' | 'running' | 'finish' | 'error' | 'label'
@@ -4230,33 +4263,33 @@ type HostNodeTaskByIdQuery = { __typename?: 'Query' } & {
         };
 };
 
-type HostNodeTaskIsRunningQueryVariables = Exact<{
+export type HostNodeTaskIsRunningQueryVariables = Exact<{
     identifier: Scalars['ID'];
 }>;
 
-type HostNodeTaskIsRunningQuery = { __typename?: 'Query' } & Pick<
+export type HostNodeTaskIsRunningQuery = { __typename?: 'Query' } & Pick<
     Query,
     'host_node_task_running'
 >;
 
-type PdfTemplatePartFragment = { __typename?: 'PdfTemplate' } & Pick<
+export type PdfTemplatePartFragment = { __typename?: 'PdfTemplate' } & Pick<
     PdfTemplate,
     'id' | 'templateContent' | 'template' | 'create' | 'update' | 'templateFile'
 >;
 
-type GetPdfTemplateQueryVariables = Exact<{
+export type GetPdfTemplateQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type GetPdfTemplateQuery = { __typename?: 'Query' } & {
+export type GetPdfTemplateQuery = { __typename?: 'Query' } & {
     pdf_template: { __typename?: 'PdfTemplate' } & PdfTemplatePartFragment;
 };
 
-type PdfTemplatesQueryVariables = Exact<{
+export type PdfTemplatesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type PdfTemplatesQuery = { __typename?: 'Query' } & {
+export type PdfTemplatesQuery = { __typename?: 'Query' } & {
     pdfTemplates: { __typename?: 'PdfTemplateResultMany' } & {
         edges: Array<{ __typename?: 'PdfTemplate' } & PdfTemplatePartFragment>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -4266,26 +4299,26 @@ type PdfTemplatesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type DeletePdfTemplateMutationVariables = Exact<{
+export type DeletePdfTemplateMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeletePdfTemplateMutation = { __typename?: 'Mutation' } & Pick<
+export type DeletePdfTemplateMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'pdf_template_delete'
 >;
 
-type EditPdfTemplateMutationVariables = Exact<{
+export type EditPdfTemplateMutationVariables = Exact<{
     id?: Maybe<Scalars['ID']>;
     templateContent?: Maybe<Scalars['String']>;
     template: Scalars['String'];
 }>;
 
-type EditPdfTemplateMutation = { __typename?: 'Mutation' } & {
+export type EditPdfTemplateMutation = { __typename?: 'Mutation' } & {
     pdf_template_edit: { __typename?: 'PdfTemplate' } & PdfTemplatePartFragment;
 };
 
-type ProductPartFragment = { __typename?: 'Product' } & Pick<
+export type ProductPartFragment = { __typename?: 'Product' } & Pick<
     Product,
     'id' | 'expire' | 'autoRenewIntervalId'
 > & {
@@ -4304,22 +4337,24 @@ type ProductPartFragment = { __typename?: 'Product' } & Pick<
         >;
     };
 
-type ProductSetAutorenewIntervalMutationVariables = Exact<{
+export type ProductSetAutorenewIntervalMutationVariables = Exact<{
     id: Scalars['ID'];
     intervalId?: Maybe<Scalars['ID']>;
 }>;
 
-type ProductSetAutorenewIntervalMutation = { __typename?: 'Mutation' } & {
+export type ProductSetAutorenewIntervalMutation = {
+    __typename?: 'Mutation';
+} & {
     productSetAutorenewInterval: {
         __typename?: 'Product';
     } & ProductPartFragment;
 };
 
-type ProductsQueryVariables = Exact<{
+export type ProductsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductsQuery = { __typename?: 'Query' } & {
+export type ProductsQuery = { __typename?: 'Query' } & {
     products: { __typename?: 'ProductResultMany' } & {
         edges: Array<{ __typename?: 'Product' } & ProductPartFragment>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -4329,19 +4364,19 @@ type ProductsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductByIdQueryVariables = Exact<{
+export type ProductByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductByIdQuery = { __typename?: 'Query' } & {
+export type ProductByIdQuery = { __typename?: 'Query' } & {
     productById: { __typename?: 'Product' } & ProductPartFragment;
 };
 
-type ProductById2QueryVariables = Exact<{
+export type ProductById2QueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductById2Query = { __typename?: 'Query' } & {
+export type ProductById2Query = { __typename?: 'Query' } & {
     productById: { __typename?: 'Product' } & {
         availablePeriods: Array<
             { __typename?: 'ProductTemplateExtendPeriod' } & Pick<
@@ -4352,64 +4387,68 @@ type ProductById2Query = { __typename?: 'Query' } & {
     } & ProductPartFragment;
 };
 
-type ProductEditMutationVariables = Exact<{
+export type ProductEditMutationVariables = Exact<{
     data: ProductEditInput;
 }>;
 
-type ProductEditMutation = { __typename?: 'Mutation' } & {
+export type ProductEditMutation = { __typename?: 'Mutation' } & {
     productEdit: { __typename?: 'Product' } & ProductPartFragment;
 };
 
-type ProductGameserverFsReadIndexQueryVariables = Exact<{
+export type ProductGameserverFsReadIndexQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
     reloadIndex?: Maybe<Scalars['Boolean']>;
 }>;
 
-type ProductGameserverFsReadIndexQuery = { __typename?: 'Query' } & Pick<
+export type ProductGameserverFsReadIndexQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productGameserverFsReadIndex'
 >;
 
-type ProductGameserverFsReadQueryVariables = Exact<{
+export type ProductGameserverFsReadQueryVariables = Exact<{
     gameserverId: Scalars['ID'];
     file: Scalars['String'];
 }>;
 
-type ProductGameserverFsReadQuery = { __typename?: 'Query' } & Pick<
+export type ProductGameserverFsReadQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productGameserverFsRead'
 >;
 
-type ProductGameserverFsWriteMutationVariables = Exact<{
+export type ProductGameserverFsWriteMutationVariables = Exact<{
     gameserverId: Scalars['ID'];
     file: Scalars['String'];
     base64Content: Scalars['String'];
 }>;
 
-type ProductGameserverFsWriteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productGameserverFsWrite'
->;
+export type ProductGameserverFsWriteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productGameserverFsWrite'>;
 
-type CreateProductGameserverScriptMutationVariables = Exact<{
+export type CreateProductGameserverScriptMutationVariables = Exact<{
     title: Scalars['String'];
     script: Scalars['String'];
     templateId: Scalars['ID'];
 }>;
 
-type CreateProductGameserverScriptMutation = { __typename?: 'Mutation' } & {
+export type CreateProductGameserverScriptMutation = {
+    __typename?: 'Mutation';
+} & {
     product_gameserver_script_new: {
         __typename?: 'ProductGameserverScript';
     } & Pick<ProductGameserverScript, 'id' | 'title' | 'script'>;
 };
 
-type RolePartFragment = { __typename?: 'Role' } & Pick<Role, 'id' | 'name'>;
+export type RolePartFragment = { __typename?: 'Role' } & Pick<
+    Role,
+    'id' | 'name'
+>;
 
-type RolesQueryVariables = Exact<{
+export type RolesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type RolesQuery = { __typename?: 'Query' } & {
+export type RolesQuery = { __typename?: 'Query' } & {
     roles: { __typename?: 'RoleResultMany' } & {
         edges: Array<{ __typename?: 'Role' } & RolePartFragment>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -4419,90 +4458,90 @@ type RolesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type RoleByIdQueryVariables = Exact<{
+export type RoleByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type RoleByIdQuery = { __typename?: 'Query' } & {
+export type RoleByIdQuery = { __typename?: 'Query' } & {
     roleById: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         users: Array<{ __typename?: 'User' } & Pick<User, 'id'>>;
     } & RolePartFragment;
 };
 
-type EditRoleRoleMutationVariables = Exact<{
+export type EditRoleRoleMutationVariables = Exact<{
     id?: Maybe<Scalars['ID']>;
     name: Scalars['String'];
 }>;
 
-type EditRoleRoleMutation = { __typename?: 'Mutation' } & {
+export type EditRoleRoleMutation = { __typename?: 'Mutation' } & {
     role_role_edit: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         users: Array<{ __typename?: 'User' } & Pick<User, 'id'>>;
     } & RolePartFragment;
 };
 
-type RoleUnAssignAclMutationVariables = Exact<{
+export type RoleUnAssignAclMutationVariables = Exact<{
     id: Scalars['ID'];
     aclsId: Array<Scalars['ID']> | Scalars['ID'];
 }>;
 
-type RoleUnAssignAclMutation = { __typename?: 'Mutation' } & {
+export type RoleUnAssignAclMutation = { __typename?: 'Mutation' } & {
     roleUnAssignAcl: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
     } & RolePartFragment;
 };
 
-type RoleAssignAclMutationVariables = Exact<{
+export type RoleAssignAclMutationVariables = Exact<{
     id: Scalars['ID'];
     aclsId: Array<Scalars['ID']> | Scalars['ID'];
 }>;
 
-type RoleAssignAclMutation = { __typename?: 'Mutation' } & {
+export type RoleAssignAclMutation = { __typename?: 'Mutation' } & {
     roleAssignAcl: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         users: Array<{ __typename?: 'User' } & Pick<User, 'id'>>;
     } & RolePartFragment;
 };
 
-type RoleAddUserMutationVariables = Exact<{
+export type RoleAddUserMutationVariables = Exact<{
     id: Scalars['ID'];
     userId: Scalars['ID'];
 }>;
 
-type RoleAddUserMutation = { __typename?: 'Mutation' } & {
+export type RoleAddUserMutation = { __typename?: 'Mutation' } & {
     roleAddUser: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         users: Array<{ __typename?: 'User' } & Pick<User, 'id'>>;
     } & RolePartFragment;
 };
 
-type RoleRemoveUserMutationVariables = Exact<{
+export type RoleRemoveUserMutationVariables = Exact<{
     id: Scalars['ID'];
     userId: Scalars['ID'];
 }>;
 
-type RoleRemoveUserMutation = { __typename?: 'Mutation' } & {
+export type RoleRemoveUserMutation = { __typename?: 'Mutation' } & {
     roleRemoveUser: { __typename?: 'Role' } & {
         acls: Array<{ __typename?: 'Acl' } & Pick<Acl, 'id' | 'acl'>>;
         users: Array<{ __typename?: 'User' } & Pick<User, 'id'>>;
     } & RolePartFragment;
 };
 
-type DeleteRoleRoleMutationVariables = Exact<{
+export type DeleteRoleRoleMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteRoleRoleMutation = { __typename?: 'Mutation' } & Pick<
+export type DeleteRoleRoleMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'role_role_delete'
 >;
 
-type ProductSimplesQueryVariables = Exact<{
+export type ProductSimplesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductSimplesQuery = { __typename?: 'Query' } & {
+export type ProductSimplesQuery = { __typename?: 'Query' } & {
     productSimples: { __typename?: 'ProductSimpleResultMany' } & {
         edges: Array<
             { __typename?: 'ProductSimple' } & Pick<
@@ -4522,11 +4561,11 @@ type ProductSimplesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductSimpleByIdQueryVariables = Exact<{
+export type ProductSimpleByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductSimpleByIdQuery = { __typename?: 'Query' } & {
+export type ProductSimpleByIdQuery = { __typename?: 'Query' } & {
     productSimpleById: { __typename?: 'ProductSimple' } & Pick<
         ProductSimple,
         'id' | 'name' | 'description' | 'state'
@@ -4538,9 +4577,9 @@ type ProductSimpleByIdQuery = { __typename?: 'Query' } & {
         };
 };
 
-type MyProductSimplesQueryVariables = Exact<{ [key: string]: never }>;
+export type MyProductSimplesQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyProductSimplesQuery = { __typename?: 'Query' } & {
+export type MyProductSimplesQuery = { __typename?: 'Query' } & {
     productSimplesMy: Array<
         { __typename?: 'ProductSimple' } & Pick<
             ProductSimple,
@@ -4554,12 +4593,12 @@ type MyProductSimplesQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductSimpleEditLabelMutationVariables = Exact<{
+export type ProductSimpleEditLabelMutationVariables = Exact<{
     id: Scalars['ID'];
     label: Scalars['String'];
 }>;
 
-type ProductSimpleEditLabelMutation = { __typename?: 'Mutation' } & {
+export type ProductSimpleEditLabelMutation = { __typename?: 'Mutation' } & {
     productSimpleEditLabel: { __typename?: 'ProductSimple' } & Pick<
         ProductSimple,
         'id' | 'name' | 'state'
@@ -4571,21 +4610,21 @@ type ProductSimpleEditLabelMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type ProductSimpleDeleteMutationVariables = Exact<{
+export type ProductSimpleDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductSimpleDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type ProductSimpleDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'productSimpleDelete'
 >;
 
-type ProductSimpleSetStateMutationVariables = Exact<{
+export type ProductSimpleSetStateMutationVariables = Exact<{
     id: Scalars['ID'];
     state: Scalars['String'];
 }>;
 
-type ProductSimpleSetStateMutation = { __typename?: 'Mutation' } & {
+export type ProductSimpleSetStateMutation = { __typename?: 'Mutation' } & {
     productSimpleSetState: { __typename?: 'ProductSimple' } & Pick<
         ProductSimple,
         'id' | 'name' | 'state'
@@ -4597,47 +4636,46 @@ type ProductSimpleSetStateMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type SupportQuickResponseFragmentFragment = {
+export type SupportQuickResponseFragmentFragment = {
     __typename?: 'SupportQuickResponse';
 } & Pick<
     SupportQuickResponse,
     'id' | 'title' | 'content' | 'update' | 'create'
 >;
 
-type SupportQuickResponseDeleteMutationVariables = Exact<{
+export type SupportQuickResponseDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportQuickResponseDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'supportQuickResponseDelete'
->;
+export type SupportQuickResponseDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'supportQuickResponseDelete'>;
 
-type SupportQuickResponseEditMutationVariables = Exact<{
+export type SupportQuickResponseEditMutationVariables = Exact<{
     dto: SupportQuickResponseEditDto;
 }>;
 
-type SupportQuickResponseEditMutation = { __typename?: 'Mutation' } & {
+export type SupportQuickResponseEditMutation = { __typename?: 'Mutation' } & {
     supportQuickResponseEdit: {
         __typename?: 'SupportQuickResponse';
     } & SupportQuickResponseFragmentFragment;
 };
 
-type SupportQuickResponseCreateMutationVariables = Exact<{
+export type SupportQuickResponseCreateMutationVariables = Exact<{
     dto: SupportQuickResponseCreateDto;
 }>;
 
-type SupportQuickResponseCreateMutation = { __typename?: 'Mutation' } & {
+export type SupportQuickResponseCreateMutation = { __typename?: 'Mutation' } & {
     supportQuickResponseCreate: {
         __typename?: 'SupportQuickResponse';
     } & SupportQuickResponseFragmentFragment;
 };
 
-type SupportQuickResponsesQueryVariables = Exact<{
+export type SupportQuickResponsesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type SupportQuickResponsesQuery = { __typename?: 'Query' } & {
+export type SupportQuickResponsesQuery = { __typename?: 'Query' } & {
     supportQuickResponses: { __typename?: 'SupportQuickResponseResultMany' } & {
         edges: Array<
             {
@@ -4651,17 +4689,17 @@ type SupportQuickResponsesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type SupportQuickResponseByIdQueryVariables = Exact<{
+export type SupportQuickResponseByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportQuickResponseByIdQuery = { __typename?: 'Query' } & {
+export type SupportQuickResponseByIdQuery = { __typename?: 'Query' } & {
     supportQuickResponseById: {
         __typename?: 'SupportQuickResponse';
     } & SupportQuickResponseFragmentFragment;
 };
 
-type SupportTicketPartFragment = { __typename?: 'SupportTicket' } & Pick<
+export type SupportTicketPartFragment = { __typename?: 'SupportTicket' } & Pick<
     SupportTicket,
     | 'id'
     | 'subject'
@@ -4701,19 +4739,19 @@ type SupportTicketPartFragment = { __typename?: 'SupportTicket' } & Pick<
         >;
     };
 
-type SupportTicketDeleteMessageMutationVariables = Exact<{
+export type SupportTicketDeleteMessageMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketDeleteMessageMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketDeleteMessageMutation = { __typename?: 'Mutation' } & {
     supportTicketDeleteMessage: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type UserMyTicketsQueryVariables = Exact<{ [key: string]: never }>;
+export type UserMyTicketsQueryVariables = Exact<{ [key: string]: never }>;
 
-type UserMyTicketsQuery = { __typename?: 'Query' } & {
+export type UserMyTicketsQuery = { __typename?: 'Query' } & {
     user_me: { __typename?: 'User' } & Pick<User, 'id'> & {
             tickets: Array<
                 { __typename?: 'SupportTicket' } & SupportTicketPartFragment
@@ -4721,30 +4759,30 @@ type UserMyTicketsQuery = { __typename?: 'Query' } & {
         };
 };
 
-type SupportTicketByIdQueryVariables = Exact<{
+export type SupportTicketByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketByIdQuery = { __typename?: 'Query' } & {
+export type SupportTicketByIdQuery = { __typename?: 'Query' } & {
     supportTicketById: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketDeleteMutationVariables = Exact<{
+export type SupportTicketDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type SupportTicketDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'supportTicketDelete'
 >;
 
-type SupportTicketsQueryVariables = Exact<{
+export type SupportTicketsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type SupportTicketsQuery = { __typename?: 'Query' } & {
+export type SupportTicketsQuery = { __typename?: 'Query' } & {
     supportTickets: { __typename?: 'SupportTicketResultMany' } & {
         edges: Array<
             { __typename?: 'SupportTicket' } & SupportTicketPartFragment
@@ -4756,105 +4794,109 @@ type SupportTicketsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type SupportTicketResetUnreadCounterMutationVariables = Exact<{
+export type SupportTicketResetUnreadCounterMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketResetUnreadCounterMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketResetUnreadCounterMutation = {
+    __typename?: 'Mutation';
+} & {
     supportTicketResetUnreadCounter: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type AddMessageToSupportTicketMutationVariables = Exact<{
+export type AddMessageToSupportTicketMutationVariables = Exact<{
     message: Scalars['String'];
     id: Scalars['ID'];
 }>;
 
-type AddMessageToSupportTicketMutation = { __typename?: 'Mutation' } & {
+export type AddMessageToSupportTicketMutation = { __typename?: 'Mutation' } & {
     support_ticket_add_message: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketSetStatusMutationVariables = Exact<{
+export type SupportTicketSetStatusMutationVariables = Exact<{
     id: Scalars['ID'];
     status: Scalars['String'];
 }>;
 
-type SupportTicketSetStatusMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketSetStatusMutation = { __typename?: 'Mutation' } & {
     supportTicketSetStatus: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketCloseMutationVariables = Exact<{
+export type SupportTicketCloseMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketCloseMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketCloseMutation = { __typename?: 'Mutation' } & {
     supportTicketClose: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketReopenMutationVariables = Exact<{
+export type SupportTicketReopenMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type SupportTicketReopenMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketReopenMutation = { __typename?: 'Mutation' } & {
     supportTicketReopen: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketAssignToMutationVariables = Exact<{
+export type SupportTicketAssignToMutationVariables = Exact<{
     id: Scalars['ID'];
     userId: Scalars['ID'];
 }>;
 
-type SupportTicketAssignToMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketAssignToMutation = { __typename?: 'Mutation' } & {
     supportTicketAssignTo: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketAddFileMutationVariables = Exact<{
+export type SupportTicketAddFileMutationVariables = Exact<{
     id: Scalars['ID'];
     fileId: Scalars['ID'];
 }>;
 
-type SupportTicketAddFileMutation = { __typename?: 'Mutation' } & {
+export type SupportTicketAddFileMutation = { __typename?: 'Mutation' } & {
     supportTicketAddFile: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type EditSupportTicketMutationVariables = Exact<{
+export type EditSupportTicketMutationVariables = Exact<{
     id: Scalars['ID'];
     status?: Maybe<Scalars['String']>;
     priority?: Maybe<Scalars['Int']>;
 }>;
 
-type EditSupportTicketMutation = { __typename?: 'Mutation' } & {
+export type EditSupportTicketMutation = { __typename?: 'Mutation' } & {
     support_ticket_edit: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketNewMutationVariables = Exact<{
+export type Support_Ticket_NewMutationVariables = Exact<{
     data: SupportTicketNewInput;
 }>;
 
-type SupportTicketNewMutation = { __typename?: 'Mutation' } & {
+export type Support_Ticket_NewMutation = { __typename?: 'Mutation' } & {
     support_ticket_new: {
         __typename?: 'SupportTicket';
     } & SupportTicketPartFragment;
 };
 
-type SupportTicketPrioritiesQueryVariables = Exact<{ [key: string]: never }>;
+export type SupportTicketPrioritiesQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type SupportTicketPrioritiesQuery = { __typename?: 'Query' } & {
+export type SupportTicketPrioritiesQuery = { __typename?: 'Query' } & {
     supportTicketPriorities: Array<
         { __typename?: 'SupportTicketPriorityEnum' } & Pick<
             SupportTicketPriorityEnum,
@@ -4863,9 +4905,11 @@ type SupportTicketPrioritiesQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type SupportTicketRevisersQueryVariables = Exact<{ [key: string]: never }>;
+export type SupportTicketRevisersQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type SupportTicketRevisersQuery = { __typename?: 'Query' } & {
+export type SupportTicketRevisersQuery = { __typename?: 'Query' } & {
     supportTicketRevisers: Array<
         { __typename?: 'SupportTicketReviserEnum' } & Pick<
             SupportTicketReviserEnum,
@@ -4874,7 +4918,9 @@ type SupportTicketRevisersQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductTeamspeakPartFragment = { __typename?: 'ProductTeamspeak' } & Pick<
+export type ProductTeamspeakPartFragment = {
+    __typename?: 'ProductTeamspeak';
+} & Pick<
     ProductTeamspeak,
     'id' | 'name' | 'address' | 'create' | 'slot' | 'ts3Link' | 'hasRunningTask'
 > & {
@@ -4895,22 +4941,24 @@ type ProductTeamspeakPartFragment = { __typename?: 'ProductTeamspeak' } & Pick<
         >;
     };
 
-type ProductTeamspeakChangeLabelMutationVariables = Exact<{
+export type ProductTeamspeakChangeLabelMutationVariables = Exact<{
     id: Scalars['ID'];
     label: Scalars['String'];
 }>;
 
-type ProductTeamspeakChangeLabelMutation = { __typename?: 'Mutation' } & {
+export type ProductTeamspeakChangeLabelMutation = {
+    __typename?: 'Mutation';
+} & {
     productTeamspeakChangeLabel: {
         __typename?: 'ProductTeamspeak';
     } & ProductTeamspeakPartFragment;
 };
 
-type ProductTeamspeaksQueryVariables = Exact<{
+export type ProductTeamspeaksQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTeamspeaksQuery = { __typename?: 'Query' } & {
+export type ProductTeamspeaksQuery = { __typename?: 'Query' } & {
     productTeamspeaks: { __typename?: 'ProductTeamspeakResultMany' } & {
         edges: Array<
             { __typename?: 'ProductTeamspeak' } & Pick<
@@ -4944,9 +4992,9 @@ type ProductTeamspeaksQuery = { __typename?: 'Query' } & {
     };
 };
 
-type MyProductTeamspeaksQueryVariables = Exact<{ [key: string]: never }>;
+export type MyProductTeamspeaksQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyProductTeamspeaksQuery = { __typename?: 'Query' } & {
+export type MyProductTeamspeaksQuery = { __typename?: 'Query' } & {
     productTeamspeaksMy: Array<
         { __typename?: 'ProductTeamspeak' } & Pick<
             ProductTeamspeak,
@@ -4971,21 +5019,21 @@ type MyProductTeamspeaksQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductTeamspeakByIdQueryVariables = Exact<{
+export type ProductTeamspeakByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTeamspeakByIdQuery = { __typename?: 'Query' } & {
+export type ProductTeamspeakByIdQuery = { __typename?: 'Query' } & {
     productTeamspeakById: {
         __typename?: 'ProductTeamspeak';
     } & ProductTeamspeakPartFragment;
 };
 
-type ProductTeamspeakTokensQueryVariables = Exact<{
+export type ProductTeamspeakTokensQueryVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakTokensQuery = { __typename?: 'Query' } & {
+export type ProductTeamspeakTokensQuery = { __typename?: 'Query' } & {
     productTeamspeakTokens: Array<
         { __typename?: 'ProductTeamspeakOutputToken' } & Pick<
             ProductTeamspeakOutputToken,
@@ -4994,84 +5042,82 @@ type ProductTeamspeakTokensQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductTeamspeakRunningQueryVariables = Exact<{
+export type ProductTeamspeakRunningQueryVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakRunningQuery = { __typename?: 'Query' } & Pick<
+export type ProductTeamspeakRunningQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productTeamspeakRunning'
 >;
 
-type ProductTeamspeakTokenCreateMutationVariables = Exact<{
+export type ProductTeamspeakTokenCreateMutationVariables = Exact<{
     teamspeakId: Scalars['ID'];
     group: Scalars['String'];
 }>;
 
-type ProductTeamspeakTokenCreateMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productTeamspeakTokenCreate'
->;
+export type ProductTeamspeakTokenCreateMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productTeamspeakTokenCreate'>;
 
-type ProductTeamspeakTokenDeleteMutationVariables = Exact<{
+export type ProductTeamspeakTokenDeleteMutationVariables = Exact<{
     teamspeakId: Scalars['ID'];
     token: Scalars['String'];
 }>;
 
-type ProductTeamspeakTokenDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productTeamspeakTokenDelete'
->;
+export type ProductTeamspeakTokenDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productTeamspeakTokenDelete'>;
 
-type ProductTeamspeakExistQueryVariables = Exact<{
+export type ProductTeamspeakExistQueryVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakExistQuery = { __typename?: 'Query' } & Pick<
+export type ProductTeamspeakExistQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productTeamspeakExist'
 >;
 
-type ProductTeamspeakStartMutationVariables = Exact<{
+export type ProductTeamspeakStartMutationVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakStartMutation = { __typename?: 'Mutation' } & {
+export type ProductTeamspeakStartMutation = { __typename?: 'Mutation' } & {
     productTeamspeakStart: {
         __typename?: 'ProductTeamspeak';
     } & ProductTeamspeakPartFragment;
 };
 
-type ProductTeamspeakRemoveMutationVariables = Exact<{
+export type ProductTeamspeakRemoveMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTeamspeakRemoveMutation = { __typename?: 'Mutation' } & Pick<
+export type ProductTeamspeakRemoveMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'productTeamspeakRemove'
 >;
 
-type ProductTeamspeakStopMutationVariables = Exact<{
+export type ProductTeamspeakStopMutationVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakStopMutation = { __typename?: 'Mutation' } & {
+export type ProductTeamspeakStopMutation = { __typename?: 'Mutation' } & {
     productTeamspeakStop: {
         __typename?: 'ProductTeamspeak';
     } & ProductTeamspeakPartFragment;
 };
 
-type ProductTeamspeakInstallMutationVariables = Exact<{
+export type ProductTeamspeakInstallMutationVariables = Exact<{
     teamspeakId: Scalars['ID'];
 }>;
 
-type ProductTeamspeakInstallMutation = { __typename?: 'Mutation' } & {
+export type ProductTeamspeakInstallMutation = { __typename?: 'Mutation' } & {
     productTeamspeakInstall: {
         __typename?: 'ProductTeamspeak';
     } & ProductTeamspeakPartFragment;
 };
 
-type ProductTemplateDomainPartFragment = {
+export type ProductTemplateDomainPartFragment = {
     __typename?: 'ProductTemplateDomain';
 } & Pick<
     ProductTemplateDomain,
@@ -5093,21 +5139,21 @@ type ProductTemplateDomainPartFragment = {
         >;
     };
 
-type ProductTemplateDomainByIdQueryVariables = Exact<{
+export type ProductTemplateDomainByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateDomainByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateDomainByIdQuery = { __typename?: 'Query' } & {
     productTemplateDomainById: {
         __typename?: 'ProductTemplateDomain';
     } & ProductTemplateDomainPartFragment;
 };
 
-type ProductTemplateDomainsQueryVariables = Exact<{
+export type ProductTemplateDomainsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateDomainsQuery = { __typename?: 'Query' } & {
+export type ProductTemplateDomainsQuery = { __typename?: 'Query' } & {
     productTemplateDomains: {
         __typename?: 'ProductTemplateDomainResultMany';
     } & {
@@ -5138,7 +5184,7 @@ type ProductTemplateDomainsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateDomainMutationVariables = Exact<{
+export type CreateProductTemplateDomainMutationVariables = Exact<{
     title: Scalars['String'];
     setup: Scalars['Float'];
     basePrice: Scalars['Float'];
@@ -5147,13 +5193,15 @@ type CreateProductTemplateDomainMutationVariables = Exact<{
     active: Scalars['Boolean'];
 }>;
 
-type CreateProductTemplateDomainMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateDomainMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateDomainCreate: {
         __typename?: 'ProductTemplateDomain';
     } & Pick<ProductTemplateDomain, 'id'>;
 };
 
-type EditProductTemplateDomainMutationVariables = Exact<{
+export type EditProductTemplateDomainMutationVariables = Exact<{
     id: Scalars['ID'];
     title: Scalars['String'];
     setup: Scalars['Float'];
@@ -5163,26 +5211,25 @@ type EditProductTemplateDomainMutationVariables = Exact<{
     active: Scalars['Boolean'];
 }>;
 
-type EditProductTemplateDomainMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateDomainMutation = { __typename?: 'Mutation' } & {
     productTemplateDomainEdit: {
         __typename?: 'ProductTemplateDomain';
     } & ProductTemplateDomainPartFragment;
 };
 
-type DeleteProductTemplateDomainMutationVariables = Exact<{
+export type DeleteProductTemplateDomainMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateDomainMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productTemplateDomainDelete'
->;
+export type DeleteProductTemplateDomainMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productTemplateDomainDelete'>;
 
-type ProductTemplateExtendPeriodsQueryVariables = Exact<{
+export type ProductTemplateExtendPeriodsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateExtendPeriodsQuery = { __typename?: 'Query' } & {
+export type ProductTemplateExtendPeriodsQuery = { __typename?: 'Query' } & {
     productTemplateExtendPeriods: {
         __typename?: 'ProductTemplateExtendPeriodResultMany';
     } & {
@@ -5203,11 +5250,11 @@ type ProductTemplateExtendPeriodsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductTemplateExtendPeriodByIdQueryVariables = Exact<{
+export type ProductTemplateExtendPeriodByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateExtendPeriodByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateExtendPeriodByIdQuery = { __typename?: 'Query' } & {
     productTemplateExtendPeriodById: {
         __typename?: 'ProductTemplateExtendPeriod';
     } & Pick<
@@ -5216,20 +5263,22 @@ type ProductTemplateExtendPeriodByIdQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type CreateProductTemplateExtendPeriodMutationVariables = Exact<{
+export type CreateProductTemplateExtendPeriodMutationVariables = Exact<{
     expression: Scalars['String'];
     globalGroup: Scalars['String'];
     discountFactor: Scalars['Float'];
     discount: Scalars['Float'];
 }>;
 
-type CreateProductTemplateExtendPeriodMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateExtendPeriodMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateExtendPeriodCreate: {
         __typename?: 'ProductTemplateExtendPeriod';
     } & Pick<ProductTemplateExtendPeriod, 'id'>;
 };
 
-type EditProductTemplateExtendPeriodMutationVariables = Exact<{
+export type EditProductTemplateExtendPeriodMutationVariables = Exact<{
     id: Scalars['ID'];
     expression: Scalars['String'];
     globalGroup: Scalars['String'];
@@ -5237,7 +5286,9 @@ type EditProductTemplateExtendPeriodMutationVariables = Exact<{
     discount: Scalars['Float'];
 }>;
 
-type EditProductTemplateExtendPeriodMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateExtendPeriodMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateExtendPeriodEdit: {
         __typename?: 'ProductTemplateExtendPeriod';
     } & Pick<
@@ -5246,15 +5297,15 @@ type EditProductTemplateExtendPeriodMutation = { __typename?: 'Mutation' } & {
     >;
 };
 
-type DeleteProductTemplateExtendPeriodMutationVariables = Exact<{
+export type DeleteProductTemplateExtendPeriodMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateExtendPeriodMutation = {
+export type DeleteProductTemplateExtendPeriodMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productTemplateExtendPeriodDelete'>;
 
-type ProductTemplateGameserverPartFragment = {
+export type ProductTemplateGameserverPartFragment = {
     __typename?: 'ProductTemplateGameserver';
 } & Pick<
     ProductTemplateGameserver,
@@ -5294,21 +5345,21 @@ type ProductTemplateGameserverPartFragment = {
         >;
     };
 
-type ProductTemplateGameserverByIdQueryVariables = Exact<{
+export type ProductTemplateGameserverByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateGameserverByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateGameserverByIdQuery = { __typename?: 'Query' } & {
     productTemplateGameserverById: {
         __typename?: 'ProductTemplateGameserver';
     } & ProductTemplateGameserverPartFragment;
 };
 
-type ProductTemplateGameserversQueryVariables = Exact<{
+export type ProductTemplateGameserversQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateGameserversQuery = { __typename?: 'Query' } & {
+export type ProductTemplateGameserversQuery = { __typename?: 'Query' } & {
     productTemplateGameservers: {
         __typename?: 'ProductTemplateGameserverResultMany';
     } & {
@@ -5350,7 +5401,7 @@ type ProductTemplateGameserversQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateGameserverMutationVariables = Exact<{
+export type CreateProductTemplateGameserverMutationVariables = Exact<{
     title: Scalars['String'];
     setup: Scalars['Float'];
     basePrice: Scalars['Float'];
@@ -5360,13 +5411,15 @@ type CreateProductTemplateGameserverMutationVariables = Exact<{
     memoryOptionId?: Maybe<Scalars['ID']>;
 }>;
 
-type CreateProductTemplateGameserverMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateGameserverMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateGameserverCreate: {
         __typename?: 'ProductTemplateGameserver';
     } & Pick<ProductTemplateGameserver, 'id'>;
 };
 
-type EditProductTemplateGameserverMutationVariables = Exact<{
+export type EditProductTemplateGameserverMutationVariables = Exact<{
     id: Scalars['ID'];
     title: Scalars['String'];
     setup: Scalars['Float'];
@@ -5380,25 +5433,27 @@ type EditProductTemplateGameserverMutationVariables = Exact<{
     optionIds?: Maybe<Array<Scalars['ID']> | Scalars['ID']>;
 }>;
 
-type EditProductTemplateGameserverMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateGameserverMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateGameserverEdit: {
         __typename?: 'ProductTemplateGameserver';
     } & ProductTemplateGameserverPartFragment;
 };
 
-type DeleteProductTemplateGameserverMutationVariables = Exact<{
+export type DeleteProductTemplateGameserverMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateGameserverMutation = {
+export type DeleteProductTemplateGameserverMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productTemplateGameserverDelete'>;
 
-type ProductTemplateOptionByIdQueryVariables = Exact<{
+export type ProductTemplateOptionByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateOptionByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateOptionByIdQuery = { __typename?: 'Query' } & {
     productTemplateOptionById: { __typename?: 'ProductTemplateOption' } & Pick<
         ProductTemplateOption,
         'id' | 'title' | 'display' | 'create' | 'upgradeable'
@@ -5425,11 +5480,11 @@ type ProductTemplateOptionByIdQuery = { __typename?: 'Query' } & {
         };
 };
 
-type ProductTemplateOptionsQueryVariables = Exact<{
+export type ProductTemplateOptionsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateOptionsQuery = { __typename?: 'Query' } & {
+export type ProductTemplateOptionsQuery = { __typename?: 'Query' } & {
     productTemplateOptions: {
         __typename?: 'ProductTemplateOptionResultMany';
     } & {
@@ -5466,36 +5521,38 @@ type ProductTemplateOptionsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateOptionMutationVariables = Exact<{
+export type CreateProductTemplateOptionMutationVariables = Exact<{
     title: Scalars['String'];
     display: Scalars['String'];
 }>;
 
-type CreateProductTemplateOptionMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateOptionMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateOptionCreate: {
         __typename?: 'ProductTemplateOption';
     } & Pick<ProductTemplateOption, 'id'>;
 };
 
-type EditProductTemplateOptionMutationVariables = Exact<{
+export type EditProductTemplateOptionMutationVariables = Exact<{
     id: Scalars['ID'];
     title: Scalars['String'];
     display: Scalars['String'];
     upgradeable: Scalars['Boolean'];
 }>;
 
-type EditProductTemplateOptionMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateOptionMutation = { __typename?: 'Mutation' } & {
     productTemplateOptionEdit: { __typename?: 'ProductTemplateOption' } & Pick<
         ProductTemplateOption,
         'id'
     >;
 };
 
-type ProductTemplateOptionVariantByIdQueryVariables = Exact<{
+export type ProductTemplateOptionVariantByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateOptionVariantByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateOptionVariantByIdQuery = { __typename?: 'Query' } & {
     productTemplateOptionVariantById: {
         __typename?: 'ProductTemplateOptionVariant';
     } & Pick<
@@ -5520,11 +5577,11 @@ type ProductTemplateOptionVariantByIdQuery = { __typename?: 'Query' } & {
         };
 };
 
-type ProductTemplateOptionVariantsQueryVariables = Exact<{
+export type ProductTemplateOptionVariantsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateOptionVariantsQuery = { __typename?: 'Query' } & {
+export type ProductTemplateOptionVariantsQuery = { __typename?: 'Query' } & {
     productTemplateOptionVariants: {
         __typename?: 'ProductTemplateOptionVariantResultMany';
     } & {
@@ -5562,7 +5619,7 @@ type ProductTemplateOptionVariantsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateOptionVariantMutationVariables = Exact<{
+export type CreateProductTemplateOptionVariantMutationVariables = Exact<{
     optionId: Scalars['ID'];
     key: Scalars['String'];
     sort: Scalars['Int'];
@@ -5572,7 +5629,7 @@ type CreateProductTemplateOptionVariantMutationVariables = Exact<{
     priceSetup: Scalars['Float'];
 }>;
 
-type CreateProductTemplateOptionVariantMutation = {
+export type CreateProductTemplateOptionVariantMutation = {
     __typename?: 'Mutation';
 } & {
     productTemplateOptionVariantCreate: {
@@ -5580,7 +5637,7 @@ type CreateProductTemplateOptionVariantMutation = {
     } & Pick<ProductTemplateOptionVariant, 'id'>;
 };
 
-type EditProductTemplateOptionVariantMutationVariables = Exact<{
+export type EditProductTemplateOptionVariantMutationVariables = Exact<{
     id: Scalars['ID'];
     key: Scalars['String'];
     sort: Scalars['Int'];
@@ -5592,7 +5649,9 @@ type EditProductTemplateOptionVariantMutationVariables = Exact<{
     hidden?: Maybe<Scalars['Boolean']>;
 }>;
 
-type EditProductTemplateOptionVariantMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateOptionVariantMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateOptionVariantEdit: {
         __typename?: 'ProductTemplateOptionVariant';
     } & Pick<
@@ -5617,15 +5676,15 @@ type EditProductTemplateOptionVariantMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type DeleteProductTemplateOptionVariantMutationVariables = Exact<{
+export type DeleteProductTemplateOptionVariantMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateOptionVariantMutation = {
+export type DeleteProductTemplateOptionVariantMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productTemplateOptionVariantDelete'>;
 
-type ProductTemplateSimplePartFragment = {
+export type ProductTemplateSimplePartFragment = {
     __typename?: 'ProductTemplateSimple';
 } & Pick<
     ProductTemplateSimple,
@@ -5659,21 +5718,21 @@ type ProductTemplateSimplePartFragment = {
         >;
     };
 
-type ProductTemplateSimpleByIdQueryVariables = Exact<{
+export type ProductTemplateSimpleByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateSimpleByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateSimpleByIdQuery = { __typename?: 'Query' } & {
     productTemplateSimpleById: {
         __typename?: 'ProductTemplateSimple';
     } & ProductTemplateSimplePartFragment;
 };
 
-type ProductTemplateSimplesQueryVariables = Exact<{
+export type ProductTemplateSimplesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateSimplesQuery = { __typename?: 'Query' } & {
+export type ProductTemplateSimplesQuery = { __typename?: 'Query' } & {
     productTemplateSimples: {
         __typename?: 'ProductTemplateSimpleResultMany';
     } & {
@@ -5703,7 +5762,7 @@ type ProductTemplateSimplesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateSimpleMutationVariables = Exact<{
+export type CreateProductTemplateSimpleMutationVariables = Exact<{
     title: Scalars['String'];
     setup: Scalars['Float'];
     basePrice: Scalars['Float'];
@@ -5711,13 +5770,15 @@ type CreateProductTemplateSimpleMutationVariables = Exact<{
     active: Scalars['Boolean'];
 }>;
 
-type CreateProductTemplateSimpleMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateSimpleMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateSimpleCreate: {
         __typename?: 'ProductTemplateSimple';
     } & Pick<ProductTemplateSimple, 'id'>;
 };
 
-type EditProductTemplateSimpleMutationVariables = Exact<{
+export type EditProductTemplateSimpleMutationVariables = Exact<{
     id: Scalars['ID'];
     title: Scalars['String'];
     setup: Scalars['Float'];
@@ -5729,22 +5790,21 @@ type EditProductTemplateSimpleMutationVariables = Exact<{
     extendIntervalIds?: Maybe<Array<Scalars['ID']> | Scalars['ID']>;
 }>;
 
-type EditProductTemplateSimpleMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateSimpleMutation = { __typename?: 'Mutation' } & {
     productTemplateSimpleEdit: {
         __typename?: 'ProductTemplateSimple';
     } & ProductTemplateSimplePartFragment;
 };
 
-type DeleteProductTemplateSimpleMutationVariables = Exact<{
+export type DeleteProductTemplateSimpleMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateSimpleMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productTemplateSimpleDelete'
->;
+export type DeleteProductTemplateSimpleMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productTemplateSimpleDelete'>;
 
-type ProductTemplateTeamspeakPartFragment = {
+export type ProductTemplateTeamspeakPartFragment = {
     __typename?: 'ProductTemplateTeamspeak';
 } & Pick<
     ProductTemplateTeamspeak,
@@ -5769,21 +5829,21 @@ type ProductTemplateTeamspeakPartFragment = {
         >;
     };
 
-type ProductTemplateTeamspeakByIdQueryVariables = Exact<{
+export type ProductTemplateTeamspeakByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateTeamspeakByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateTeamspeakByIdQuery = { __typename?: 'Query' } & {
     productTemplateTeamspeakById: {
         __typename?: 'ProductTemplateTeamspeak';
     } & ProductTemplateTeamspeakPartFragment;
 };
 
-type ProductTemplateTeamspeaksQueryVariables = Exact<{
+export type ProductTemplateTeamspeaksQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateTeamspeaksQuery = { __typename?: 'Query' } & {
+export type ProductTemplateTeamspeaksQuery = { __typename?: 'Query' } & {
     productTemplateTeamspeaks: {
         __typename?: 'ProductTemplateTeamspeakResultMany';
     } & {
@@ -5817,7 +5877,7 @@ type ProductTemplateTeamspeaksQuery = { __typename?: 'Query' } & {
     };
 };
 
-type CreateProductTemplateTeamspeakMutationVariables = Exact<{
+export type CreateProductTemplateTeamspeakMutationVariables = Exact<{
     title: Scalars['String'];
     setup: Scalars['Float'];
     basePrice: Scalars['Float'];
@@ -5826,13 +5886,15 @@ type CreateProductTemplateTeamspeakMutationVariables = Exact<{
     slotOptionId: Scalars['ID'];
 }>;
 
-type CreateProductTemplateTeamspeakMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateTeamspeakMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateTeamspeakCreate: {
         __typename?: 'ProductTemplateTeamspeak';
     } & Pick<ProductTemplateTeamspeak, 'id'>;
 };
 
-type EditProductTemplateTeamspeakMutationVariables = Exact<{
+export type EditProductTemplateTeamspeakMutationVariables = Exact<{
     id: Scalars['ID'];
     title: Scalars['String'];
     setup: Scalars['Float'];
@@ -5842,21 +5904,23 @@ type EditProductTemplateTeamspeakMutationVariables = Exact<{
     slotOptionId: Scalars['ID'];
 }>;
 
-type EditProductTemplateTeamspeakMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateTeamspeakMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateTeamspeakEdit: {
         __typename?: 'ProductTemplateTeamspeak';
     } & ProductTemplateTeamspeakPartFragment;
 };
 
-type DeleteProductTemplateTeamspeakMutationVariables = Exact<{
+export type DeleteProductTemplateTeamspeakMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateTeamspeakMutation = {
+export type DeleteProductTemplateTeamspeakMutation = {
     __typename?: 'Mutation';
 } & Pick<Mutation, 'productTemplateTeamspeakDelete'>;
 
-type ProductTemplateVserverPartFragment = {
+export type ProductTemplateVserverPartFragment = {
     __typename?: 'ProductTemplateVserver';
 } & Pick<
     ProductTemplateVserver,
@@ -5884,11 +5948,11 @@ type ProductTemplateVserverPartFragment = {
         >;
     };
 
-type ProductTemplateVserversQueryVariables = Exact<{
+export type ProductTemplateVserversQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductTemplateVserversQuery = { __typename?: 'Query' } & {
+export type ProductTemplateVserversQuery = { __typename?: 'Query' } & {
     productTemplateVservers: {
         __typename?: 'ProductTemplateVserverResultMany';
     } & {
@@ -5904,55 +5968,56 @@ type ProductTemplateVserversQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductTemplateVserverByIdQueryVariables = Exact<{
+export type ProductTemplateVserverByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductTemplateVserverByIdQuery = { __typename?: 'Query' } & {
+export type ProductTemplateVserverByIdQuery = { __typename?: 'Query' } & {
     productTemplateVserverById: {
         __typename?: 'ProductTemplateVserver';
     } & ProductTemplateVserverPartFragment;
 };
 
-type CreateProductTemplateVserverMutationVariables = Exact<{
+export type CreateProductTemplateVserverMutationVariables = Exact<{
     data: ProductTemplateVserverCreateInput;
 }>;
 
-type CreateProductTemplateVserverMutation = { __typename?: 'Mutation' } & {
+export type CreateProductTemplateVserverMutation = {
+    __typename?: 'Mutation';
+} & {
     productTemplateVserverCreate: {
         __typename?: 'ProductTemplateVserver';
     } & ProductTemplateVserverPartFragment;
 };
 
-type EditProductTemplateVserverMutationVariables = Exact<{
+export type EditProductTemplateVserverMutationVariables = Exact<{
     data: ProductTemplateVserverEditInput;
 }>;
 
-type EditProductTemplateVserverMutation = { __typename?: 'Mutation' } & {
+export type EditProductTemplateVserverMutation = { __typename?: 'Mutation' } & {
     productTemplateVserverEdit: {
         __typename?: 'ProductTemplateVserver';
     } & ProductTemplateVserverPartFragment;
 };
 
-type DeleteProductTemplateVserverMutationVariables = Exact<{
+export type DeleteProductTemplateVserverMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductTemplateVserverMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productTemplateVserverDelete'
->;
+export type DeleteProductTemplateVserverMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productTemplateVserverDelete'>;
 
-type TranslationPartFragment = { __typename?: 'Translation' } & Pick<
+export type TranslationPartFragment = { __typename?: 'Translation' } & Pick<
     Translation,
     'id' | 'language' | 'key' | 'value'
 >;
 
-type TranslationsQueryVariables = Exact<{
+export type TranslationsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type TranslationsQuery = { __typename?: 'Query' } & {
+export type TranslationsQuery = { __typename?: 'Query' } & {
     translations: { __typename?: 'TranslationResultMany' } & {
         edges: Array<{ __typename?: 'Translation' } & TranslationPartFragment>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -5962,41 +6027,43 @@ type TranslationsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type TranslationByIdQueryVariables = Exact<{
+export type TranslationByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type TranslationByIdQuery = { __typename?: 'Query' } & {
+export type TranslationByIdQuery = { __typename?: 'Query' } & {
     translationById: { __typename?: 'Translation' } & TranslationPartFragment;
 };
 
-type TranslationEditMutationVariables = Exact<{
+export type TranslationEditMutationVariables = Exact<{
     id: Scalars['ID'];
     value: Scalars['String'];
     key: Scalars['String'];
     language: Scalars['String'];
 }>;
 
-type TranslationEditMutation = { __typename?: 'Mutation' } & {
+export type TranslationEditMutation = { __typename?: 'Mutation' } & {
     translationEdit: { __typename?: 'Translation' } & TranslationPartFragment;
 };
 
-type TranslationCreateMutationVariables = Exact<{ [key: string]: never }>;
+export type TranslationCreateMutationVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type TranslationCreateMutation = { __typename?: 'Mutation' } & {
+export type TranslationCreateMutation = { __typename?: 'Mutation' } & {
     translationCreate: { __typename?: 'Translation' } & TranslationPartFragment;
 };
 
-type TranslationDeleteMutationVariables = Exact<{
+export type TranslationDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type TranslationDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type TranslationDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'translationDelete'
 >;
 
-type UserPartFragment = { __typename?: 'User' } & Pick<
+export type UserPartFragment = { __typename?: 'User' } & Pick<
     User,
     | 'avatar'
     | 'nickname'
@@ -6008,20 +6075,20 @@ type UserPartFragment = { __typename?: 'User' } & Pick<
     | 'forceEmailLogin'
 > & { localAvatar?: Maybe<{ __typename?: 'File' } & Pick<File, 'id' | 'url'>> };
 
-type UserSetActiveMutationVariables = Exact<{
+export type UserSetActiveMutationVariables = Exact<{
     id: Scalars['ID'];
     active: Scalars['Boolean'];
 }>;
 
-type UserSetActiveMutation = { __typename?: 'Mutation' } & {
+export type UserSetActiveMutation = { __typename?: 'Mutation' } & {
     userSetActive: { __typename?: 'User' } & UserPartFragment;
 };
 
-type PingQueryVariables = Exact<{ [key: string]: never }>;
+export type PingQueryVariables = Exact<{ [key: string]: never }>;
 
-type PingQuery = { __typename?: 'Query' } & Pick<Query, 'ping'>;
+export type PingQuery = { __typename?: 'Query' } & Pick<Query, 'ping'>;
 
-type UserPartAddressFragment = { __typename?: 'UserAddress' } & Pick<
+export type UserPartAddressFragment = { __typename?: 'UserAddress' } & Pick<
     UserAddress,
     | 'firstname'
     | 'lastname'
@@ -6047,11 +6114,11 @@ type UserPartAddressFragment = { __typename?: 'UserAddress' } & Pick<
         >;
     };
 
-type UsersQueryVariables = Exact<{
+export type UsersQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type UsersQuery = { __typename?: 'Query' } & {
+export type UsersQuery = { __typename?: 'Query' } & {
     users: { __typename?: 'UserResultMany' } & {
         edges: Array<{ __typename?: 'User' } & UserPartFragment>;
         pageInfo: { __typename?: 'CordPageInfo' } & Pick<
@@ -6061,20 +6128,20 @@ type UsersQuery = { __typename?: 'Query' } & {
     };
 };
 
-type UserTestMyPasswordMutationVariables = Exact<{
+export type UserTestMyPasswordMutationVariables = Exact<{
     password: Scalars['String'];
 }>;
 
-type UserTestMyPasswordMutation = { __typename?: 'Mutation' } & Pick<
+export type UserTestMyPasswordMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'userTestMyPassword'
 >;
 
-type UserByIdQueryVariables = Exact<{
+export type UserByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type UserByIdQuery = { __typename?: 'Query' } & {
+export type UserByIdQuery = { __typename?: 'Query' } & {
     userById: { __typename?: 'User' } & Pick<
         User,
         | 'verifyLevel'
@@ -6180,45 +6247,48 @@ type UserByIdQuery = { __typename?: 'Query' } & {
         } & UserPartFragment;
 };
 
-type MeLoggedInQueryVariables = Exact<{ [key: string]: never }>;
+export type MeLoggedInQueryVariables = Exact<{ [key: string]: never }>;
 
-type MeLoggedInQuery = { __typename?: 'Query' } & Pick<Query, 'user_is_login'>;
+export type MeLoggedInQuery = { __typename?: 'Query' } & Pick<
+    Query,
+    'user_is_login'
+>;
 
-type LoginMutationVariables = Exact<{
+export type LoginMutationVariables = Exact<{
     username: Scalars['String'];
     password: Scalars['String'];
 }>;
 
-type LoginMutation = { __typename?: 'Mutation' } & Pick<
+export type LoginMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'userLoginWithEmailToken'
 >;
 
-type AdminLoginAsUserMutationVariables = Exact<{
+export type AdminLoginAsUserMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type AdminLoginAsUserMutation = { __typename?: 'Mutation' } & Pick<
+export type AdminLoginAsUserMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'user_admin_login'
 >;
 
-type UserMakeFeedbackMutationVariables = Exact<{
+export type UserMakeFeedbackMutationVariables = Exact<{
     availableForMoreFeedback?: Maybe<Scalars['Boolean']>;
     feedbackMessage?: Maybe<Scalars['String']>;
     feedbackSatisfied?: Maybe<Scalars['Boolean']>;
 }>;
 
-type UserMakeFeedbackMutation = { __typename?: 'Mutation' } & {
+export type UserMakeFeedbackMutation = { __typename?: 'Mutation' } & {
     userMakeFeedback: { __typename?: 'User' } & Pick<
         User,
         'id' | 'canMakeFeedback'
     >;
 };
 
-type UserMeQueryVariables = Exact<{ [key: string]: never }>;
+export type UserMeQueryVariables = Exact<{ [key: string]: never }>;
 
-type UserMeQuery = { __typename?: 'Query' } & {
+export type UserMeQuery = { __typename?: 'Query' } & {
     user_me: { __typename?: 'User' } & Pick<
         User,
         'supportId' | 'publicName' | 'canMakeFeedback'
@@ -6229,11 +6299,13 @@ type UserMeQuery = { __typename?: 'Query' } & {
         } & UserPartFragment;
 };
 
-type UserAddressAddVerifyDocumentMutationVariables = Exact<{
+export type UserAddressAddVerifyDocumentMutationVariables = Exact<{
     fileId: Scalars['ID'];
 }>;
 
-type UserAddressAddVerifyDocumentMutation = { __typename?: 'Mutation' } & {
+export type UserAddressAddVerifyDocumentMutation = {
+    __typename?: 'Mutation';
+} & {
     userAddressAddVerifyDocument: { __typename?: 'User' } & Pick<
         User,
         'supportId'
@@ -6244,11 +6316,13 @@ type UserAddressAddVerifyDocumentMutation = { __typename?: 'Mutation' } & {
         } & UserPartFragment;
 };
 
-type UserAddressDelVerifyDocumentMutationVariables = Exact<{
+export type UserAddressDelVerifyDocumentMutationVariables = Exact<{
     [key: string]: never;
 }>;
 
-type UserAddressDelVerifyDocumentMutation = { __typename?: 'Mutation' } & {
+export type UserAddressDelVerifyDocumentMutation = {
+    __typename?: 'Mutation';
+} & {
     userAddressDelVerifyDocument: { __typename?: 'User' } & Pick<
         User,
         'supportId'
@@ -6259,9 +6333,9 @@ type UserAddressDelVerifyDocumentMutation = { __typename?: 'Mutation' } & {
         } & UserPartFragment;
 };
 
-type UserMeCustomCreditsQueryVariables = Exact<{ [key: string]: never }>;
+export type UserMeCustomCreditsQueryVariables = Exact<{ [key: string]: never }>;
 
-type UserMeCustomCreditsQuery = { __typename?: 'Query' } & {
+export type UserMeCustomCreditsQuery = { __typename?: 'Query' } & {
     user_me: { __typename?: 'User' } & Pick<
         User,
         | 'id'
@@ -6272,25 +6346,25 @@ type UserMeCustomCreditsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type UserCustomCreditsQueryVariables = Exact<{
+export type UserCustomCreditsQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type UserCustomCreditsQuery = { __typename?: 'Query' } & {
+export type UserCustomCreditsQuery = { __typename?: 'Query' } & {
     userById: { __typename?: 'User' } & Pick<
         User,
         'id' | 'bonusCredits' | 'importedCredits' | 'credits'
     >;
 };
 
-type UserEditSelfGeneralMutationVariables = Exact<{
+export type UserEditSelfGeneralMutationVariables = Exact<{
     new_password?: Maybe<Scalars['String']>;
     nickname: Scalars['String'];
     forceEmailLogin?: Maybe<Scalars['Boolean']>;
     localAvatarId?: Maybe<Scalars['ID']>;
 }>;
 
-type UserEditSelfGeneralMutation = { __typename?: 'Mutation' } & {
+export type UserEditSelfGeneralMutation = { __typename?: 'Mutation' } & {
     userEditSelfGeneral: { __typename?: 'User' } & {
         address?: Maybe<
             { __typename?: 'UserAddress' } & UserPartAddressFragment
@@ -6298,11 +6372,11 @@ type UserEditSelfGeneralMutation = { __typename?: 'Mutation' } & {
     } & UserPartFragment;
 };
 
-type UserEditSelfAddressMutationVariables = Exact<{
+export type UserEditSelfAddressMutationVariables = Exact<{
     data: UserInputUserEditAddress;
 }>;
 
-type UserEditSelfAddressMutation = { __typename?: 'Mutation' } & {
+export type UserEditSelfAddressMutation = { __typename?: 'Mutation' } & {
     userEditSelfAddress: { __typename?: 'User' } & {
         address?: Maybe<
             { __typename?: 'UserAddress' } & UserPartAddressFragment
@@ -6310,71 +6384,71 @@ type UserEditSelfAddressMutation = { __typename?: 'Mutation' } & {
     } & UserPartFragment;
 };
 
-type UserEditSelfEmailMutationVariables = Exact<{
+export type UserEditSelfEmailMutationVariables = Exact<{
     email: Scalars['String'];
     password: Scalars['String'];
 }>;
 
-type UserEditSelfEmailMutation = { __typename?: 'Mutation' } & {
+export type UserEditSelfEmailMutation = { __typename?: 'Mutation' } & {
     userEditSelfEmail: { __typename?: 'User' } & UserPartFragment;
 };
 
-type UserCountriesQueryVariables = Exact<{ [key: string]: never }>;
+export type UserCountriesQueryVariables = Exact<{ [key: string]: never }>;
 
-type UserCountriesQuery = { __typename?: 'Query' } & Pick<
+export type UserCountriesQuery = { __typename?: 'Query' } & Pick<
     Query,
     'userCountries'
 >;
 
-type RegisterNewUserMutationVariables = Exact<{
+export type RegisterNewUserMutationVariables = Exact<{
     googleCaptcha: Scalars['String'];
     data: UserInputRegister;
 }>;
 
-type RegisterNewUserMutation = { __typename?: 'Mutation' } & Pick<
+export type RegisterNewUserMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'user_register'
 >;
 
-type UserAdminLogoutMutationVariables = Exact<{ [key: string]: never }>;
+export type UserAdminLogoutMutationVariables = Exact<{ [key: string]: never }>;
 
-type UserAdminLogoutMutation = { __typename?: 'Mutation' } & Pick<
+export type UserAdminLogoutMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'userAdminLogout'
 >;
 
-type UserVerifyMutationVariables = Exact<{
+export type User_VerifyMutationVariables = Exact<{
     token: Scalars['String'];
 }>;
 
-type UserVerifyMutation = { __typename?: 'Mutation' } & Pick<
+export type User_VerifyMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'user_verify'
 >;
 
-type ResetPasswordMutationVariables = Exact<{
+export type Reset_PasswordMutationVariables = Exact<{
     token: Scalars['String'];
     password: Scalars['String'];
 }>;
 
-type ResetPasswordMutation = { __typename?: 'Mutation' } & Pick<
+export type Reset_PasswordMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'user_reset_password_token'
 >;
 
-type UserResetPasswordMutationVariables = Exact<{
+export type UserResetPasswordMutationVariables = Exact<{
     email: Scalars['String'];
     captcha: Scalars['String'];
 }>;
 
-type UserResetPasswordMutation = { __typename?: 'Mutation' } & Pick<
+export type UserResetPasswordMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'user_reset_password'
 >;
 
-type ProductAdminInfoQueryVariables = Exact<{ [key: string]: never }>;
+export type ProductAdminInfoQueryVariables = Exact<{ [key: string]: never }>;
 
-type ProductAdminInfoQuery = { __typename?: 'Query' } & {
+export type ProductAdminInfoQuery = { __typename?: 'Query' } & {
     productAdminInfo: { __typename?: 'ProductAdminInfoResultDto' } & Pick<
         ProductAdminInfoResultDto,
         | 'domains'
@@ -6418,11 +6492,11 @@ type ProductAdminInfoQuery = { __typename?: 'Query' } & {
         };
 };
 
-type UserAddresssQueryVariables = Exact<{
+export type UserAddresssQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type UserAddresssQuery = { __typename?: 'Query' } & {
+export type UserAddresssQuery = { __typename?: 'Query' } & {
     userAddresss: { __typename?: 'UserAddressResultMany' } & {
         edges: Array<
             { __typename?: 'UserAddress' } & Pick<
@@ -6460,11 +6534,11 @@ type UserAddresssQuery = { __typename?: 'Query' } & {
     };
 };
 
-type UserAddressConfirmVerifyMutationVariables = Exact<{
+export type UserAddressConfirmVerifyMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type UserAddressConfirmVerifyMutation = { __typename?: 'Mutation' } & {
+export type UserAddressConfirmVerifyMutation = { __typename?: 'Mutation' } & {
     userAddressConfirmVerify: { __typename?: 'UserAddress' } & Pick<
         UserAddress,
         | 'firstname'
@@ -6494,11 +6568,11 @@ type UserAddressConfirmVerifyMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type UserAddressRejectVerifyMutationVariables = Exact<{
+export type UserAddressRejectVerifyMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type UserAddressRejectVerifyMutation = { __typename?: 'Mutation' } & {
+export type UserAddressRejectVerifyMutation = { __typename?: 'Mutation' } & {
     userAddressRejectVerify: { __typename?: 'UserAddress' } & Pick<
         UserAddress,
         | 'firstname'
@@ -6528,11 +6602,11 @@ type UserAddressRejectVerifyMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type UserCommentsByUserQueryVariables = Exact<{
+export type UserCommentsByUserQueryVariables = Exact<{
     userId: Scalars['ID'];
 }>;
 
-type UserCommentsByUserQuery = { __typename?: 'Query' } & {
+export type UserCommentsByUserQuery = { __typename?: 'Query' } & {
     userCommentsByUser: Array<
         { __typename?: 'UserComment' } & Pick<
             UserComment,
@@ -6541,21 +6615,21 @@ type UserCommentsByUserQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type UserCommentCreateMutationVariables = Exact<{
+export type UserCommentCreateMutationVariables = Exact<{
     userId: Scalars['ID'];
     message: Scalars['String'];
 }>;
 
-type UserCommentCreateMutation = { __typename?: 'Mutation' } & {
+export type UserCommentCreateMutation = { __typename?: 'Mutation' } & {
     userCommentCreate: { __typename?: 'UserComment' } & Pick<
         UserComment,
         'message' | 'id' | 'create'
     >;
 };
 
-type MyUserOAuthTokensQueryVariables = Exact<{ [key: string]: never }>;
+export type MyUserOAuthTokensQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyUserOAuthTokensQuery = { __typename?: 'Query' } & {
+export type MyUserOAuthTokensQuery = { __typename?: 'Query' } & {
     myUserOAuthTokens: Array<
         { __typename?: 'UserOauthToken' } & Pick<
             UserOauthToken,
@@ -6564,28 +6638,30 @@ type MyUserOAuthTokensQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type UserOauthTokenConfirmMutationVariables = Exact<{
+export type UserOauthTokenConfirmMutationVariables = Exact<{
     password: Scalars['String'];
     id: Scalars['ID'];
 }>;
 
-type UserOauthTokenConfirmMutation = { __typename?: 'Mutation' } & {
+export type UserOauthTokenConfirmMutation = { __typename?: 'Mutation' } & {
     userOauthTokenConfirm: { __typename?: 'UserOauthToken' } & Pick<
         UserOauthToken,
         'id' | 'service' | 'confirmed'
     >;
 };
 
-type UserOAuthDeleteTokenMutationVariables = Exact<{
+export type UserOAuthDeleteTokenMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type UserOAuthDeleteTokenMutation = { __typename?: 'Mutation' } & Pick<
+export type UserOAuthDeleteTokenMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'userOAuthDeleteToken'
 >;
 
-type ProductVserverPartFragment = { __typename?: 'ProductVserver' } & Pick<
+export type ProductVserverPartFragment = {
+    __typename?: 'ProductVserver';
+} & Pick<
     ProductVserver,
     | 'id'
     | 'create'
@@ -6626,11 +6702,11 @@ type ProductVserverPartFragment = { __typename?: 'ProductVserver' } & Pick<
         >;
     };
 
-type ProductVserverByIdBackupsQueryVariables = Exact<{
+export type ProductVserverByIdBackupsQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverByIdBackupsQuery = { __typename?: 'Query' } & {
+export type ProductVserverByIdBackupsQuery = { __typename?: 'Query' } & {
     productVserverById: { __typename?: 'ProductVserver' } & {
         backups: Array<
             { __typename?: 'ProductVserverBackup' } & Pick<
@@ -6641,20 +6717,20 @@ type ProductVserverByIdBackupsQuery = { __typename?: 'Query' } & {
     } & ProductVserverPartFragment;
 };
 
-type ProductVserverDeleteMutationVariables = Exact<{
+export type ProductVserverDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverDeleteMutation = { __typename?: 'Mutation' } & Pick<
+export type ProductVserverDeleteMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'productVserverDelete'
 >;
 
-type ProductVserversQueryVariables = Exact<{
+export type ProductVserversQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductVserversQuery = { __typename?: 'Query' } & {
+export type ProductVserversQuery = { __typename?: 'Query' } & {
     productVservers: { __typename?: 'ProductVserverResultMany' } & {
         edges: Array<
             { __typename?: 'ProductVserver' } & ProductVserverPartFragment
@@ -6666,20 +6742,20 @@ type ProductVserversQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductVserverExistQueryVariables = Exact<{
+export type ProductVserverExistQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverExistQuery = { __typename?: 'Query' } & Pick<
+export type ProductVserverExistQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productVserverExist'
 >;
 
-type ProductVserverStatsQueryVariables = Exact<{
+export type ProductVserverStatsQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverStatsQuery = { __typename?: 'Query' } & {
+export type ProductVserverStatsQuery = { __typename?: 'Query' } & {
     productVserverStats: Array<
         { __typename?: 'VserverStatsEntry' } & Pick<
             VserverStatsEntry,
@@ -6708,150 +6784,151 @@ type ProductVserverStatsQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductVserverRunningQueryVariables = Exact<{
+export type ProductVserverRunningQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverRunningQuery = { __typename?: 'Query' } & Pick<
+export type ProductVserverRunningQuery = { __typename?: 'Query' } & Pick<
     Query,
     'productVserverRunning'
 >;
 
-type ProductVserverMakeVncPortMutationVariables = Exact<{
+export type ProductVserverMakeVncPortMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverMakeVncPortMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productVserverMakeVncPort'
->;
+export type ProductVserverMakeVncPortMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productVserverMakeVncPort'>;
 
-type ProductVserverInstallMutationVariables = Exact<{
+export type ProductVserverInstallMutationVariables = Exact<{
     id: Scalars['ID'];
     recreate?: Maybe<Scalars['Boolean']>;
 }>;
 
-type ProductVserverInstallMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverInstallMutation = { __typename?: 'Mutation' } & {
     productVserverInstall: { __typename?: 'HostNodeTask' } & Pick<
         HostNodeTask,
         'id'
     >;
 };
 
-type ProductVserverBackupRestoreMutationVariables = Exact<{
+export type ProductVserverBackupRestoreMutationVariables = Exact<{
     id: Scalars['ID'];
     backupId: Scalars['ID'];
 }>;
 
-type ProductVserverBackupRestoreMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverBackupRestoreMutation = {
+    __typename?: 'Mutation';
+} & {
     productVserverBackupRestore: { __typename?: 'ProductVserverBackup' } & Pick<
         ProductVserverBackup,
         'id'
     >;
 };
 
-type ProductVserverBackupDownloadMutationVariables = Exact<{
+export type ProductVserverBackupDownloadMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverBackupDownloadMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productVserverBackupDownload'
->;
+export type ProductVserverBackupDownloadMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productVserverBackupDownload'>;
 
-type ProductVserverBackupCreateMutationVariables = Exact<{
+export type ProductVserverBackupCreateMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverBackupCreateMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverBackupCreateMutation = { __typename?: 'Mutation' } & {
     productVserverBackupCreate: { __typename?: 'ProductVserverBackup' } & Pick<
         ProductVserverBackup,
         'id'
     >;
 };
 
-type ProductVserverBackupDeleteMutationVariables = Exact<{
+export type ProductVserverBackupDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
     backupId: Scalars['ID'];
 }>;
 
-type ProductVserverBackupDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productVserverBackupDelete'
->;
+export type ProductVserverBackupDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productVserverBackupDelete'>;
 
-type ProductVserverStartMutationVariables = Exact<{
+export type ProductVserverStartMutationVariables = Exact<{
     id: Scalars['ID'];
     withImages?: Maybe<Scalars['Boolean']>;
 }>;
 
-type ProductVserverStartMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverStartMutation = { __typename?: 'Mutation' } & {
     productVserverStart: { __typename?: 'HostNodeTask' } & Pick<
         HostNodeTask,
         'id'
     >;
 };
 
-type ProductVserverStopMutationVariables = Exact<{
+export type ProductVserverStopMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverStopMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverStopMutation = { __typename?: 'Mutation' } & {
     productVserverStop: { __typename?: 'HostNodeTask' } & Pick<
         HostNodeTask,
         'id'
     >;
 };
 
-type ProductVserverSetSshPasswordMutationVariables = Exact<{
+export type ProductVserverSetSshPasswordMutationVariables = Exact<{
     id: Scalars['ID'];
     password: Scalars['String'];
 }>;
 
-type ProductVserverSetSshPasswordMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverSetSshPasswordMutation = {
+    __typename?: 'Mutation';
+} & {
     productVserverSetSshPassword: {
         __typename?: 'ProductVserver';
     } & ProductVserverPartFragment;
 };
 
-type ProductVserverChangeLabelMutationVariables = Exact<{
+export type ProductVserverChangeLabelMutationVariables = Exact<{
     id: Scalars['ID'];
     label: Scalars['String'];
 }>;
 
-type ProductVserverChangeLabelMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverChangeLabelMutation = { __typename?: 'Mutation' } & {
     productVserverChangeLabel: {
         __typename?: 'ProductVserver';
     } & ProductVserverPartFragment;
 };
 
-type ProductVserverAddImageMutationVariables = Exact<{
+export type ProductVserverAddImageMutationVariables = Exact<{
     id: Scalars['ID'];
     imageId: Scalars['ID'];
 }>;
 
-type ProductVserverAddImageMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverAddImageMutation = { __typename?: 'Mutation' } & {
     productVserverAddImage: {
         __typename?: 'ProductVserver';
     } & ProductVserverPartFragment;
 };
 
-type ProductVserverRemoveImageMutationVariables = Exact<{
+export type ProductVserverRemoveImageMutationVariables = Exact<{
     id: Scalars['ID'];
     imageId: Scalars['ID'];
 }>;
 
-type ProductVserverRemoveImageMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverRemoveImageMutation = { __typename?: 'Mutation' } & {
     productVserverRemoveImage: {
         __typename?: 'ProductVserver';
     } & ProductVserverPartFragment;
 };
 
-type ProductVserverByIdQueryVariables = Exact<{
+export type ProductVserverByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverByIdQuery = { __typename?: 'Query' } & {
+export type ProductVserverByIdQuery = { __typename?: 'Query' } & {
     productVserverById: { __typename?: 'ProductVserver' } & Pick<
         ProductVserver,
         'trafficTransferredInMB'
@@ -6859,19 +6936,21 @@ type ProductVserverByIdQuery = { __typename?: 'Query' } & {
         ProductVserverPartFragment;
 };
 
-type ProductVserverUnlockNetworkSpeedMutationVariables = Exact<{
+export type ProductVserverUnlockNetworkSpeedMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverUnlockNetworkSpeedMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverUnlockNetworkSpeedMutation = {
+    __typename?: 'Mutation';
+} & {
     productVserverUnlockNetworkSpeed: {
         __typename?: 'ProductVserver';
     } & ProductVserverPartFragment;
 };
 
-type MyProductVserversQueryVariables = Exact<{ [key: string]: never }>;
+export type MyProductVserversQueryVariables = Exact<{ [key: string]: never }>;
 
-type MyProductVserversQuery = { __typename?: 'Query' } & {
+export type MyProductVserversQuery = { __typename?: 'Query' } & {
     productVserverMy: Array<
         { __typename?: 'ProductVserver' } & Pick<
             ProductVserver,
@@ -6895,18 +6974,18 @@ type MyProductVserversQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductVserverImagePartFragment = {
+export type ProductVserverImagePartFragment = {
     __typename?: 'ProductVserverImage';
 } & Pick<
     ProductVserverImage,
     'id' | 'title' | 'platform' | 'resourceUrl' | 'active'
 > & { logo?: Maybe<{ __typename?: 'File' } & Pick<File, 'id' | 'url'>> };
 
-type ProductVserverImagesQueryVariables = Exact<{
+export type ProductVserverImagesQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductVserverImagesQuery = { __typename?: 'Query' } & {
+export type ProductVserverImagesQuery = { __typename?: 'Query' } & {
     productVserverImages: { __typename?: 'ProductVserverImageResultMany' } & {
         edges: Array<
             {
@@ -6920,57 +6999,58 @@ type ProductVserverImagesQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductVserverImageCreateMutationVariables = Exact<{
+export type ProductVserverImageCreateMutationVariables = Exact<{
     data: ProductVserverImageCreateInput;
 }>;
 
-type ProductVserverImageCreateMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverImageCreateMutation = { __typename?: 'Mutation' } & {
     productVserverImageCreate: {
         __typename?: 'ProductVserverImage';
     } & ProductVserverImagePartFragment;
 };
 
-type ProductVserverImageEditMutationVariables = Exact<{
+export type ProductVserverImageEditMutationVariables = Exact<{
     data: ProductVserverImageEditInput;
 }>;
 
-type ProductVserverImageEditMutation = { __typename?: 'Mutation' } & {
+export type ProductVserverImageEditMutation = { __typename?: 'Mutation' } & {
     productVserverImageEdit: {
         __typename?: 'ProductVserverImage';
     } & ProductVserverImagePartFragment;
 };
 
-type ProductVserverImageDeleteMutationVariables = Exact<{
+export type ProductVserverImageDeleteMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverImageDeleteMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productVserverImageDelete'
->;
+export type ProductVserverImageDeleteMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productVserverImageDelete'>;
 
-type ProductVserverImageByIdQueryVariables = Exact<{
+export type ProductVserverImageByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverImageByIdQuery = { __typename?: 'Query' } & {
+export type ProductVserverImageByIdQuery = { __typename?: 'Query' } & {
     productVserverImageById: {
         __typename?: 'ProductVserverImage';
     } & ProductVserverImagePartFragment;
 };
 
-type ProductVserverImagePlatformImagesQueryVariables = Exact<{
+export type ProductVserverImagePlatformImagesQueryVariables = Exact<{
     platform: Scalars['String'];
     search?: Maybe<Scalars['String']>;
 }>;
 
-type ProductVserverImagePlatformImagesQuery = { __typename?: 'Query' } & {
+export type ProductVserverImagePlatformImagesQuery = {
+    __typename?: 'Query';
+} & {
     productVserverImagePlatformImages: Array<
         { __typename?: 'ProductVserverImage' } & ProductVserverImagePartFragment
     >;
 };
 
-type CreateProductVserverIpMutationVariables = Exact<{
+export type CreateProductVserverIpMutationVariables = Exact<{
     ip: Scalars['String'];
     hostNodeId?: Maybe<Scalars['ID']>;
     gateway: Scalars['String'];
@@ -6979,13 +7059,13 @@ type CreateProductVserverIpMutationVariables = Exact<{
     cidr?: Maybe<Scalars['Int']>;
 }>;
 
-type CreateProductVserverIpMutation = { __typename?: 'Mutation' } & {
+export type CreateProductVserverIpMutation = { __typename?: 'Mutation' } & {
     productVserverIpCreate: Array<
         { __typename?: 'ProductVserverIp' } & Pick<ProductVserverIp, 'id'>
     >;
 };
 
-type EditProductVserverIpMutationVariables = Exact<{
+export type EditProductVserverIpMutationVariables = Exact<{
     ip: Scalars['String'];
     hostNodeId?: Maybe<Scalars['ID']>;
     gateway: Scalars['String'];
@@ -6995,7 +7075,7 @@ type EditProductVserverIpMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type EditProductVserverIpMutation = { __typename?: 'Mutation' } & {
+export type EditProductVserverIpMutation = { __typename?: 'Mutation' } & {
     productVserverIpEdit: { __typename?: 'ProductVserverIp' } & Pick<
         ProductVserverIp,
         'id' | 'create' | 'ip' | 'assigned' | 'netmask' | 'active' | 'gateway'
@@ -7009,20 +7089,20 @@ type EditProductVserverIpMutation = { __typename?: 'Mutation' } & {
         };
 };
 
-type DeleteProductVserverIpMutationVariables = Exact<{
+export type DeleteProductVserverIpMutationVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type DeleteProductVserverIpMutation = { __typename?: 'Mutation' } & Pick<
+export type DeleteProductVserverIpMutation = { __typename?: 'Mutation' } & Pick<
     Mutation,
     'productVserverIpDelete'
 >;
 
-type ProductVserverIpsQueryVariables = Exact<{
+export type ProductVserverIpsQueryVariables = Exact<{
     filter?: Maybe<CordFilter>;
 }>;
 
-type ProductVserverIpsQuery = { __typename?: 'Query' } & {
+export type ProductVserverIpsQuery = { __typename?: 'Query' } & {
     productVserverIps: { __typename?: 'ProductVserverIpResultMany' } & {
         edges: Array<
             { __typename?: 'ProductVserverIp' } & Pick<
@@ -7037,11 +7117,11 @@ type ProductVserverIpsQuery = { __typename?: 'Query' } & {
     };
 };
 
-type ProductVserverIpByIdQueryVariables = Exact<{
+export type ProductVserverIpByIdQueryVariables = Exact<{
     id: Scalars['ID'];
 }>;
 
-type ProductVserverIpByIdQuery = { __typename?: 'Query' } & {
+export type ProductVserverIpByIdQuery = { __typename?: 'Query' } & {
     productVserverIpById: { __typename?: 'ProductVserverIp' } & Pick<
         ProductVserverIp,
         'id' | 'create' | 'ip' | 'assigned' | 'netmask' | 'active' | 'gateway'
@@ -7055,9 +7135,11 @@ type ProductVserverIpByIdQuery = { __typename?: 'Query' } & {
         };
 };
 
-type ProductVserverIpFreeQueryVariables = Exact<{ [key: string]: never }>;
+export type ProductVserverIpFreeQueryVariables = Exact<{
+    [key: string]: never;
+}>;
 
-type ProductVserverIpFreeQuery = { __typename?: 'Query' } & {
+export type ProductVserverIpFreeQuery = { __typename?: 'Query' } & {
     productVserverIpFree: Array<
         { __typename?: 'ProductVserverIp' } & Pick<
             ProductVserverIp,
@@ -7072,267 +7154,16 @@ type ProductVserverIpFreeQuery = { __typename?: 'Query' } & {
     >;
 };
 
-type ProductVserverIpReassignIpMutationVariables = Exact<{
+export type ProductVserverIpReassignIpMutationVariables = Exact<{
     id: Scalars['ID'];
     newId: Scalars['ID'];
 }>;
 
-type ProductVserverIpReassignIpMutation = { __typename?: 'Mutation' } & Pick<
-    Mutation,
-    'productVserverIpReassignIp'
->;
+export type ProductVserverIpReassignIpMutation = {
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'productVserverIpReassignIp'>;
 
-/*
- * This file was generated by graphql-code-generator with the apollo-hooks-codegen plugin.
- * Any changes made to the file will be overwritten.
- */
-
-import gql from 'graphql-tag';
-import { DocumentNode } from 'graphql';
-import * as Urql from 'urql';
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryMeHasAcl.Document = gql`
-    query meHasAcl($acl: String!) {
-        acl_has_acl(acl: $acl)
-    }
-` as DocumentNode;
-
-export function useQueryMeHasAcl(
-    options: Omit<Urql.UseQueryArgs<MeHasAclQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<MeHasAclQuery>({
-        query: useQueryMeHasAcl.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryAcls.Document = gql`
-    query acls($filter: CordFilter) {
-        acls(filter: $filter) {
-            edges {
-                id
-                acl
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryAcls(
-    options: Omit<Urql.UseQueryArgs<AclsQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<AclsQuery>({
-        query: useQueryAcls.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationAclRefillAclCache.Document = gql`
-    mutation aclRefillAclCache {
-        aclRefillAclCache
-    }
-` as DocumentNode;
-
-export function useMutationAclRefillAclCache() {
-    return Urql.useMutation<
-        AclRefillAclCacheMutation,
-        AclRefillAclCacheMutationVariables
-    >(useMutationAclRefillAclCache.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useMutationCreateBackupServer.Document = gql`
-    mutation createBackupServer(
-        $backupPath: String!
-        $name: String
-        $port: Int!
-        $username: String!
-        $privateKey: String!
-        $host: String!
-        $localHost: String!
-    ) {
-        backupServerCreate(
-            data: {
-                backupPath: $backupPath
-                name: $name
-                port: $port
-                privateKey: $privateKey
-                username: $username
-                host: $host
-                localHost: $localHost
-            }
-        ) {
-            id
-        }
-    }
-` as DocumentNode;
-
-export function useMutationCreateBackupServer() {
-    return Urql.useMutation<
-        CreateBackupServerMutation,
-        CreateBackupServerMutationVariables
-    >(useMutationCreateBackupServer.Document);
-}
-
-useMutationEditBackupServer.Document = gql`
-    mutation editBackupServer(
-        $id: ID!
-        $backupPath: String
-        $name: String
-        $port: Int
-        $username: String
-        $privateKey: String
-        $host: String
-        $localHost: String!
-    ) {
-        backupServerEdit(
-            data: {
-                id: $id
-                backupPath: $backupPath
-                name: $name
-                port: $port
-                privateKey: $privateKey
-                username: $username
-                host: $host
-                localHost: $localHost
-            }
-        ) {
-            id
-        }
-    }
-` as DocumentNode;
-
-export function useMutationEditBackupServer() {
-    return Urql.useMutation<
-        EditBackupServerMutation,
-        EditBackupServerMutationVariables
-    >(useMutationEditBackupServer.Document);
-}
-
-useMutationDeleteBackupServerById.Document = gql`
-    mutation deleteBackupServerById($id: ID!) {
-        backupServerDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDeleteBackupServerById() {
-    return Urql.useMutation<
-        DeleteBackupServerByIdMutation,
-        DeleteBackupServerByIdMutationVariables
-    >(useMutationDeleteBackupServerById.Document);
-}
-
-useQueryBackupServers.Document = gql`
-    query backupServers($filter: CordFilter) {
-        backupServers(filter: $filter) {
-            edges {
-                id
-                name
-                update
-                backupPath
-                privateKey
-                username
-                host
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryBackupServers(
-    options: Omit<Urql.UseQueryArgs<BackupServersQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<BackupServersQuery>({
-        query: useQueryBackupServers.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryBackupServerById.Document = gql`
-    query backupServerById($id: ID!) {
-        backupServer(id: $id) {
-            id
-            name
-            update
-            backupPath
-            privateKey
-            port
-            username
-            host
-            deletable
-            localHost
-        }
-    }
-` as DocumentNode;
-
-export function useQueryBackupServerById(
-    options: Omit<
-        Urql.UseQueryArgs<BackupServerByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<BackupServerByIdQuery>({
-        query: useQueryBackupServerById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryBlogPostRead.Document = gql`
-    query blogPostRead {
-        blogPostRead {
-            title
-            link
-            pubDate
-            html
-        }
-    }
-` as DocumentNode;
-
-export function useQueryBlogPostRead(
-    options: Omit<Urql.UseQueryArgs<BlogPostReadQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<BlogPostReadQuery>({
-        query: useQueryBlogPostRead.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductDomainPart = gql`
+export const ProductDomainPartFragmentDoc = gql`
     fragment ProductDomainPart on ProductDomain {
         id
         attributes
@@ -7348,165 +7179,7 @@ const _gql_ProductDomainPart = gql`
         tld
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductDomains.Document = gql`
-    query productDomains($filter: CordFilter) {
-        productDomains(filter: $filter) {
-            edges {
-                id
-                create
-                authcode
-                product {
-                    id
-                    user {
-                        id
-                    }
-                    expire
-                }
-                name
-                tld
-                attributes
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductDomains(
-    options: Omit<Urql.UseQueryArgs<ProductDomainsQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<ProductDomainsQuery>({
-        query: useQueryProductDomains.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductDomainById.Document = gql`
-    query productDomainById($id: ID!) {
-        productDomainById(id: $id) {
-            ...ProductDomainPart
-        }
-    }
-    ${_gql_ProductDomainPart}
-` as DocumentNode;
-
-export function useQueryProductDomainById(
-    options: Omit<
-        Urql.UseQueryArgs<ProductDomainByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductDomainByIdQuery>({
-        query: useQueryProductDomainById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryMyProductDomains.Document = gql`
-    query myProductDomains {
-        productDomainsMy {
-            id
-            name
-            product {
-                id
-                expire
-            }
-            tld
-        }
-    }
-` as DocumentNode;
-
-export function useQueryMyProductDomains(
-    options: Omit<
-        Urql.UseQueryArgs<MyProductDomainsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<MyProductDomainsQuery>({
-        query: useQueryMyProductDomains.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductDomainRequestNewAuthcode.Document = gql`
-    mutation productDomainRequestNewAuthcode($id: ID!) {
-        productDomainRequestNewAuthcode(id: $id) {
-            ...ProductDomainPart
-        }
-    }
-    ${_gql_ProductDomainPart}
-` as DocumentNode;
-
-export function useMutationProductDomainRequestNewAuthcode() {
-    return Urql.useMutation<
-        ProductDomainRequestNewAuthcodeMutation,
-        ProductDomainRequestNewAuthcodeMutationVariables
-    >(useMutationProductDomainRequestNewAuthcode.Document);
-}
-
-useMutationProductDomainDelete.Document = gql`
-    mutation productDomainDelete($id: ID!) {
-        productDomainDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductDomainDelete() {
-    return Urql.useMutation<
-        ProductDomainDeleteMutation,
-        ProductDomainDeleteMutationVariables
-    >(useMutationProductDomainDelete.Document);
-}
-
-useMutationProductDomainSetAuthcode.Document = gql`
-    mutation productDomainSetAuthcode($id: ID!, $authcode: String!) {
-        productDomainSetAuthcode(id: $id, authcode: $authcode) {
-            ...ProductDomainPart
-        }
-    }
-    ${_gql_ProductDomainPart}
-` as DocumentNode;
-
-export function useMutationProductDomainSetAuthcode() {
-    return Urql.useMutation<
-        ProductDomainSetAuthcodeMutation,
-        ProductDomainSetAuthcodeMutationVariables
-    >(useMutationProductDomainSetAuthcode.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useMutationDsgvoAnonymizeAccount.Document = gql`
-    mutation dsgvoAnonymizeAccount($id: ID!) {
-        dsgvoAnonymizeAccount(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDsgvoAnonymizeAccount() {
-    return Urql.useMutation<
-        DsgvoAnonymizeAccountMutation,
-        DsgvoAnonymizeAccountMutationVariables
-    >(useMutationDsgvoAnonymizeAccount.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_EmailTemplatePart = gql`
+export const EmailTemplatePartFragmentDoc = gql`
     fragment EmailTemplatePart on EmailTemplate {
         id
         sender
@@ -7514,181 +7187,7 @@ const _gql_EmailTemplatePart = gql`
         template
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryEmailTemplates.Document = gql`
-    query EmailTemplates($filter: CordFilter) {
-        emailTemplates(filter: $filter) {
-            edges {
-                ...EmailTemplatePart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_EmailTemplatePart}
-` as DocumentNode;
-
-export function useQueryEmailTemplates(
-    options: Omit<Urql.UseQueryArgs<EmailTemplatesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<EmailTemplatesQuery>({
-        query: useQueryEmailTemplates.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryEmailTemplateById.Document = gql`
-    query emailTemplateById($id: ID!) {
-        emailTemplateById(id: $id) {
-            ...EmailTemplatePart
-            templateContent
-        }
-    }
-    ${_gql_EmailTemplatePart}
-` as DocumentNode;
-
-export function useQueryEmailTemplateById(
-    options: Omit<
-        Urql.UseQueryArgs<EmailTemplateByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<EmailTemplateByIdQuery>({
-        query: useQueryEmailTemplateById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationNewEmailTemplate.Document = gql`
-    mutation newEmailTemplate(
-        $sender: String!
-        $subject: String!
-        $template: String!
-        $templateContent: String
-    ) {
-        email_template_new(
-            data: {
-                sender: $sender
-                subject: $subject
-                template: $template
-                templateContent: $templateContent
-            }
-        ) {
-            ...EmailTemplatePart
-            templateContent
-        }
-    }
-    ${_gql_EmailTemplatePart}
-` as DocumentNode;
-
-export function useMutationNewEmailTemplate() {
-    return Urql.useMutation<
-        NewEmailTemplateMutation,
-        NewEmailTemplateMutationVariables
-    >(useMutationNewEmailTemplate.Document);
-}
-
-useMutationDeleteEmailTemplate.Document = gql`
-    mutation deleteEmailTemplate($id: ID!) {
-        email_template_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDeleteEmailTemplate() {
-    return Urql.useMutation<
-        DeleteEmailTemplateMutation,
-        DeleteEmailTemplateMutationVariables
-    >(useMutationDeleteEmailTemplate.Document);
-}
-
-useMutationEditEmailTemplate.Document = gql`
-    mutation editEmailTemplate(
-        $id: ID!
-        $sender: String!
-        $subject: String!
-        $template: String!
-        $templateContent: String
-    ) {
-        email_template_edit(
-            data: {
-                id: $id
-                sender: $sender
-                subject: $subject
-                template: $template
-                templateContent: $templateContent
-            }
-        ) {
-            ...EmailTemplatePart
-            templateContent
-        }
-    }
-    ${_gql_EmailTemplatePart}
-` as DocumentNode;
-
-export function useMutationEditEmailTemplate() {
-    return Urql.useMutation<
-        EditEmailTemplateMutation,
-        EditEmailTemplateMutationVariables
-    >(useMutationEditEmailTemplate.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useMutationFileDeleteFile.Document = gql`
-    mutation FileDeleteFile($id: ID!) {
-        FileDeleteFile(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationFileDeleteFile() {
-    return Urql.useMutation<
-        FileDeleteFileMutation,
-        FileDeleteFileMutationVariables
-    >(useMutationFileDeleteFile.Document);
-}
-
-useQueryMyFiles.Document = gql`
-    query myFiles {
-        myFiles {
-            id
-            hasExpired
-            url
-            exists
-            create
-            mimetype
-            originalname
-            expiryDate
-        }
-    }
-` as DocumentNode;
-
-export function useQueryMyFiles(
-    options: Omit<Urql.UseQueryArgs<MyFilesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<MyFilesQuery>({
-        query: useQueryMyFiles.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_FinanceTransactionPart = gql`
+export const FinanceTransactionPartFragmentDoc = gql`
     fragment FinanceTransactionPart on FinanceTransaction {
         id
         description
@@ -7713,143 +7212,7 @@ const _gql_FinanceTransactionPart = gql`
         totalInclVat
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryFinancePaymentMethods.Document = gql`
-    query FinancePaymentMethods {
-        FinancePaymentMethods {
-            method
-            logo
-            title
-
-            minPayable
-            maxPayable
-            active
-            forceAllowedValues
-            tooltip
-            bonusCredits {
-                minCredits
-                threshold
-                bonus
-            }
-            transactionFee
-        }
-    }
-` as DocumentNode;
-
-export function useQueryFinancePaymentMethods(
-    options: Omit<
-        Urql.UseQueryArgs<FinancePaymentMethodsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<FinancePaymentMethodsQuery>({
-        query: useQueryFinancePaymentMethods.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryFinanceTransactions.Document = gql`
-    query financeTransactions($filter: CordFilter) {
-        financeTransactions(filter: $filter) {
-            edges {
-                ...FinanceTransactionPart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_FinanceTransactionPart}
-` as DocumentNode;
-
-export function useQueryFinanceTransactions(
-    options: Omit<
-        Urql.UseQueryArgs<FinanceTransactionsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<FinanceTransactionsQuery>({
-        query: useQueryFinanceTransactions.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryFinanceTransactionById.Document = gql`
-    query financeTransactionById($id: ID!) {
-        financeTransactionById(id: $id) {
-            ...FinanceTransactionPart
-        }
-    }
-    ${_gql_FinanceTransactionPart}
-` as DocumentNode;
-
-export function useQueryFinanceTransactionById(
-    options: Omit<
-        Urql.UseQueryArgs<FinanceTransactionByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<FinanceTransactionByIdQuery>({
-        query: useQueryFinanceTransactionById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationCreateFinanceTransaction.Document = gql`
-    mutation CreateFinanceTransaction($data: FinanceTransactionCreateInput!) {
-        financeTransactionCreate(data: $data) {
-            ...FinanceTransactionPart
-        }
-    }
-    ${_gql_FinanceTransactionPart}
-` as DocumentNode;
-
-export function useMutationCreateFinanceTransaction() {
-    return Urql.useMutation<
-        CreateFinanceTransactionMutation,
-        CreateFinanceTransactionMutationVariables
-    >(useMutationCreateFinanceTransaction.Document);
-}
-
-useQueryMyFinanceTransactions.Document = gql`
-    query MyFinanceTransactions {
-        user_me {
-            id
-            transactions {
-                ...FinanceTransactionPart
-                donationMessage
-                isDonation
-            }
-            credits
-        }
-    }
-    ${_gql_FinanceTransactionPart}
-` as DocumentNode;
-
-export function useQueryMyFinanceTransactions(
-    options: Omit<
-        Urql.UseQueryArgs<MyFinanceTransactionsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<MyFinanceTransactionsQuery>({
-        query: useQueryMyFinanceTransactions.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_FinanceChargePart = gql`
+export const FinanceChargePartFragmentDoc = gql`
     fragment FinanceChargePart on FinanceCharge {
         id
         create
@@ -7866,159 +7229,7 @@ const _gql_FinanceChargePart = gql`
         meta
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryFinanceCharges.Document = gql`
-    query financeCharges($filter: CordFilter) {
-        financeCharges(filter: $filter) {
-            edges {
-                ...FinanceChargePart
-                donation {
-                    id
-                }
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_FinanceChargePart}
-` as DocumentNode;
-
-export function useQueryFinanceCharges(
-    options: Omit<Urql.UseQueryArgs<FinanceChargesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<FinanceChargesQuery>({
-        query: useQueryFinanceCharges.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryFinanceChargeById.Document = gql`
-    query financeChargeById($id: ID!) {
-        financeChargeById(id: $id) {
-            ...FinanceChargePart
-        }
-    }
-    ${_gql_FinanceChargePart}
-` as DocumentNode;
-
-export function useQueryFinanceChargeById(
-    options: Omit<
-        Urql.UseQueryArgs<FinanceChargeByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<FinanceChargeByIdQuery>({
-        query: useQueryFinanceChargeById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationFinanceChargeVerify.Document = gql`
-    mutation financeChargeVerify($id: ID!, $description: String) {
-        financeChargeVerify(id: $id, description: $description) {
-            ...FinanceChargePart
-        }
-    }
-    ${_gql_FinanceChargePart}
-` as DocumentNode;
-
-export function useMutationFinanceChargeVerify() {
-    return Urql.useMutation<
-        FinanceChargeVerifyMutation,
-        FinanceChargeVerifyMutationVariables
-    >(useMutationFinanceChargeVerify.Document);
-}
-
-useMutationFinanceChargeDelete.Document = gql`
-    mutation financeChargeDelete($id: ID!) {
-        financeChargeDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationFinanceChargeDelete() {
-    return Urql.useMutation<
-        FinanceChargeDeleteMutation,
-        FinanceChargeDeleteMutationVariables
-    >(useMutationFinanceChargeDelete.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryFinanceDonationLinksMy.Document = gql`
-    query financeDonationLinksMy {
-        financeDonationLinksMy {
-            id
-            create
-            message
-            url
-            totalDonationSum
-            label
-        }
-    }
-` as DocumentNode;
-
-export function useQueryFinanceDonationLinksMy(
-    options: Omit<
-        Urql.UseQueryArgs<FinanceDonationLinksMyQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<FinanceDonationLinksMyQuery>({
-        query: useQueryFinanceDonationLinksMy.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationFinanceDonationLinkCreate.Document = gql`
-    mutation financeDonationLinkCreate($message: String!, $label: String) {
-        financeDonationLinkCreate(message: $message, label: $label) {
-            id
-            create
-            message
-            url
-            totalDonationSum
-        }
-    }
-` as DocumentNode;
-
-export function useMutationFinanceDonationLinkCreate() {
-    return Urql.useMutation<
-        FinanceDonationLinkCreateMutation,
-        FinanceDonationLinkCreateMutationVariables
-    >(useMutationFinanceDonationLinkCreate.Document);
-}
-
-useMutationFinanceDonationLinkDelete.Document = gql`
-    mutation financeDonationLinkDelete($id: ID!) {
-        financeDonationLinkDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationFinanceDonationLinkDelete() {
-    return Urql.useMutation<
-        FinanceDonationLinkDeleteMutation,
-        FinanceDonationLinkDeleteMutationVariables
-    >(useMutationFinanceDonationLinkDelete.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductGameserverPart = gql`
+export const ProductGameserverPartFragmentDoc = gql`
     fragment ProductGameserverPart on ProductGameserver {
         id
         attributes
@@ -8069,809 +7280,7 @@ const _gql_ProductGameserverPart = gql`
         autorestarts
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useMutationProductGameserverStart.Document = gql`
-    mutation productGameserverStart($gameserverId: ID!, $scriptId: ID) {
-        product_gameserver_start(
-            gameserverId: $gameserverId
-            scriptId: $scriptId
-        ) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverStart() {
-    return Urql.useMutation<
-        ProductGameserverStartMutation,
-        ProductGameserverStartMutationVariables
-    >(useMutationProductGameserverStart.Document);
-}
-
-useMutationProductGameserverSetAutorestarts.Document = gql`
-    mutation productGameserverSetAutorestarts($id: ID!, $restarts: [Int!]!) {
-        productGameserverSetAutorestarts(id: $id, restarts: $restarts) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverSetAutorestarts() {
-    return Urql.useMutation<
-        ProductGameserverSetAutorestartsMutation,
-        ProductGameserverSetAutorestartsMutationVariables
-    >(useMutationProductGameserverSetAutorestarts.Document);
-}
-
-useMutationProductGameserverFailureAutorestart.Document = gql`
-    mutation productGameserverFailureAutorestart($id: ID!, $restart: Boolean!) {
-        productGameserverFailureAutorestart(id: $id, restart: $restart) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverFailureAutorestart() {
-    return Urql.useMutation<
-        ProductGameserverFailureAutorestartMutation,
-        ProductGameserverFailureAutorestartMutationVariables
-    >(useMutationProductGameserverFailureAutorestart.Document);
-}
-
-useQueryProductGameserverRunning.Document = gql`
-    query productGameserverRunning($gameserverId: ID!) {
-        product_gameserver_running(gameserverId: $gameserverId)
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverRunning(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverRunningQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverRunningQuery>({
-        query: useQueryProductGameserverRunning.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductGameserverLog.Document = gql`
-    query productGameserverLog($gameserverId: ID!) {
-        product_gameserver_log(gameserverId: $gameserverId)
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverLog(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverLogQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverLogQuery>({
-        query: useQueryProductGameserverLog.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverStop.Document = gql`
-    mutation productGameserverStop($gameserverId: ID!) {
-        product_gameserver_stop(gameserverId: $gameserverId) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverStop() {
-    return Urql.useMutation<
-        ProductGameserverStopMutation,
-        ProductGameserverStopMutationVariables
-    >(useMutationProductGameserverStop.Document);
-}
-
-useMutationProductGameserverConsole.Document = gql`
-    mutation productGameserverConsole($gameserverId: ID!, $command: String!) {
-        product_gameserver_console(
-            gameserverId: $gameserverId
-            command: $command
-        )
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverConsole() {
-    return Urql.useMutation<
-        ProductGameserverConsoleMutation,
-        ProductGameserverConsoleMutationVariables
-    >(useMutationProductGameserverConsole.Document);
-}
-
-useQueryProductGameserverExist.Document = gql`
-    query productGameserverExist($gameserverId: ID!) {
-        product_gameserver_exist(gameserverId: $gameserverId)
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverExist(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverExistQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverExistQuery>({
-        query: useQueryProductGameserverExist.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverChangeFtpPassword.Document = gql`
-    mutation productGameserverChangeFtpPassword(
-        $gameserverId: ID!
-        $password: String!
-    ) {
-        product_gameserver_change_password(
-            gameserverId: $gameserverId
-            password: $password
-        ) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverChangeFtpPassword() {
-    return Urql.useMutation<
-        ProductGameserverChangeFtpPasswordMutation,
-        ProductGameserverChangeFtpPasswordMutationVariables
-    >(useMutationProductGameserverChangeFtpPassword.Document);
-}
-
-useQueryProductGameserver.Document = gql`
-    query productGameserver($id: ID!) {
-        productGameserverById(id: $id) {
-            ...ProductGameserverPart
-            availableGameserverTemplates {
-                id
-                title
-                logo {
-                    id
-                    url
-                }
-            }
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useQueryProductGameserver(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverQuery>({
-        query: useQueryProductGameserver.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductGameserverUsage.Document = gql`
-    query productGameserverUsage($gameserverId: ID!) {
-        productGameserverUsage(gameserverId: $gameserverId) {
-            usagePoints {
-                globalUsage
-                perCore
-                date
-                memoryUsageInMb
-            }
-            diskPoints {
-                date
-                usageInMb
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverUsage(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverUsageQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverUsageQuery>({
-        query: useQueryProductGameserverUsage.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductGameserverAddons.Document = gql`
-    query productGameserverAddons($gameserverId: ID!) {
-        product_gameservers_scripts(gameserverId: $gameserverId) {
-            id
-            title
-            standaloneBtn
-            isDefault
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverAddons(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverAddonsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverAddonsQuery>({
-        query: useQueryProductGameserverAddons.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverSetCustomAttribute.Document = gql`
-    mutation productGameserverSetCustomAttribute(
-        $id: ID!
-        $key: String!
-        $value: String!
-    ) {
-        productGameserverSetCustomAttribute(id: $id, key: $key, value: $value) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverSetCustomAttribute() {
-    return Urql.useMutation<
-        ProductGameserverSetCustomAttributeMutation,
-        ProductGameserverSetCustomAttributeMutationVariables
-    >(useMutationProductGameserverSetCustomAttribute.Document);
-}
-
-useMutationProductGameserverChangeLabel.Document = gql`
-    mutation productGameserverChangeLabel($id: ID!, $label: String!) {
-        product_gameserver_change_label(id: $id, label: $label) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverChangeLabel() {
-    return Urql.useMutation<
-        ProductGameserverChangeLabelMutation,
-        ProductGameserverChangeLabelMutationVariables
-    >(useMutationProductGameserverChangeLabel.Document);
-}
-
-useMutationProductGameserverBackupCreate.Document = gql`
-    mutation productGameserverBackupCreate($gameserverId: ID!) {
-        productGameserverBackupCreate(gameserverId: $gameserverId) {
-            id
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverBackupCreate() {
-    return Urql.useMutation<
-        ProductGameserverBackupCreateMutation,
-        ProductGameserverBackupCreateMutationVariables
-    >(useMutationProductGameserverBackupCreate.Document);
-}
-
-useMutationProductGameserverBackupDelete.Document = gql`
-    mutation productGameserverBackupDelete($backupId: ID!) {
-        productGameserverBackupDelete(backupId: $backupId)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverBackupDelete() {
-    return Urql.useMutation<
-        ProductGameserverBackupDeleteMutation,
-        ProductGameserverBackupDeleteMutationVariables
-    >(useMutationProductGameserverBackupDelete.Document);
-}
-
-useMutationProductGameserverBackupRestore.Document = gql`
-    mutation productGameserverBackupRestore($backupId: ID!) {
-        productGameserverBackupRestore(backupId: $backupId)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverBackupRestore() {
-    return Urql.useMutation<
-        ProductGameserverBackupRestoreMutation,
-        ProductGameserverBackupRestoreMutationVariables
-    >(useMutationProductGameserverBackupRestore.Document);
-}
-
-useMutationProductGameserverDelete.Document = gql`
-    mutation productGameserverDelete($id: ID!) {
-        productGameserverDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverDelete() {
-    return Urql.useMutation<
-        ProductGameserverDeleteMutation,
-        ProductGameserverDeleteMutationVariables
-    >(useMutationProductGameserverDelete.Document);
-}
-
-useMutationProductGameserverInstall.Document = gql`
-    mutation productGameserverInstall($id: ID!, $gameserverTemplateId: ID!) {
-        productGameserverInstall(
-            gameserverId: $id
-            gameserverTemplateId: $gameserverTemplateId
-        ) {
-            ...ProductGameserverPart
-        }
-    }
-    ${_gql_ProductGameserverPart}
-` as DocumentNode;
-
-export function useMutationProductGameserverInstall() {
-    return Urql.useMutation<
-        ProductGameserverInstallMutation,
-        ProductGameserverInstallMutationVariables
-    >(useMutationProductGameserverInstall.Document);
-}
-
-useQueryProductGameserverBackups.Document = gql`
-    query productGameserverBackups($id: ID!) {
-        productGameserverById(id: $id) {
-            id
-            backups {
-                id
-                create
-                sizeInMb
-                restorable
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverBackups(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverBackupsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverBackupsQuery>({
-        query: useQueryProductGameserverBackups.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverBackupDownload.Document = gql`
-    mutation productGameserverBackupDownload($id: ID!) {
-        productGameserverBackupDownload(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverBackupDownload() {
-    return Urql.useMutation<
-        ProductGameserverBackupDownloadMutation,
-        ProductGameserverBackupDownloadMutationVariables
-    >(useMutationProductGameserverBackupDownload.Document);
-}
-
-useQueryProductGameservers.Document = gql`
-    query productGameservers($filter: CordFilter) {
-        productGameservers(filter: $filter) {
-            edges {
-                id
-                template {
-                    id
-                    title
-                }
-                product {
-                    id
-                    user {
-                        id
-                    }
-                }
-                hostNode {
-                    id
-                    remoteAddress
-                    name
-                }
-                name
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameservers(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserversQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserversQuery>({
-        query: useQueryProductGameservers.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryMyProductGameservers.Document = gql`
-    query myProductGameservers {
-        productGameserversMy {
-            id
-            name
-            amIOwner
-            product {
-                id
-                expire
-            }
-            template {
-                id
-                logo {
-                    id
-                    url
-                }
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryMyProductGameservers(
-    options: Omit<
-        Urql.UseQueryArgs<MyProductGameserversQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<MyProductGameserversQuery>({
-        query: useQueryMyProductGameservers.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryMyProductGameserverAccesses.Document = gql`
-    query myProductGameserverAccesses {
-        myProductGameserverAccesses {
-            id
-            gameserver {
-                id
-                name
-                template {
-                    id
-                    logo {
-                        id
-                        url
-                    }
-                }
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryMyProductGameserverAccesses(
-    options: Omit<
-        Urql.UseQueryArgs<MyProductGameserverAccessesQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<MyProductGameserverAccessesQuery>({
-        query: useQueryMyProductGameserverAccesses.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductGameserverAccessesByGameserverId.Document = gql`
-    query productGameserverAccessesByGameserverId($gameserverId: ID!) {
-        productGameserverAccessesByGameserverId(gameserverId: $gameserverId) {
-            accept
-            id
-            userEmail
-            gameserver {
-                name
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverAccessesByGameserverId(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverAccessesByGameserverIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverAccessesByGameserverIdQuery>({
-        query: useQueryProductGameserverAccessesByGameserverId.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverAccessInvite.Document = gql`
-    mutation productGameserverAccessInvite(
-        $gameserverId: ID!
-        $emailOfInvitedUser: String!
-        $captcha: String!
-    ) {
-        productGameserverAccessInvite(
-            gameserverId: $gameserverId
-            emailOfInvitedUser: $emailOfInvitedUser
-            captcha: $captcha
-        ) {
-            accept
-            id
-            userEmail
-            gameserver {
-                name
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverAccessInvite() {
-    return Urql.useMutation<
-        ProductGameserverAccessInviteMutation,
-        ProductGameserverAccessInviteMutationVariables
-    >(useMutationProductGameserverAccessInvite.Document);
-}
-
-useMutationProductGameserverAccessRevoke.Document = gql`
-    mutation productGameserverAccessRevoke($id: ID!) {
-        productGameserverAccessRevoke(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverAccessRevoke() {
-    return Urql.useMutation<
-        ProductGameserverAccessRevokeMutation,
-        ProductGameserverAccessRevokeMutationVariables
-    >(useMutationProductGameserverAccessRevoke.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductGameserverMysqlByGameserver.Document = gql`
-    query productGameserverMysqlByGameserver($gameserverId: ID!) {
-        productGameserverMysqlByGameserver(gameserverId: $gameserverId) {
-            id
-            label
-            create
-            host
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverMysqlByGameserver(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverMysqlByGameserverQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverMysqlByGameserverQuery>({
-        query: useQueryProductGameserverMysqlByGameserver.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverMysqlCreate.Document = gql`
-    mutation productGameserverMysqlCreate(
-        $gameserverId: ID!
-        $password: String!
-    ) {
-        productGameserverMysqlCreate(
-            gameserverId: $gameserverId
-            password: $password
-        ) {
-            id
-            label
-            host
-            create
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverMysqlCreate() {
-    return Urql.useMutation<
-        ProductGameserverMysqlCreateMutation,
-        ProductGameserverMysqlCreateMutationVariables
-    >(useMutationProductGameserverMysqlCreate.Document);
-}
-
-useMutationProductGameserverMysqlChangeLabel.Document = gql`
-    mutation productGameserverMysqlChangeLabel($id: ID!, $label: String!) {
-        productGameserverMysqlChangeLabel(id: $id, label: $label) {
-            id
-            label
-            create
-            host
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverMysqlChangeLabel() {
-    return Urql.useMutation<
-        ProductGameserverMysqlChangeLabelMutation,
-        ProductGameserverMysqlChangeLabelMutationVariables
-    >(useMutationProductGameserverMysqlChangeLabel.Document);
-}
-
-useMutationProductGameserverMysqlDelete.Document = gql`
-    mutation productGameserverMysqlDelete($id: ID!) {
-        productGameserverMysqlDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverMysqlDelete() {
-    return Urql.useMutation<
-        ProductGameserverMysqlDeleteMutation,
-        ProductGameserverMysqlDeleteMutationVariables
-    >(useMutationProductGameserverMysqlDelete.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductGameserverScripts.Document = gql`
-    query productGameserverScripts(
-        $search: String
-        $orderBy: String
-        $order: String
-        $templateId: ID
-    ) {
-        product_gameserver_scripts(
-            search: $search
-            orderBy: $orderBy
-            order: $order
-            templateId: $templateId
-        ) {
-            id
-            title
-            script
-            isDefault
-            hidden
-            executeHook
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverScripts(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverScriptsQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverScriptsQuery>({
-        query: useQueryProductGameserverScripts.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverScriptEdit.Document = gql`
-    mutation productGameserverScriptEdit(
-        $title: String!
-        $script: String!
-        $standaloneBtn: Boolean!
-        $standaloneBtnColor: String
-        $templateId: ID!
-        $runAsRoot: Boolean!
-        $disableAutoRestart: Boolean!
-        $hidden: Boolean
-        $executeHook: String
-        $id: ID!
-    ) {
-        product_gameserver_script_edit(
-            data: {
-                title: $title
-                script: $script
-                templateId: $templateId
-                id: $id
-                standaloneBtn: $standaloneBtn
-                standaloneBtnColor: $standaloneBtnColor
-                disableAutoRestart: $disableAutoRestart
-                runAsRoot: $runAsRoot
-                hidden: $hidden
-                executeHook: $executeHook
-            }
-        ) {
-            id
-            title
-            script
-            hidden
-            executeHook
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverScriptEdit() {
-    return Urql.useMutation<
-        ProductGameserverScriptEditMutation,
-        ProductGameserverScriptEditMutationVariables
-    >(useMutationProductGameserverScriptEdit.Document);
-}
-
-useMutationProductGameserverScriptDelete.Document = gql`
-    mutation productGameserverScriptDelete($id: ID!) {
-        product_gameserver_script_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverScriptDelete() {
-    return Urql.useMutation<
-        ProductGameserverScriptDeleteMutation,
-        ProductGameserverScriptDeleteMutationVariables
-    >(useMutationProductGameserverScriptDelete.Document);
-}
-
-useQueryProductGameserverScriptById.Document = gql`
-    query productGameserverScriptById($id: ID!) {
-        productGameserverScriptById(id: $id) {
-            id
-            title
-            script
-            standaloneBtn
-            standaloneBtnColor
-            runAsRoot
-            disableAutoRestart
-            hidden
-            executeHook
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverScriptById(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverScriptByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverScriptByIdQuery>({
-        query: useQueryProductGameserverScriptById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductGameserverTemplatePart = gql`
+export const ProductGameserverTemplatePartFragmentDoc = gql`
     fragment ProductGameserverTemplatePart on ProductGameserverTemplate {
         id
         title
@@ -8890,388 +7299,7 @@ const _gql_ProductGameserverTemplatePart = gql`
         }
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductGameserverTemplate.Document = gql`
-    query productGameserverTemplate($id: ID!) {
-        product_gameserver_template(id: $id) {
-            ...ProductGameserverTemplatePart
-        }
-    }
-    ${_gql_ProductGameserverTemplatePart}
-` as DocumentNode;
-
-export function useQueryProductGameserverTemplate(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverTemplateQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverTemplateQuery>({
-        query: useQueryProductGameserverTemplate.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductGameserverTemplates.Document = gql`
-    query productGameserverTemplates($filter: CordFilter!) {
-        productGameserverTemplates(filter: $filter) {
-            edges {
-                id
-                title
-                platform
-                logo {
-                    url
-                    id
-                }
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverTemplates(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverTemplatesQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverTemplatesQuery>({
-        query: useQueryProductGameserverTemplates.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverTemplateEdit.Document = gql`
-    mutation productGameserverTemplateEdit(
-        $id: ID
-        $title: String!
-        $platform: String!
-        $active: Boolean!
-        $resourceUrl: String!
-        $logoId: ID
-        $ports: Int!
-        $defaultCustomParameter: String!
-        $canUpdateOnStart: Boolean!
-    ) {
-        product_gameserver_template_edit(
-            data: {
-                id: $id
-                title: $title
-                platform: $platform
-                active: $active
-                logoId: $logoId
-                resourceUrl: $resourceUrl
-                ports: $ports
-                defaultCustomParameter: $defaultCustomParameter
-                canUpdateOnStart: $canUpdateOnStart
-            }
-        ) {
-            ...ProductGameserverTemplatePart
-        }
-    }
-    ${_gql_ProductGameserverTemplatePart}
-` as DocumentNode;
-
-export function useMutationProductGameserverTemplateEdit() {
-    return Urql.useMutation<
-        ProductGameserverTemplateEditMutation,
-        ProductGameserverTemplateEditMutationVariables
-    >(useMutationProductGameserverTemplateEdit.Document);
-}
-
-useMutationProductGameserverTemplateDelete.Document = gql`
-    mutation productGameserverTemplateDelete($id: ID!) {
-        product_gameserver_template_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverTemplateDelete() {
-    return Urql.useMutation<
-        ProductGameserverTemplateDeleteMutation,
-        ProductGameserverTemplateDeleteMutationVariables
-    >(useMutationProductGameserverTemplateDelete.Document);
-}
-
-useMutationProductGameserverTemplateSetDefaultScript.Document = gql`
-    mutation productGameserverTemplateSetDefaultScript(
-        $id: ID!
-        $scriptId: ID!
-    ) {
-        product_gameserver_template_set_default_script(
-            id: $id
-            scriptId: $scriptId
-        ) {
-            id
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverTemplateSetDefaultScript() {
-    return Urql.useMutation<
-        ProductGameserverTemplateSetDefaultScriptMutation,
-        ProductGameserverTemplateSetDefaultScriptMutationVariables
-    >(useMutationProductGameserverTemplateSetDefaultScript.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryHostNodeById.Document = gql`
-    query hostNodeById($id: ID!) {
-        host_node(id: $id) {
-            id
-            name
-            section
-            remoteAddress
-            type
-            deletable
-            hostNodeFilterKey
-            maxInstances
-            freeInstances
-            forcePublicBackupTranfer
-            isAvailable
-            meta
-            daemonVersion
-        }
-    }
-` as DocumentNode;
-
-export function useQueryHostNodeById(
-    options: Omit<Urql.UseQueryArgs<HostNodeByIdQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<HostNodeByIdQuery>({
-        query: useQueryHostNodeById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryHostNodes.Document = gql`
-    query hostNodes($filter: CordFilter) {
-        hostNodes(filter: $filter) {
-            edges {
-                id
-                name
-                remoteAddress
-                type
-                isAvailable
-                daemonVersion
-                isDaemonVersionBehind
-                getDaemonVersionsBehind
-                latestInfoUpdate
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryHostNodes(
-    options: Omit<Urql.UseQueryArgs<HostNodesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<HostNodesQuery>({
-        query: useQueryHostNodes.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryHostNodeTestFindNode.Document = gql`
-    query hostNodeTestFindNode($type: String!, $filterKey: String) {
-        hostNodeTestFindNode(type: $type, filterKey: $filterKey) {
-            id
-            name
-            remoteAddress
-            type
-            isAvailable
-            daemonVersion
-        }
-    }
-` as DocumentNode;
-
-export function useQueryHostNodeTestFindNode(
-    options: Omit<
-        Urql.UseQueryArgs<HostNodeTestFindNodeQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<HostNodeTestFindNodeQuery>({
-        query: useQueryHostNodeTestFindNode.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationEditCreateHostNode.Document = gql`
-    mutation editCreateHostNode($data: HostNodeEditInput!) {
-        host_node_edit(data: $data) {
-            id
-            name
-            section
-            remoteAddress
-            type
-            deletable
-            hostNodeFilterKey
-            maxInstances
-            freeInstances
-            isAvailable
-            forcePublicBackupTranfer
-            meta
-            daemonVersion
-        }
-    }
-` as DocumentNode;
-
-export function useMutationEditCreateHostNode() {
-    return Urql.useMutation<
-        EditCreateHostNodeMutation,
-        EditCreateHostNodeMutationVariables
-    >(useMutationEditCreateHostNode.Document);
-}
-
-useMutationDeleteHostNodeById.Document = gql`
-    mutation deleteHostNodeById($id: ID!) {
-        host_node_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDeleteHostNodeById() {
-    return Urql.useMutation<
-        DeleteHostNodeByIdMutation,
-        DeleteHostNodeByIdMutationVariables
-    >(useMutationDeleteHostNodeById.Document);
-}
-
-useMutationHostNodeUpdateDaemon.Document = gql`
-    mutation hostNodeUpdateDaemon(
-        $version: String
-        $hostNodeId: ID!
-        $sshUsername: String!
-        $sshPassword: String
-        $sshRsaKey: String
-    ) {
-        hostNodeUpdateDaemon(
-            version: $version
-            hostNodeId: $hostNodeId
-            sshUsername: $sshUsername
-            sshPassword: $sshPassword
-            sshRsaKey: $sshRsaKey
-        )
-    }
-` as DocumentNode;
-
-export function useMutationHostNodeUpdateDaemon() {
-    return Urql.useMutation<
-        HostNodeUpdateDaemonMutation,
-        HostNodeUpdateDaemonMutationVariables
-    >(useMutationHostNodeUpdateDaemon.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryHostNodeTasksMy.Document = gql`
-    query hostNodeTasksMy($take: Int) {
-        hostNodeTasksMy(take: $take) {
-            id
-            update
-            running
-            finish
-            error
-            label
-            gameserver {
-                id
-                name
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryHostNodeTasksMy(
-    options: Omit<
-        Urql.UseQueryArgs<HostNodeTasksMyQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<HostNodeTasksMyQuery>({
-        query: useQueryHostNodeTasksMy.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryHostNodeTaskById.Document = gql`
-    query hostNodeTaskById($id: ID!) {
-        hostNodeTaskById(id: $id) {
-            id
-            update
-            running
-            finish
-            error
-            label
-            gameserver {
-                id
-                name
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryHostNodeTaskById(
-    options: Omit<
-        Urql.UseQueryArgs<HostNodeTaskByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<HostNodeTaskByIdQuery>({
-        query: useQueryHostNodeTaskById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryHostNodeTaskIsRunning.Document = gql`
-    query hostNodeTaskIsRunning($identifier: ID!) {
-        host_node_task_running(identifier: $identifier)
-    }
-` as DocumentNode;
-
-export function useQueryHostNodeTaskIsRunning(
-    options: Omit<
-        Urql.UseQueryArgs<HostNodeTaskIsRunningQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<HostNodeTaskIsRunningQuery>({
-        query: useQueryHostNodeTaskIsRunning.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_PdfTemplatePart = gql`
+export const PdfTemplatePartFragmentDoc = gql`
     fragment PdfTemplatePart on PdfTemplate {
         id
         templateContent
@@ -9281,97 +7309,7 @@ const _gql_PdfTemplatePart = gql`
         templateFile
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryGetPdfTemplate.Document = gql`
-    query getPdfTemplate($id: ID!) {
-        pdf_template(id: $id) {
-            ...PdfTemplatePart
-        }
-    }
-    ${_gql_PdfTemplatePart}
-` as DocumentNode;
-
-export function useQueryGetPdfTemplate(
-    options: Omit<Urql.UseQueryArgs<GetPdfTemplateQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<GetPdfTemplateQuery>({
-        query: useQueryGetPdfTemplate.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryPdfTemplates.Document = gql`
-    query pdfTemplates($filter: CordFilter) {
-        pdfTemplates(filter: $filter) {
-            edges {
-                ...PdfTemplatePart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_PdfTemplatePart}
-` as DocumentNode;
-
-export function useQueryPdfTemplates(
-    options: Omit<Urql.UseQueryArgs<PdfTemplatesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<PdfTemplatesQuery>({
-        query: useQueryPdfTemplates.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationDeletePdfTemplate.Document = gql`
-    mutation deletePdfTemplate($id: ID!) {
-        pdf_template_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDeletePdfTemplate() {
-    return Urql.useMutation<
-        DeletePdfTemplateMutation,
-        DeletePdfTemplateMutationVariables
-    >(useMutationDeletePdfTemplate.Document);
-}
-
-useMutationEditPdfTemplate.Document = gql`
-    mutation editPdfTemplate(
-        $id: ID
-        $templateContent: String
-        $template: String!
-    ) {
-        pdf_template_edit(
-            data: {
-                id: $id
-                templateContent: $templateContent
-                template: $template
-            }
-        ) {
-            ...PdfTemplatePart
-        }
-    }
-    ${_gql_PdfTemplatePart}
-` as DocumentNode;
-
-export function useMutationEditPdfTemplate() {
-    return Urql.useMutation<
-        EditPdfTemplateMutation,
-        EditPdfTemplateMutationVariables
-    >(useMutationEditPdfTemplate.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductPart = gql`
+export const ProductPartFragmentDoc = gql`
     fragment ProductPart on Product {
         id
         expire
@@ -9391,559 +7329,13 @@ const _gql_ProductPart = gql`
         }
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useMutationProductSetAutorenewInterval.Document = gql`
-    mutation productSetAutorenewInterval($id: ID!, $intervalId: ID) {
-        productSetAutorenewInterval(id: $id, intervalId: $intervalId) {
-            ...ProductPart
-        }
-    }
-    ${_gql_ProductPart}
-` as DocumentNode;
-
-export function useMutationProductSetAutorenewInterval() {
-    return Urql.useMutation<
-        ProductSetAutorenewIntervalMutation,
-        ProductSetAutorenewIntervalMutationVariables
-    >(useMutationProductSetAutorenewInterval.Document);
-}
-
-useQueryProducts.Document = gql`
-    query Products($filter: CordFilter) {
-        products(filter: $filter) {
-            edges {
-                ...ProductPart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_ProductPart}
-` as DocumentNode;
-
-export function useQueryProducts(
-    options: Omit<Urql.UseQueryArgs<ProductsQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<ProductsQuery>({
-        query: useQueryProducts.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductById.Document = gql`
-    query ProductById($id: ID!) {
-        productById(id: $id) {
-            ...ProductPart
-        }
-    }
-    ${_gql_ProductPart}
-` as DocumentNode;
-
-export function useQueryProductById(
-    options: Omit<Urql.UseQueryArgs<ProductByIdQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<ProductByIdQuery>({
-        query: useQueryProductById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductById2.Document = gql`
-    query ProductById2($id: ID!) {
-        productById(id: $id) {
-            ...ProductPart
-            availablePeriods {
-                id
-                days
-            }
-        }
-    }
-    ${_gql_ProductPart}
-` as DocumentNode;
-
-export function useQueryProductById2(
-    options: Omit<Urql.UseQueryArgs<ProductById2QueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<ProductById2Query>({
-        query: useQueryProductById2.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductEdit.Document = gql`
-    mutation productEdit($data: ProductEditInput!) {
-        productEdit(data: $data) {
-            ...ProductPart
-        }
-    }
-    ${_gql_ProductPart}
-` as DocumentNode;
-
-export function useMutationProductEdit() {
-    return Urql.useMutation<ProductEditMutation, ProductEditMutationVariables>(
-        useMutationProductEdit.Document
-    );
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductGameserverFsReadIndex.Document = gql`
-    query productGameserverFsReadIndex(
-        $gameserverId: ID!
-        $reloadIndex: Boolean
-    ) {
-        productGameserverFsReadIndex(
-            gameserverId: $gameserverId
-            reloadIndex: $reloadIndex
-        )
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverFsReadIndex(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverFsReadIndexQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverFsReadIndexQuery>({
-        query: useQueryProductGameserverFsReadIndex.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductGameserverFsRead.Document = gql`
-    query productGameserverFsRead($gameserverId: ID!, $file: String!) {
-        productGameserverFsRead(gameserverId: $gameserverId, file: $file)
-    }
-` as DocumentNode;
-
-export function useQueryProductGameserverFsRead(
-    options: Omit<
-        Urql.UseQueryArgs<ProductGameserverFsReadQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductGameserverFsReadQuery>({
-        query: useQueryProductGameserverFsRead.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductGameserverFsWrite.Document = gql`
-    mutation productGameserverFsWrite(
-        $gameserverId: ID!
-        $file: String!
-        $base64Content: String!
-    ) {
-        productGameserverFsWrite(
-            gameserverId: $gameserverId
-            file: $file
-            base64Content: $base64Content
-        )
-    }
-` as DocumentNode;
-
-export function useMutationProductGameserverFsWrite() {
-    return Urql.useMutation<
-        ProductGameserverFsWriteMutation,
-        ProductGameserverFsWriteMutationVariables
-    >(useMutationProductGameserverFsWrite.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useMutationCreateProductGameserverScript.Document = gql`
-    mutation createProductGameserverScript(
-        $title: String!
-        $script: String!
-        $templateId: ID!
-    ) {
-        product_gameserver_script_new(
-            data: { title: $title, script: $script, templateId: $templateId }
-        ) {
-            id
-            title
-            script
-        }
-    }
-` as DocumentNode;
-
-export function useMutationCreateProductGameserverScript() {
-    return Urql.useMutation<
-        CreateProductGameserverScriptMutation,
-        CreateProductGameserverScriptMutationVariables
-    >(useMutationCreateProductGameserverScript.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_RolePart = gql`
+export const RolePartFragmentDoc = gql`
     fragment RolePart on Role {
         id
         name
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryRoles.Document = gql`
-    query roles($filter: CordFilter) {
-        roles(filter: $filter) {
-            edges {
-                ...RolePart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useQueryRoles(
-    options: Omit<Urql.UseQueryArgs<RolesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<RolesQuery>({
-        query: useQueryRoles.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryRoleById.Document = gql`
-    query roleById($id: ID!) {
-        roleById(id: $id) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-            users {
-                id
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useQueryRoleById(
-    options: Omit<Urql.UseQueryArgs<RoleByIdQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<RoleByIdQuery>({
-        query: useQueryRoleById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationEditRoleRole.Document = gql`
-    mutation editRoleRole($id: ID, $name: String!) {
-        role_role_edit(data: { id: $id, name: $name }) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-
-            users {
-                id
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useMutationEditRoleRole() {
-    return Urql.useMutation<
-        EditRoleRoleMutation,
-        EditRoleRoleMutationVariables
-    >(useMutationEditRoleRole.Document);
-}
-
-useMutationRoleUnAssignAcl.Document = gql`
-    mutation roleUnAssignAcl($id: ID!, $aclsId: [ID!]!) {
-        roleUnAssignAcl(id: $id, aclsId: $aclsId) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useMutationRoleUnAssignAcl() {
-    return Urql.useMutation<
-        RoleUnAssignAclMutation,
-        RoleUnAssignAclMutationVariables
-    >(useMutationRoleUnAssignAcl.Document);
-}
-
-useMutationRoleAssignAcl.Document = gql`
-    mutation roleAssignAcl($id: ID!, $aclsId: [ID!]!) {
-        roleAssignAcl(id: $id, aclsId: $aclsId) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-
-            users {
-                id
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useMutationRoleAssignAcl() {
-    return Urql.useMutation<
-        RoleAssignAclMutation,
-        RoleAssignAclMutationVariables
-    >(useMutationRoleAssignAcl.Document);
-}
-
-useMutationRoleAddUser.Document = gql`
-    mutation roleAddUser($id: ID!, $userId: ID!) {
-        roleAddUser(id: $id, userId: $userId) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-
-            users {
-                id
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useMutationRoleAddUser() {
-    return Urql.useMutation<RoleAddUserMutation, RoleAddUserMutationVariables>(
-        useMutationRoleAddUser.Document
-    );
-}
-
-useMutationRoleRemoveUser.Document = gql`
-    mutation roleRemoveUser($id: ID!, $userId: ID!) {
-        roleRemoveUser(id: $id, userId: $userId) {
-            ...RolePart
-            acls {
-                id
-                acl
-            }
-
-            users {
-                id
-            }
-        }
-    }
-    ${_gql_RolePart}
-` as DocumentNode;
-
-export function useMutationRoleRemoveUser() {
-    return Urql.useMutation<
-        RoleRemoveUserMutation,
-        RoleRemoveUserMutationVariables
-    >(useMutationRoleRemoveUser.Document);
-}
-
-useMutationDeleteRoleRole.Document = gql`
-    mutation deleteRoleRole($id: ID!) {
-        role_role_delete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationDeleteRoleRole() {
-    return Urql.useMutation<
-        DeleteRoleRoleMutation,
-        DeleteRoleRoleMutationVariables
-    >(useMutationDeleteRoleRole.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductSimples.Document = gql`
-    query productSimples($filter: CordFilter) {
-        productSimples(filter: $filter) {
-            edges {
-                id
-                product {
-                    id
-                    user {
-                        id
-                    }
-                    expire
-                }
-                create
-                state
-                name
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductSimples(
-    options: Omit<Urql.UseQueryArgs<ProductSimplesQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<ProductSimplesQuery>({
-        query: useQueryProductSimples.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryProductSimpleById.Document = gql`
-    query productSimpleById($id: ID!) {
-        productSimpleById(id: $id) {
-            id
-            name
-            description
-            product {
-                id
-                expire
-            }
-            state
-        }
-    }
-` as DocumentNode;
-
-export function useQueryProductSimpleById(
-    options: Omit<
-        Urql.UseQueryArgs<ProductSimpleByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<ProductSimpleByIdQuery>({
-        query: useQueryProductSimpleById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQueryMyProductSimples.Document = gql`
-    query myProductSimples {
-        productSimplesMy {
-            id
-            name
-            product {
-                id
-                expire
-            }
-            state
-        }
-    }
-` as DocumentNode;
-
-export function useQueryMyProductSimples(
-    options: Omit<
-        Urql.UseQueryArgs<MyProductSimplesQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<MyProductSimplesQuery>({
-        query: useQueryMyProductSimples.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationProductSimpleEditLabel.Document = gql`
-    mutation productSimpleEditLabel($id: ID!, $label: String!) {
-        productSimpleEditLabel(id: $id, label: $label) {
-            id
-            name
-            product {
-                id
-                expire
-            }
-            state
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductSimpleEditLabel() {
-    return Urql.useMutation<
-        ProductSimpleEditLabelMutation,
-        ProductSimpleEditLabelMutationVariables
-    >(useMutationProductSimpleEditLabel.Document);
-}
-
-useMutationProductSimpleDelete.Document = gql`
-    mutation productSimpleDelete($id: ID!) {
-        productSimpleDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationProductSimpleDelete() {
-    return Urql.useMutation<
-        ProductSimpleDeleteMutation,
-        ProductSimpleDeleteMutationVariables
-    >(useMutationProductSimpleDelete.Document);
-}
-
-useMutationProductSimpleSetState.Document = gql`
-    mutation productSimpleSetState($id: ID!, $state: String!) {
-        productSimpleSetState(id: $id, state: $state) {
-            id
-            name
-            product {
-                id
-                expire
-            }
-            state
-        }
-    }
-` as DocumentNode;
-
-export function useMutationProductSimpleSetState() {
-    return Urql.useMutation<
-        ProductSimpleSetStateMutation,
-        ProductSimpleSetStateMutationVariables
-    >(useMutationProductSimpleSetState.Document);
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_supportQuickResponseFragment = gql`
+export const SupportQuickResponseFragmentFragmentDoc = gql`
     fragment supportQuickResponseFragment on SupportQuickResponse {
         id
         title
@@ -9952,109 +7344,7 @@ const _gql_supportQuickResponseFragment = gql`
         create
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useMutationSupportQuickResponseDelete.Document = gql`
-    mutation supportQuickResponseDelete($id: ID!) {
-        supportQuickResponseDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationSupportQuickResponseDelete() {
-    return Urql.useMutation<
-        SupportQuickResponseDeleteMutation,
-        SupportQuickResponseDeleteMutationVariables
-    >(useMutationSupportQuickResponseDelete.Document);
-}
-
-useMutationSupportQuickResponseEdit.Document = gql`
-    mutation supportQuickResponseEdit($dto: SupportQuickResponseEditDto!) {
-        supportQuickResponseEdit(dto: $dto) {
-            ...supportQuickResponseFragment
-        }
-    }
-    ${_gql_supportQuickResponseFragment}
-` as DocumentNode;
-
-export function useMutationSupportQuickResponseEdit() {
-    return Urql.useMutation<
-        SupportQuickResponseEditMutation,
-        SupportQuickResponseEditMutationVariables
-    >(useMutationSupportQuickResponseEdit.Document);
-}
-
-useMutationSupportQuickResponseCreate.Document = gql`
-    mutation supportQuickResponseCreate($dto: SupportQuickResponseCreateDto!) {
-        supportQuickResponseCreate(dto: $dto) {
-            ...supportQuickResponseFragment
-        }
-    }
-    ${_gql_supportQuickResponseFragment}
-` as DocumentNode;
-
-export function useMutationSupportQuickResponseCreate() {
-    return Urql.useMutation<
-        SupportQuickResponseCreateMutation,
-        SupportQuickResponseCreateMutationVariables
-    >(useMutationSupportQuickResponseCreate.Document);
-}
-
-useQuerySupportQuickResponses.Document = gql`
-    query supportQuickResponses($filter: CordFilter) {
-        supportQuickResponses(filter: $filter) {
-            edges {
-                ...supportQuickResponseFragment
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_supportQuickResponseFragment}
-` as DocumentNode;
-
-export function useQuerySupportQuickResponses(
-    options: Omit<
-        Urql.UseQueryArgs<SupportQuickResponsesQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<SupportQuickResponsesQuery>({
-        query: useQuerySupportQuickResponses.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQuerySupportQuickResponseById.Document = gql`
-    query supportQuickResponseById($id: ID!) {
-        supportQuickResponseById(id: $id) {
-            ...supportQuickResponseFragment
-        }
-    }
-    ${_gql_supportQuickResponseFragment}
-` as DocumentNode;
-
-export function useQuerySupportQuickResponseById(
-    options: Omit<
-        Urql.UseQueryArgs<SupportQuickResponseByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<SupportQuickResponseByIdQuery>({
-        query: useQuerySupportQuickResponseById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_SupportTicketPart = gql`
+export const SupportTicketPartFragmentDoc = gql`
     fragment SupportTicketPart on SupportTicket {
         id
         subject
@@ -10090,304 +7380,7 @@ const _gql_SupportTicketPart = gql`
         }
     }
 `;
-
-/*,
- * Operations from undefined,
- */
-
-useMutationSupportTicketDeleteMessage.Document = gql`
-    mutation supportTicketDeleteMessage($id: ID!) {
-        supportTicketDeleteMessage(id: $id) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketDeleteMessage() {
-    return Urql.useMutation<
-        SupportTicketDeleteMessageMutation,
-        SupportTicketDeleteMessageMutationVariables
-    >(useMutationSupportTicketDeleteMessage.Document);
-}
-
-useQueryUserMyTickets.Document = gql`
-    query UserMyTickets {
-        user_me {
-            id
-            tickets {
-                ...SupportTicketPart
-            }
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useQueryUserMyTickets(
-    options: Omit<Urql.UseQueryArgs<UserMyTicketsQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<UserMyTicketsQuery>({
-        query: useQueryUserMyTickets.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQuerySupportTicketById.Document = gql`
-    query supportTicketById($id: ID!) {
-        supportTicketById(id: $id) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useQuerySupportTicketById(
-    options: Omit<
-        Urql.UseQueryArgs<SupportTicketByIdQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<SupportTicketByIdQuery>({
-        query: useQuerySupportTicketById.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationSupportTicketDelete.Document = gql`
-    mutation supportTicketDelete($id: ID!) {
-        supportTicketDelete(id: $id)
-    }
-` as DocumentNode;
-
-export function useMutationSupportTicketDelete() {
-    return Urql.useMutation<
-        SupportTicketDeleteMutation,
-        SupportTicketDeleteMutationVariables
-    >(useMutationSupportTicketDelete.Document);
-}
-
-useQuerySupportTickets.Document = gql`
-    query supportTickets($filter: CordFilter) {
-        supportTickets(filter: $filter) {
-            edges {
-                ...SupportTicketPart
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useQuerySupportTickets(
-    options: Omit<Urql.UseQueryArgs<SupportTicketsQueryVariables>, 'query'> = {}
-) {
-    return Urql.useQuery<SupportTicketsQuery>({
-        query: useQuerySupportTickets.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useMutationSupportTicketResetUnreadCounter.Document = gql`
-    mutation supportTicketResetUnreadCounter($id: ID!) {
-        supportTicketResetUnreadCounter(id: $id) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketResetUnreadCounter() {
-    return Urql.useMutation<
-        SupportTicketResetUnreadCounterMutation,
-        SupportTicketResetUnreadCounterMutationVariables
-    >(useMutationSupportTicketResetUnreadCounter.Document);
-}
-
-useMutationAddMessageToSupportTicket.Document = gql`
-    mutation addMessageToSupportTicket($message: String!, $id: ID!) {
-        support_ticket_add_message(data: { message: $message, id: $id }) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationAddMessageToSupportTicket() {
-    return Urql.useMutation<
-        AddMessageToSupportTicketMutation,
-        AddMessageToSupportTicketMutationVariables
-    >(useMutationAddMessageToSupportTicket.Document);
-}
-
-useMutationSupportTicketSetStatus.Document = gql`
-    mutation supportTicketSetStatus($id: ID!, $status: String!) {
-        supportTicketSetStatus(id: $id, status: $status) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketSetStatus() {
-    return Urql.useMutation<
-        SupportTicketSetStatusMutation,
-        SupportTicketSetStatusMutationVariables
-    >(useMutationSupportTicketSetStatus.Document);
-}
-
-useMutationSupportTicketClose.Document = gql`
-    mutation supportTicketClose($id: ID!) {
-        supportTicketClose(id: $id) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketClose() {
-    return Urql.useMutation<
-        SupportTicketCloseMutation,
-        SupportTicketCloseMutationVariables
-    >(useMutationSupportTicketClose.Document);
-}
-
-useMutationSupportTicketReopen.Document = gql`
-    mutation supportTicketReopen($id: ID!) {
-        supportTicketReopen(id: $id) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketReopen() {
-    return Urql.useMutation<
-        SupportTicketReopenMutation,
-        SupportTicketReopenMutationVariables
-    >(useMutationSupportTicketReopen.Document);
-}
-
-useMutationSupportTicketAssignTo.Document = gql`
-    mutation supportTicketAssignTo($id: ID!, $userId: ID!) {
-        supportTicketAssignTo(id: $id, userId: $userId) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketAssignTo() {
-    return Urql.useMutation<
-        SupportTicketAssignToMutation,
-        SupportTicketAssignToMutationVariables
-    >(useMutationSupportTicketAssignTo.Document);
-}
-
-useMutationSupportTicketAddFile.Document = gql`
-    mutation supportTicketAddFile($id: ID!, $fileId: ID!) {
-        supportTicketAddFile(id: $id, fileId: $fileId) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketAddFile() {
-    return Urql.useMutation<
-        SupportTicketAddFileMutation,
-        SupportTicketAddFileMutationVariables
-    >(useMutationSupportTicketAddFile.Document);
-}
-
-useMutationEditSupportTicket.Document = gql`
-    mutation editSupportTicket($id: ID!, $status: String, $priority: Int) {
-        support_ticket_edit(
-            data: { priority: $priority, status: $status }
-            id: $id
-        ) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationEditSupportTicket() {
-    return Urql.useMutation<
-        EditSupportTicketMutation,
-        EditSupportTicketMutationVariables
-    >(useMutationEditSupportTicket.Document);
-}
-
-useMutationSupportTicketNew.Document = gql`
-    mutation supportTicketNew($data: SupportTicketNewInput!) {
-        support_ticket_new(data: $data) {
-            ...SupportTicketPart
-        }
-    }
-    ${_gql_SupportTicketPart}
-` as DocumentNode;
-
-export function useMutationSupportTicketNew() {
-    return Urql.useMutation<
-        SupportTicketNewMutation,
-        SupportTicketNewMutationVariables
-    >(useMutationSupportTicketNew.Document);
-}
-
-useQuerySupportTicketPriorities.Document = gql`
-    query supportTicketPriorities {
-        supportTicketPriorities {
-            id
-            label
-            priority
-        }
-    }
-` as DocumentNode;
-
-export function useQuerySupportTicketPriorities(
-    options: Omit<
-        Urql.UseQueryArgs<SupportTicketPrioritiesQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<SupportTicketPrioritiesQuery>({
-        query: useQuerySupportTicketPriorities.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-useQuerySupportTicketRevisers.Document = gql`
-    query supportTicketRevisers {
-        supportTicketRevisers {
-            id
-            name
-        }
-    }
-` as DocumentNode;
-
-export function useQuerySupportTicketRevisers(
-    options: Omit<
-        Urql.UseQueryArgs<SupportTicketRevisersQueryVariables>,
-        'query'
-    > = {}
-) {
-    return Urql.useQuery<SupportTicketRevisersQuery>({
-        query: useQuerySupportTicketRevisers.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
-}
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTeamspeakPart = gql`
+export const ProductTeamspeakPartFragmentDoc = gql`
     fragment ProductTeamspeakPart on ProductTeamspeak {
         id
         name
@@ -10421,28 +7414,2903 @@ const _gql_ProductTeamspeakPart = gql`
         hasRunningTask
     }
 `;
+export const ProductTemplateDomainPartFragmentDoc = gql`
+    fragment ProductTemplateDomainPart on ProductTemplateDomain {
+        id
+        options {
+            id
+        }
+        title
+        setup
+        basePrice
+        active
+        gTld
+        update
+        attributes
+        urlKey
+    }
+`;
+export const ProductTemplateGameserverPartFragmentDoc = gql`
+    fragment ProductTemplateGameserverPart on ProductTemplateGameserver {
+        id
+        memory {
+            id
+        }
+        slot {
+            id
+        }
+        options {
+            id
+        }
+        templateOptions {
+            id
+        }
+        title
+        setup
+        basePrice
+        active
+        update
+        hostNodeFilterKey
+        attributes
+        urlKey
+    }
+`;
+export const ProductTemplateSimplePartFragmentDoc = gql`
+    fragment ProductTemplateSimplePart on ProductTemplateSimple {
+        id
+        options {
+            id
+        }
+        title
+        setup
+        basePrice
+        active
+        periods {
+            id
+        }
+        update
+        attributes
+        availablePeriods {
+            id
+        }
+        includedGTld
+        urlKey
+    }
+`;
+export const ProductTemplateTeamspeakPartFragmentDoc = gql`
+    fragment ProductTemplateTeamspeakPart on ProductTemplateTeamspeak {
+        id
+        slot {
+            id
+        }
+        options {
+            id
+        }
+        title
+        setup
+        basePrice
+        active
+        update
+        attributes
+        urlKey
+    }
+`;
+export const ProductTemplateVserverPartFragmentDoc = gql`
+    fragment ProductTemplateVserverPart on ProductTemplateVserver {
+        id
+        urlKey
+        title
+        setup
+        basePrice
+        active
+        platform
+        update
+        hostNodeFilterKey
+        memory {
+            id
+        }
+        space {
+            id
+        }
+        cores {
+            id
+        }
+    }
+`;
+export const TranslationPartFragmentDoc = gql`
+    fragment TranslationPart on Translation {
+        id
+        language
+        key
+        value
+    }
+`;
+export const UserPartFragmentDoc = gql`
+    fragment UserPart on User {
+        avatar
+        nickname
+        credits
+        email
+        active
+        supportId
+        localAvatar {
+            id
+            url
+        }
+        id
+        forceEmailLogin
+    }
+`;
+export const UserPartAddressFragmentDoc = gql`
+    fragment UserPartAddress on UserAddress {
+        firstname
+        lastname
+        street1
+        zip
+        country
+        title
+        city
+        birthdate
+        phone
+        phoneMobile
+        company
+        vatId
+        id
+        verified
+        vat
+        verifyDocument {
+            id
+            originalname
+            url
+            create
+        }
+    }
+`;
+export const ProductVserverPartFragmentDoc = gql`
+    fragment ProductVserverPart on ProductVserver {
+        id
+        create
+        name
+        hasRunningTask
+        sshPassword
+        vserverId
+        cores
+        memory
+        platform
+        diskspace
+        networkSpeed
+        attributes
+        ips {
+            id
+            ip
+            active
+            gateway
+            netmask
+        }
+        hostNode {
+            id
+            name
+            cpuInfo
+            cpuCores
+        }
+        product {
+            id
+            locked
+            user {
+                id
+                publicName
+            }
+            expire
+        }
+        images {
+            id
+            logo {
+                id
+                url
+            }
+        }
+    }
+`;
+export const ProductVserverImagePartFragmentDoc = gql`
+    fragment ProductVserverImagePart on ProductVserverImage {
+        id
+        title
+        platform
+        resourceUrl
+        logo {
+            id
+            url
+        }
+        active
+    }
+`;
+export const Me_Has_AclDocument = gql`
+    query me_has_acl($acl: String!) {
+        acl_has_acl(acl: $acl)
+    }
+`;
 
-/*,
- * Operations from undefined,
- */
+export function useQueryme_Has_Acl(
+    options: Omit<Urql.UseQueryArgs<Me_Has_AclQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<Me_Has_AclQuery>({
+        query: Me_Has_AclDocument,
+        ...options,
+    });
+}
+export const AclsDocument = gql`
+    query acls($filter: CordFilter) {
+        acls(filter: $filter) {
+            edges {
+                id
+                acl
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
 
-useMutationProductTeamspeakChangeLabel.Document = gql`
+export function useQueryacls(
+    options: Omit<Urql.UseQueryArgs<AclsQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<AclsQuery>({ query: AclsDocument, ...options });
+}
+export const AclRefillAclCacheDocument = gql`
+    mutation aclRefillAclCache {
+        aclRefillAclCache
+    }
+`;
+
+export function useMutationaclRefillAclCache() {
+    return Urql.useMutation<
+        AclRefillAclCacheMutation,
+        AclRefillAclCacheMutationVariables
+    >(AclRefillAclCacheDocument);
+}
+export const CreateBackupServerDocument = gql`
+    mutation createBackupServer(
+        $backupPath: String!
+        $name: String
+        $port: Int!
+        $username: String!
+        $privateKey: String!
+        $host: String!
+        $localHost: String!
+    ) {
+        backupServerCreate(
+            data: {
+                backupPath: $backupPath
+                name: $name
+                port: $port
+                privateKey: $privateKey
+                username: $username
+                host: $host
+                localHost: $localHost
+            }
+        ) {
+            id
+        }
+    }
+`;
+
+export function useMutationcreateBackupServer() {
+    return Urql.useMutation<
+        CreateBackupServerMutation,
+        CreateBackupServerMutationVariables
+    >(CreateBackupServerDocument);
+}
+export const EditBackupServerDocument = gql`
+    mutation editBackupServer(
+        $id: ID!
+        $backupPath: String
+        $name: String
+        $port: Int
+        $username: String
+        $privateKey: String
+        $host: String
+        $localHost: String!
+    ) {
+        backupServerEdit(
+            data: {
+                id: $id
+                backupPath: $backupPath
+                name: $name
+                port: $port
+                privateKey: $privateKey
+                username: $username
+                host: $host
+                localHost: $localHost
+            }
+        ) {
+            id
+        }
+    }
+`;
+
+export function useMutationeditBackupServer() {
+    return Urql.useMutation<
+        EditBackupServerMutation,
+        EditBackupServerMutationVariables
+    >(EditBackupServerDocument);
+}
+export const DeleteBackupServerByIdDocument = gql`
+    mutation deleteBackupServerById($id: ID!) {
+        backupServerDelete(id: $id)
+    }
+`;
+
+export function useMutationdeleteBackupServerById() {
+    return Urql.useMutation<
+        DeleteBackupServerByIdMutation,
+        DeleteBackupServerByIdMutationVariables
+    >(DeleteBackupServerByIdDocument);
+}
+export const BackupServersDocument = gql`
+    query backupServers($filter: CordFilter) {
+        backupServers(filter: $filter) {
+            edges {
+                id
+                name
+                update
+                backupPath
+                privateKey
+                username
+                host
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQuerybackupServers(
+    options: Omit<Urql.UseQueryArgs<BackupServersQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<BackupServersQuery>({
+        query: BackupServersDocument,
+        ...options,
+    });
+}
+export const BackupServerByIdDocument = gql`
+    query backupServerById($id: ID!) {
+        backupServer(id: $id) {
+            id
+            name
+            update
+            backupPath
+            privateKey
+            port
+            username
+            host
+            deletable
+            localHost
+        }
+    }
+`;
+
+export function useQuerybackupServerById(
+    options: Omit<
+        Urql.UseQueryArgs<BackupServerByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<BackupServerByIdQuery>({
+        query: BackupServerByIdDocument,
+        ...options,
+    });
+}
+export const BlogPostReadDocument = gql`
+    query blogPostRead {
+        blogPostRead {
+            title
+            link
+            pubDate
+            html
+        }
+    }
+`;
+
+export function useQueryblogPostRead(
+    options: Omit<Urql.UseQueryArgs<BlogPostReadQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<BlogPostReadQuery>({
+        query: BlogPostReadDocument,
+        ...options,
+    });
+}
+export const ProductDomainsDocument = gql`
+    query productDomains($filter: CordFilter) {
+        productDomains(filter: $filter) {
+            edges {
+                id
+                create
+                authcode
+                product {
+                    id
+                    user {
+                        id
+                    }
+                    expire
+                }
+                name
+                tld
+                attributes
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQueryproductDomains(
+    options: Omit<Urql.UseQueryArgs<ProductDomainsQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<ProductDomainsQuery>({
+        query: ProductDomainsDocument,
+        ...options,
+    });
+}
+export const ProductDomainByIdDocument = gql`
+    query productDomainById($id: ID!) {
+        productDomainById(id: $id) {
+            ...ProductDomainPart
+        }
+    }
+    ${ProductDomainPartFragmentDoc}
+`;
+
+export function useQueryproductDomainById(
+    options: Omit<
+        Urql.UseQueryArgs<ProductDomainByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductDomainByIdQuery>({
+        query: ProductDomainByIdDocument,
+        ...options,
+    });
+}
+export const MyProductDomainsDocument = gql`
+    query myProductDomains {
+        productDomainsMy {
+            id
+            name
+            product {
+                id
+                expire
+            }
+            tld
+        }
+    }
+`;
+
+export function useQuerymyProductDomains(
+    options: Omit<
+        Urql.UseQueryArgs<MyProductDomainsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<MyProductDomainsQuery>({
+        query: MyProductDomainsDocument,
+        ...options,
+    });
+}
+export const ProductDomainRequestNewAuthcodeDocument = gql`
+    mutation productDomainRequestNewAuthcode($id: ID!) {
+        productDomainRequestNewAuthcode(id: $id) {
+            ...ProductDomainPart
+        }
+    }
+    ${ProductDomainPartFragmentDoc}
+`;
+
+export function useMutationproductDomainRequestNewAuthcode() {
+    return Urql.useMutation<
+        ProductDomainRequestNewAuthcodeMutation,
+        ProductDomainRequestNewAuthcodeMutationVariables
+    >(ProductDomainRequestNewAuthcodeDocument);
+}
+export const ProductDomainDeleteDocument = gql`
+    mutation productDomainDelete($id: ID!) {
+        productDomainDelete(id: $id)
+    }
+`;
+
+export function useMutationproductDomainDelete() {
+    return Urql.useMutation<
+        ProductDomainDeleteMutation,
+        ProductDomainDeleteMutationVariables
+    >(ProductDomainDeleteDocument);
+}
+export const ProductDomainSetAuthcodeDocument = gql`
+    mutation productDomainSetAuthcode($id: ID!, $authcode: String!) {
+        productDomainSetAuthcode(id: $id, authcode: $authcode) {
+            ...ProductDomainPart
+        }
+    }
+    ${ProductDomainPartFragmentDoc}
+`;
+
+export function useMutationproductDomainSetAuthcode() {
+    return Urql.useMutation<
+        ProductDomainSetAuthcodeMutation,
+        ProductDomainSetAuthcodeMutationVariables
+    >(ProductDomainSetAuthcodeDocument);
+}
+export const DsgvoAnonymizeAccountDocument = gql`
+    mutation dsgvoAnonymizeAccount($id: ID!) {
+        dsgvoAnonymizeAccount(id: $id)
+    }
+`;
+
+export function useMutationdsgvoAnonymizeAccount() {
+    return Urql.useMutation<
+        DsgvoAnonymizeAccountMutation,
+        DsgvoAnonymizeAccountMutationVariables
+    >(DsgvoAnonymizeAccountDocument);
+}
+export const EmailTemplatesDocument = gql`
+    query EmailTemplates($filter: CordFilter) {
+        emailTemplates(filter: $filter) {
+            edges {
+                ...EmailTemplatePart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${EmailTemplatePartFragmentDoc}
+`;
+
+export function useQueryEmailTemplates(
+    options: Omit<Urql.UseQueryArgs<EmailTemplatesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<EmailTemplatesQuery>({
+        query: EmailTemplatesDocument,
+        ...options,
+    });
+}
+export const EmailTemplateByIdDocument = gql`
+    query emailTemplateById($id: ID!) {
+        emailTemplateById(id: $id) {
+            ...EmailTemplatePart
+            templateContent
+        }
+    }
+    ${EmailTemplatePartFragmentDoc}
+`;
+
+export function useQueryemailTemplateById(
+    options: Omit<
+        Urql.UseQueryArgs<EmailTemplateByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<EmailTemplateByIdQuery>({
+        query: EmailTemplateByIdDocument,
+        ...options,
+    });
+}
+export const NewEmailTemplateDocument = gql`
+    mutation newEmailTemplate(
+        $sender: String!
+        $subject: String!
+        $template: String!
+        $templateContent: String
+    ) {
+        email_template_new(
+            data: {
+                sender: $sender
+                subject: $subject
+                template: $template
+                templateContent: $templateContent
+            }
+        ) {
+            ...EmailTemplatePart
+            templateContent
+        }
+    }
+    ${EmailTemplatePartFragmentDoc}
+`;
+
+export function useMutationnewEmailTemplate() {
+    return Urql.useMutation<
+        NewEmailTemplateMutation,
+        NewEmailTemplateMutationVariables
+    >(NewEmailTemplateDocument);
+}
+export const DeleteEmailTemplateDocument = gql`
+    mutation deleteEmailTemplate($id: ID!) {
+        email_template_delete(id: $id)
+    }
+`;
+
+export function useMutationdeleteEmailTemplate() {
+    return Urql.useMutation<
+        DeleteEmailTemplateMutation,
+        DeleteEmailTemplateMutationVariables
+    >(DeleteEmailTemplateDocument);
+}
+export const EditEmailTemplateDocument = gql`
+    mutation editEmailTemplate(
+        $id: ID!
+        $sender: String!
+        $subject: String!
+        $template: String!
+        $templateContent: String
+    ) {
+        email_template_edit(
+            data: {
+                id: $id
+                sender: $sender
+                subject: $subject
+                template: $template
+                templateContent: $templateContent
+            }
+        ) {
+            ...EmailTemplatePart
+            templateContent
+        }
+    }
+    ${EmailTemplatePartFragmentDoc}
+`;
+
+export function useMutationeditEmailTemplate() {
+    return Urql.useMutation<
+        EditEmailTemplateMutation,
+        EditEmailTemplateMutationVariables
+    >(EditEmailTemplateDocument);
+}
+export const FileDeleteFileDocument = gql`
+    mutation FileDeleteFile($id: ID!) {
+        FileDeleteFile(id: $id)
+    }
+`;
+
+export function useMutationFileDeleteFile() {
+    return Urql.useMutation<
+        FileDeleteFileMutation,
+        FileDeleteFileMutationVariables
+    >(FileDeleteFileDocument);
+}
+export const MyFilesDocument = gql`
+    query myFiles {
+        myFiles {
+            id
+            hasExpired
+            url
+            exists
+            create
+            mimetype
+            originalname
+            expiryDate
+        }
+    }
+`;
+
+export function useQuerymyFiles(
+    options: Omit<Urql.UseQueryArgs<MyFilesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<MyFilesQuery>({ query: MyFilesDocument, ...options });
+}
+export const FinancePaymentMethodsDocument = gql`
+    query FinancePaymentMethods {
+        FinancePaymentMethods {
+            method
+            logo
+            title
+            minPayable
+            maxPayable
+            active
+            forceAllowedValues
+            tooltip
+            bonusCredits {
+                minCredits
+                threshold
+                bonus
+            }
+            transactionFee
+        }
+    }
+`;
+
+export function useQueryFinancePaymentMethods(
+    options: Omit<
+        Urql.UseQueryArgs<FinancePaymentMethodsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<FinancePaymentMethodsQuery>({
+        query: FinancePaymentMethodsDocument,
+        ...options,
+    });
+}
+export const FinanceTransactionsDocument = gql`
+    query financeTransactions($filter: CordFilter) {
+        financeTransactions(filter: $filter) {
+            edges {
+                ...FinanceTransactionPart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${FinanceTransactionPartFragmentDoc}
+`;
+
+export function useQueryfinanceTransactions(
+    options: Omit<
+        Urql.UseQueryArgs<FinanceTransactionsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<FinanceTransactionsQuery>({
+        query: FinanceTransactionsDocument,
+        ...options,
+    });
+}
+export const FinanceTransactionByIdDocument = gql`
+    query financeTransactionById($id: ID!) {
+        financeTransactionById(id: $id) {
+            ...FinanceTransactionPart
+        }
+    }
+    ${FinanceTransactionPartFragmentDoc}
+`;
+
+export function useQueryfinanceTransactionById(
+    options: Omit<
+        Urql.UseQueryArgs<FinanceTransactionByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<FinanceTransactionByIdQuery>({
+        query: FinanceTransactionByIdDocument,
+        ...options,
+    });
+}
+export const CreateFinanceTransactionDocument = gql`
+    mutation CreateFinanceTransaction($data: FinanceTransactionCreateInput!) {
+        financeTransactionCreate(data: $data) {
+            ...FinanceTransactionPart
+        }
+    }
+    ${FinanceTransactionPartFragmentDoc}
+`;
+
+export function useMutationCreateFinanceTransaction() {
+    return Urql.useMutation<
+        CreateFinanceTransactionMutation,
+        CreateFinanceTransactionMutationVariables
+    >(CreateFinanceTransactionDocument);
+}
+export const MyFinanceTransactionsDocument = gql`
+    query MyFinanceTransactions {
+        user_me {
+            id
+            transactions {
+                ...FinanceTransactionPart
+                donationMessage
+                isDonation
+            }
+            credits
+        }
+    }
+    ${FinanceTransactionPartFragmentDoc}
+`;
+
+export function useQueryMyFinanceTransactions(
+    options: Omit<
+        Urql.UseQueryArgs<MyFinanceTransactionsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<MyFinanceTransactionsQuery>({
+        query: MyFinanceTransactionsDocument,
+        ...options,
+    });
+}
+export const FinanceChargesDocument = gql`
+    query financeCharges($filter: CordFilter) {
+        financeCharges(filter: $filter) {
+            edges {
+                ...FinanceChargePart
+                donation {
+                    id
+                }
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${FinanceChargePartFragmentDoc}
+`;
+
+export function useQueryfinanceCharges(
+    options: Omit<Urql.UseQueryArgs<FinanceChargesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<FinanceChargesQuery>({
+        query: FinanceChargesDocument,
+        ...options,
+    });
+}
+export const FinanceChargeByIdDocument = gql`
+    query financeChargeById($id: ID!) {
+        financeChargeById(id: $id) {
+            ...FinanceChargePart
+        }
+    }
+    ${FinanceChargePartFragmentDoc}
+`;
+
+export function useQueryfinanceChargeById(
+    options: Omit<
+        Urql.UseQueryArgs<FinanceChargeByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<FinanceChargeByIdQuery>({
+        query: FinanceChargeByIdDocument,
+        ...options,
+    });
+}
+export const FinanceChargeVerifyDocument = gql`
+    mutation financeChargeVerify($id: ID!, $description: String) {
+        financeChargeVerify(id: $id, description: $description) {
+            ...FinanceChargePart
+        }
+    }
+    ${FinanceChargePartFragmentDoc}
+`;
+
+export function useMutationfinanceChargeVerify() {
+    return Urql.useMutation<
+        FinanceChargeVerifyMutation,
+        FinanceChargeVerifyMutationVariables
+    >(FinanceChargeVerifyDocument);
+}
+export const FinanceChargeDeleteDocument = gql`
+    mutation financeChargeDelete($id: ID!) {
+        financeChargeDelete(id: $id)
+    }
+`;
+
+export function useMutationfinanceChargeDelete() {
+    return Urql.useMutation<
+        FinanceChargeDeleteMutation,
+        FinanceChargeDeleteMutationVariables
+    >(FinanceChargeDeleteDocument);
+}
+export const FinanceDonationLinksMyDocument = gql`
+    query financeDonationLinksMy {
+        financeDonationLinksMy {
+            id
+            create
+            message
+            url
+            totalDonationSum
+            label
+        }
+    }
+`;
+
+export function useQueryfinanceDonationLinksMy(
+    options: Omit<
+        Urql.UseQueryArgs<FinanceDonationLinksMyQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<FinanceDonationLinksMyQuery>({
+        query: FinanceDonationLinksMyDocument,
+        ...options,
+    });
+}
+export const FinanceDonationLinkCreateDocument = gql`
+    mutation financeDonationLinkCreate($message: String!, $label: String) {
+        financeDonationLinkCreate(message: $message, label: $label) {
+            id
+            create
+            message
+            url
+            totalDonationSum
+        }
+    }
+`;
+
+export function useMutationfinanceDonationLinkCreate() {
+    return Urql.useMutation<
+        FinanceDonationLinkCreateMutation,
+        FinanceDonationLinkCreateMutationVariables
+    >(FinanceDonationLinkCreateDocument);
+}
+export const FinanceDonationLinkDeleteDocument = gql`
+    mutation financeDonationLinkDelete($id: ID!) {
+        financeDonationLinkDelete(id: $id)
+    }
+`;
+
+export function useMutationfinanceDonationLinkDelete() {
+    return Urql.useMutation<
+        FinanceDonationLinkDeleteMutation,
+        FinanceDonationLinkDeleteMutationVariables
+    >(FinanceDonationLinkDeleteDocument);
+}
+export const ProductGameserverStartDocument = gql`
+    mutation productGameserverStart($gameserverId: ID!, $scriptId: ID) {
+        product_gameserver_start(
+            gameserverId: $gameserverId
+            scriptId: $scriptId
+        ) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverStart() {
+    return Urql.useMutation<
+        ProductGameserverStartMutation,
+        ProductGameserverStartMutationVariables
+    >(ProductGameserverStartDocument);
+}
+export const ProductGameserverSetAutorestartsDocument = gql`
+    mutation productGameserverSetAutorestarts($id: ID!, $restarts: [Int!]!) {
+        productGameserverSetAutorestarts(id: $id, restarts: $restarts) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverSetAutorestarts() {
+    return Urql.useMutation<
+        ProductGameserverSetAutorestartsMutation,
+        ProductGameserverSetAutorestartsMutationVariables
+    >(ProductGameserverSetAutorestartsDocument);
+}
+export const ProductGameserverFailureAutorestartDocument = gql`
+    mutation productGameserverFailureAutorestart($id: ID!, $restart: Boolean!) {
+        productGameserverFailureAutorestart(id: $id, restart: $restart) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverFailureAutorestart() {
+    return Urql.useMutation<
+        ProductGameserverFailureAutorestartMutation,
+        ProductGameserverFailureAutorestartMutationVariables
+    >(ProductGameserverFailureAutorestartDocument);
+}
+export const ProductGameserverRunningDocument = gql`
+    query productGameserverRunning($gameserverId: ID!) {
+        product_gameserver_running(gameserverId: $gameserverId)
+    }
+`;
+
+export function useQueryproductGameserverRunning(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverRunningQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverRunningQuery>({
+        query: ProductGameserverRunningDocument,
+        ...options,
+    });
+}
+export const ProductGameserverLogDocument = gql`
+    query productGameserverLog($gameserverId: ID!) {
+        product_gameserver_log(gameserverId: $gameserverId)
+    }
+`;
+
+export function useQueryproductGameserverLog(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverLogQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverLogQuery>({
+        query: ProductGameserverLogDocument,
+        ...options,
+    });
+}
+export const ProductGameserverStopDocument = gql`
+    mutation productGameserverStop($gameserverId: ID!) {
+        product_gameserver_stop(gameserverId: $gameserverId) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverStop() {
+    return Urql.useMutation<
+        ProductGameserverStopMutation,
+        ProductGameserverStopMutationVariables
+    >(ProductGameserverStopDocument);
+}
+export const ProductGameserverConsoleDocument = gql`
+    mutation productGameserverConsole($gameserverId: ID!, $command: String!) {
+        product_gameserver_console(
+            gameserverId: $gameserverId
+            command: $command
+        )
+    }
+`;
+
+export function useMutationproductGameserverConsole() {
+    return Urql.useMutation<
+        ProductGameserverConsoleMutation,
+        ProductGameserverConsoleMutationVariables
+    >(ProductGameserverConsoleDocument);
+}
+export const ProductGameserverExistDocument = gql`
+    query productGameserverExist($gameserverId: ID!) {
+        product_gameserver_exist(gameserverId: $gameserverId)
+    }
+`;
+
+export function useQueryproductGameserverExist(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverExistQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverExistQuery>({
+        query: ProductGameserverExistDocument,
+        ...options,
+    });
+}
+export const ProductGameserverChangeFtpPasswordDocument = gql`
+    mutation productGameserverChangeFtpPassword(
+        $gameserverId: ID!
+        $password: String!
+    ) {
+        product_gameserver_change_password(
+            gameserverId: $gameserverId
+            password: $password
+        ) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverChangeFtpPassword() {
+    return Urql.useMutation<
+        ProductGameserverChangeFtpPasswordMutation,
+        ProductGameserverChangeFtpPasswordMutationVariables
+    >(ProductGameserverChangeFtpPasswordDocument);
+}
+export const ProductGameserverDocument = gql`
+    query productGameserver($id: ID!) {
+        productGameserverById(id: $id) {
+            ...ProductGameserverPart
+            availableGameserverTemplates {
+                id
+                title
+                logo {
+                    id
+                    url
+                }
+            }
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useQueryproductGameserver(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverQuery>({
+        query: ProductGameserverDocument,
+        ...options,
+    });
+}
+export const ProductGameserverUsageDocument = gql`
+    query productGameserverUsage($gameserverId: ID!) {
+        productGameserverUsage(gameserverId: $gameserverId) {
+            usagePoints {
+                globalUsage
+                perCore
+                date
+                memoryUsageInMb
+            }
+            diskPoints {
+                date
+                usageInMb
+            }
+        }
+    }
+`;
+
+export function useQueryproductGameserverUsage(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverUsageQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverUsageQuery>({
+        query: ProductGameserverUsageDocument,
+        ...options,
+    });
+}
+export const ProductGameserverAddonsDocument = gql`
+    query productGameserverAddons($gameserverId: ID!) {
+        product_gameservers_scripts(gameserverId: $gameserverId) {
+            id
+            title
+            standaloneBtn
+            isDefault
+        }
+    }
+`;
+
+export function useQueryproductGameserverAddons(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverAddonsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverAddonsQuery>({
+        query: ProductGameserverAddonsDocument,
+        ...options,
+    });
+}
+export const ProductGameserverSetCustomAttributeDocument = gql`
+    mutation productGameserverSetCustomAttribute(
+        $id: ID!
+        $key: String!
+        $value: String!
+    ) {
+        productGameserverSetCustomAttribute(id: $id, key: $key, value: $value) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverSetCustomAttribute() {
+    return Urql.useMutation<
+        ProductGameserverSetCustomAttributeMutation,
+        ProductGameserverSetCustomAttributeMutationVariables
+    >(ProductGameserverSetCustomAttributeDocument);
+}
+export const ProductGameserverChangeLabelDocument = gql`
+    mutation productGameserverChangeLabel($id: ID!, $label: String!) {
+        product_gameserver_change_label(id: $id, label: $label) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverChangeLabel() {
+    return Urql.useMutation<
+        ProductGameserverChangeLabelMutation,
+        ProductGameserverChangeLabelMutationVariables
+    >(ProductGameserverChangeLabelDocument);
+}
+export const ProductGameserverBackupCreateDocument = gql`
+    mutation productGameserverBackupCreate($gameserverId: ID!) {
+        productGameserverBackupCreate(gameserverId: $gameserverId) {
+            id
+        }
+    }
+`;
+
+export function useMutationproductGameserverBackupCreate() {
+    return Urql.useMutation<
+        ProductGameserverBackupCreateMutation,
+        ProductGameserverBackupCreateMutationVariables
+    >(ProductGameserverBackupCreateDocument);
+}
+export const ProductGameserverBackupDeleteDocument = gql`
+    mutation productGameserverBackupDelete($backupId: ID!) {
+        productGameserverBackupDelete(backupId: $backupId)
+    }
+`;
+
+export function useMutationproductGameserverBackupDelete() {
+    return Urql.useMutation<
+        ProductGameserverBackupDeleteMutation,
+        ProductGameserverBackupDeleteMutationVariables
+    >(ProductGameserverBackupDeleteDocument);
+}
+export const ProductGameserverBackupRestoreDocument = gql`
+    mutation productGameserverBackupRestore($backupId: ID!) {
+        productGameserverBackupRestore(backupId: $backupId)
+    }
+`;
+
+export function useMutationproductGameserverBackupRestore() {
+    return Urql.useMutation<
+        ProductGameserverBackupRestoreMutation,
+        ProductGameserverBackupRestoreMutationVariables
+    >(ProductGameserverBackupRestoreDocument);
+}
+export const ProductGameserverDeleteDocument = gql`
+    mutation productGameserverDelete($id: ID!) {
+        productGameserverDelete(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverDelete() {
+    return Urql.useMutation<
+        ProductGameserverDeleteMutation,
+        ProductGameserverDeleteMutationVariables
+    >(ProductGameserverDeleteDocument);
+}
+export const ProductGameserverInstallDocument = gql`
+    mutation productGameserverInstall($id: ID!, $gameserverTemplateId: ID!) {
+        productGameserverInstall(
+            gameserverId: $id
+            gameserverTemplateId: $gameserverTemplateId
+        ) {
+            ...ProductGameserverPart
+        }
+    }
+    ${ProductGameserverPartFragmentDoc}
+`;
+
+export function useMutationproductGameserverInstall() {
+    return Urql.useMutation<
+        ProductGameserverInstallMutation,
+        ProductGameserverInstallMutationVariables
+    >(ProductGameserverInstallDocument);
+}
+export const ProductGameserverBackupsDocument = gql`
+    query productGameserverBackups($id: ID!) {
+        productGameserverById(id: $id) {
+            id
+            backups {
+                id
+                create
+                sizeInMb
+                restorable
+            }
+        }
+    }
+`;
+
+export function useQueryproductGameserverBackups(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverBackupsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverBackupsQuery>({
+        query: ProductGameserverBackupsDocument,
+        ...options,
+    });
+}
+export const ProductGameserverBackupDownloadDocument = gql`
+    mutation productGameserverBackupDownload($id: ID!) {
+        productGameserverBackupDownload(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverBackupDownload() {
+    return Urql.useMutation<
+        ProductGameserverBackupDownloadMutation,
+        ProductGameserverBackupDownloadMutationVariables
+    >(ProductGameserverBackupDownloadDocument);
+}
+export const ProductGameserversDocument = gql`
+    query productGameservers($filter: CordFilter) {
+        productGameservers(filter: $filter) {
+            edges {
+                id
+                template {
+                    id
+                    title
+                }
+                product {
+                    id
+                    user {
+                        id
+                    }
+                }
+                hostNode {
+                    id
+                    remoteAddress
+                    name
+                }
+                name
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQueryproductGameservers(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserversQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserversQuery>({
+        query: ProductGameserversDocument,
+        ...options,
+    });
+}
+export const MyProductGameserversDocument = gql`
+    query myProductGameservers {
+        productGameserversMy {
+            id
+            name
+            amIOwner
+            product {
+                id
+                expire
+            }
+            template {
+                id
+                logo {
+                    id
+                    url
+                }
+            }
+        }
+    }
+`;
+
+export function useQuerymyProductGameservers(
+    options: Omit<
+        Urql.UseQueryArgs<MyProductGameserversQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<MyProductGameserversQuery>({
+        query: MyProductGameserversDocument,
+        ...options,
+    });
+}
+export const MyProductGameserverAccessesDocument = gql`
+    query myProductGameserverAccesses {
+        myProductGameserverAccesses {
+            id
+            gameserver {
+                id
+                name
+                template {
+                    id
+                    logo {
+                        id
+                        url
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export function useQuerymyProductGameserverAccesses(
+    options: Omit<
+        Urql.UseQueryArgs<MyProductGameserverAccessesQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<MyProductGameserverAccessesQuery>({
+        query: MyProductGameserverAccessesDocument,
+        ...options,
+    });
+}
+export const ProductGameserverAccessesByGameserverIdDocument = gql`
+    query productGameserverAccessesByGameserverId($gameserverId: ID!) {
+        productGameserverAccessesByGameserverId(gameserverId: $gameserverId) {
+            accept
+            id
+            userEmail
+            gameserver {
+                name
+            }
+        }
+    }
+`;
+
+export function useQueryproductGameserverAccessesByGameserverId(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverAccessesByGameserverIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverAccessesByGameserverIdQuery>({
+        query: ProductGameserverAccessesByGameserverIdDocument,
+        ...options,
+    });
+}
+export const ProductGameserverAccessInviteDocument = gql`
+    mutation productGameserverAccessInvite(
+        $gameserverId: ID!
+        $emailOfInvitedUser: String!
+        $captcha: String!
+    ) {
+        productGameserverAccessInvite(
+            gameserverId: $gameserverId
+            emailOfInvitedUser: $emailOfInvitedUser
+            captcha: $captcha
+        ) {
+            accept
+            id
+            userEmail
+            gameserver {
+                name
+            }
+        }
+    }
+`;
+
+export function useMutationproductGameserverAccessInvite() {
+    return Urql.useMutation<
+        ProductGameserverAccessInviteMutation,
+        ProductGameserverAccessInviteMutationVariables
+    >(ProductGameserverAccessInviteDocument);
+}
+export const ProductGameserverAccessRevokeDocument = gql`
+    mutation productGameserverAccessRevoke($id: ID!) {
+        productGameserverAccessRevoke(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverAccessRevoke() {
+    return Urql.useMutation<
+        ProductGameserverAccessRevokeMutation,
+        ProductGameserverAccessRevokeMutationVariables
+    >(ProductGameserverAccessRevokeDocument);
+}
+export const ProductGameserverMysqlByGameserverDocument = gql`
+    query productGameserverMysqlByGameserver($gameserverId: ID!) {
+        productGameserverMysqlByGameserver(gameserverId: $gameserverId) {
+            id
+            label
+            create
+            host
+        }
+    }
+`;
+
+export function useQueryproductGameserverMysqlByGameserver(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverMysqlByGameserverQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverMysqlByGameserverQuery>({
+        query: ProductGameserverMysqlByGameserverDocument,
+        ...options,
+    });
+}
+export const ProductGameserverMysqlCreateDocument = gql`
+    mutation productGameserverMysqlCreate(
+        $gameserverId: ID!
+        $password: String!
+    ) {
+        productGameserverMysqlCreate(
+            gameserverId: $gameserverId
+            password: $password
+        ) {
+            id
+            label
+            host
+            create
+        }
+    }
+`;
+
+export function useMutationproductGameserverMysqlCreate() {
+    return Urql.useMutation<
+        ProductGameserverMysqlCreateMutation,
+        ProductGameserverMysqlCreateMutationVariables
+    >(ProductGameserverMysqlCreateDocument);
+}
+export const ProductGameserverMysqlChangeLabelDocument = gql`
+    mutation productGameserverMysqlChangeLabel($id: ID!, $label: String!) {
+        productGameserverMysqlChangeLabel(id: $id, label: $label) {
+            id
+            label
+            create
+            host
+        }
+    }
+`;
+
+export function useMutationproductGameserverMysqlChangeLabel() {
+    return Urql.useMutation<
+        ProductGameserverMysqlChangeLabelMutation,
+        ProductGameserverMysqlChangeLabelMutationVariables
+    >(ProductGameserverMysqlChangeLabelDocument);
+}
+export const ProductGameserverMysqlDeleteDocument = gql`
+    mutation productGameserverMysqlDelete($id: ID!) {
+        productGameserverMysqlDelete(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverMysqlDelete() {
+    return Urql.useMutation<
+        ProductGameserverMysqlDeleteMutation,
+        ProductGameserverMysqlDeleteMutationVariables
+    >(ProductGameserverMysqlDeleteDocument);
+}
+export const ProductGameserverScriptsDocument = gql`
+    query productGameserverScripts(
+        $search: String
+        $orderBy: String
+        $order: String
+        $templateId: ID
+    ) {
+        product_gameserver_scripts(
+            search: $search
+            orderBy: $orderBy
+            order: $order
+            templateId: $templateId
+        ) {
+            id
+            title
+            script
+            isDefault
+            hidden
+            executeHook
+        }
+    }
+`;
+
+export function useQueryproductGameserverScripts(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverScriptsQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverScriptsQuery>({
+        query: ProductGameserverScriptsDocument,
+        ...options,
+    });
+}
+export const ProductGameserverScriptEditDocument = gql`
+    mutation productGameserverScriptEdit(
+        $title: String!
+        $script: String!
+        $standaloneBtn: Boolean!
+        $standaloneBtnColor: String
+        $templateId: ID!
+        $runAsRoot: Boolean!
+        $disableAutoRestart: Boolean!
+        $hidden: Boolean
+        $executeHook: String
+        $id: ID!
+    ) {
+        product_gameserver_script_edit(
+            data: {
+                title: $title
+                script: $script
+                templateId: $templateId
+                id: $id
+                standaloneBtn: $standaloneBtn
+                standaloneBtnColor: $standaloneBtnColor
+                disableAutoRestart: $disableAutoRestart
+                runAsRoot: $runAsRoot
+                hidden: $hidden
+                executeHook: $executeHook
+            }
+        ) {
+            id
+            title
+            script
+            hidden
+            executeHook
+        }
+    }
+`;
+
+export function useMutationproductGameserverScriptEdit() {
+    return Urql.useMutation<
+        ProductGameserverScriptEditMutation,
+        ProductGameserverScriptEditMutationVariables
+    >(ProductGameserverScriptEditDocument);
+}
+export const ProductGameserverScriptDeleteDocument = gql`
+    mutation productGameserverScriptDelete($id: ID!) {
+        product_gameserver_script_delete(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverScriptDelete() {
+    return Urql.useMutation<
+        ProductGameserverScriptDeleteMutation,
+        ProductGameserverScriptDeleteMutationVariables
+    >(ProductGameserverScriptDeleteDocument);
+}
+export const ProductGameserverScriptByIdDocument = gql`
+    query productGameserverScriptById($id: ID!) {
+        productGameserverScriptById(id: $id) {
+            id
+            title
+            script
+            standaloneBtn
+            standaloneBtnColor
+            runAsRoot
+            disableAutoRestart
+            hidden
+            executeHook
+        }
+    }
+`;
+
+export function useQueryproductGameserverScriptById(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverScriptByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverScriptByIdQuery>({
+        query: ProductGameserverScriptByIdDocument,
+        ...options,
+    });
+}
+export const ProductGameserverTemplateDocument = gql`
+    query productGameserverTemplate($id: ID!) {
+        product_gameserver_template(id: $id) {
+            ...ProductGameserverTemplatePart
+        }
+    }
+    ${ProductGameserverTemplatePartFragmentDoc}
+`;
+
+export function useQueryproductGameserverTemplate(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverTemplateQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverTemplateQuery>({
+        query: ProductGameserverTemplateDocument,
+        ...options,
+    });
+}
+export const ProductGameserverTemplatesDocument = gql`
+    query productGameserverTemplates($filter: CordFilter!) {
+        productGameserverTemplates(filter: $filter) {
+            edges {
+                id
+                title
+                platform
+                logo {
+                    url
+                    id
+                }
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQueryproductGameserverTemplates(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverTemplatesQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverTemplatesQuery>({
+        query: ProductGameserverTemplatesDocument,
+        ...options,
+    });
+}
+export const ProductGameserverTemplateEditDocument = gql`
+    mutation productGameserverTemplateEdit(
+        $id: ID
+        $title: String!
+        $platform: String!
+        $active: Boolean!
+        $resourceUrl: String!
+        $logoId: ID
+        $ports: Int!
+        $defaultCustomParameter: String!
+        $canUpdateOnStart: Boolean!
+    ) {
+        product_gameserver_template_edit(
+            data: {
+                id: $id
+                title: $title
+                platform: $platform
+                active: $active
+                logoId: $logoId
+                resourceUrl: $resourceUrl
+                ports: $ports
+                defaultCustomParameter: $defaultCustomParameter
+                canUpdateOnStart: $canUpdateOnStart
+            }
+        ) {
+            ...ProductGameserverTemplatePart
+        }
+    }
+    ${ProductGameserverTemplatePartFragmentDoc}
+`;
+
+export function useMutationproductGameserverTemplateEdit() {
+    return Urql.useMutation<
+        ProductGameserverTemplateEditMutation,
+        ProductGameserverTemplateEditMutationVariables
+    >(ProductGameserverTemplateEditDocument);
+}
+export const ProductGameserverTemplateDeleteDocument = gql`
+    mutation productGameserverTemplateDelete($id: ID!) {
+        product_gameserver_template_delete(id: $id)
+    }
+`;
+
+export function useMutationproductGameserverTemplateDelete() {
+    return Urql.useMutation<
+        ProductGameserverTemplateDeleteMutation,
+        ProductGameserverTemplateDeleteMutationVariables
+    >(ProductGameserverTemplateDeleteDocument);
+}
+export const ProductGameserverTemplateSetDefaultScriptDocument = gql`
+    mutation productGameserverTemplateSetDefaultScript(
+        $id: ID!
+        $scriptId: ID!
+    ) {
+        product_gameserver_template_set_default_script(
+            id: $id
+            scriptId: $scriptId
+        ) {
+            id
+        }
+    }
+`;
+
+export function useMutationproductGameserverTemplateSetDefaultScript() {
+    return Urql.useMutation<
+        ProductGameserverTemplateSetDefaultScriptMutation,
+        ProductGameserverTemplateSetDefaultScriptMutationVariables
+    >(ProductGameserverTemplateSetDefaultScriptDocument);
+}
+export const HostNodeByIdDocument = gql`
+    query hostNodeById($id: ID!) {
+        host_node(id: $id) {
+            id
+            name
+            section
+            remoteAddress
+            type
+            deletable
+            hostNodeFilterKey
+            maxInstances
+            freeInstances
+            forcePublicBackupTranfer
+            isAvailable
+            meta
+            daemonVersion
+        }
+    }
+`;
+
+export function useQueryhostNodeById(
+    options: Omit<Urql.UseQueryArgs<HostNodeByIdQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<HostNodeByIdQuery>({
+        query: HostNodeByIdDocument,
+        ...options,
+    });
+}
+export const HostNodesDocument = gql`
+    query hostNodes($filter: CordFilter) {
+        hostNodes(filter: $filter) {
+            edges {
+                id
+                name
+                remoteAddress
+                type
+                isAvailable
+                daemonVersion
+                isDaemonVersionBehind
+                getDaemonVersionsBehind
+                latestInfoUpdate
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQueryhostNodes(
+    options: Omit<Urql.UseQueryArgs<HostNodesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<HostNodesQuery>({
+        query: HostNodesDocument,
+        ...options,
+    });
+}
+export const HostNodeTestFindNodeDocument = gql`
+    query hostNodeTestFindNode($type: String!, $filterKey: String) {
+        hostNodeTestFindNode(type: $type, filterKey: $filterKey) {
+            id
+            name
+            remoteAddress
+            type
+            isAvailable
+            daemonVersion
+        }
+    }
+`;
+
+export function useQueryhostNodeTestFindNode(
+    options: Omit<
+        Urql.UseQueryArgs<HostNodeTestFindNodeQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<HostNodeTestFindNodeQuery>({
+        query: HostNodeTestFindNodeDocument,
+        ...options,
+    });
+}
+export const EditCreateHostNodeDocument = gql`
+    mutation editCreateHostNode($data: HostNodeEditInput!) {
+        host_node_edit(data: $data) {
+            id
+            name
+            section
+            remoteAddress
+            type
+            deletable
+            hostNodeFilterKey
+            maxInstances
+            freeInstances
+            isAvailable
+            forcePublicBackupTranfer
+            meta
+            daemonVersion
+        }
+    }
+`;
+
+export function useMutationeditCreateHostNode() {
+    return Urql.useMutation<
+        EditCreateHostNodeMutation,
+        EditCreateHostNodeMutationVariables
+    >(EditCreateHostNodeDocument);
+}
+export const DeleteHostNodeByIdDocument = gql`
+    mutation deleteHostNodeById($id: ID!) {
+        host_node_delete(id: $id)
+    }
+`;
+
+export function useMutationdeleteHostNodeById() {
+    return Urql.useMutation<
+        DeleteHostNodeByIdMutation,
+        DeleteHostNodeByIdMutationVariables
+    >(DeleteHostNodeByIdDocument);
+}
+export const HostNodeUpdateDaemonDocument = gql`
+    mutation hostNodeUpdateDaemon(
+        $version: String
+        $hostNodeId: ID!
+        $sshUsername: String!
+        $sshPassword: String
+        $sshRsaKey: String
+    ) {
+        hostNodeUpdateDaemon(
+            version: $version
+            hostNodeId: $hostNodeId
+            sshUsername: $sshUsername
+            sshPassword: $sshPassword
+            sshRsaKey: $sshRsaKey
+        )
+    }
+`;
+
+export function useMutationhostNodeUpdateDaemon() {
+    return Urql.useMutation<
+        HostNodeUpdateDaemonMutation,
+        HostNodeUpdateDaemonMutationVariables
+    >(HostNodeUpdateDaemonDocument);
+}
+export const HostNodeTasksMyDocument = gql`
+    query hostNodeTasksMy($take: Int) {
+        hostNodeTasksMy(take: $take) {
+            id
+            update
+            running
+            finish
+            error
+            label
+            gameserver {
+                id
+                name
+            }
+        }
+    }
+`;
+
+export function useQueryhostNodeTasksMy(
+    options: Omit<
+        Urql.UseQueryArgs<HostNodeTasksMyQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<HostNodeTasksMyQuery>({
+        query: HostNodeTasksMyDocument,
+        ...options,
+    });
+}
+export const HostNodeTaskByIdDocument = gql`
+    query hostNodeTaskById($id: ID!) {
+        hostNodeTaskById(id: $id) {
+            id
+            update
+            running
+            finish
+            error
+            label
+            gameserver {
+                id
+                name
+            }
+        }
+    }
+`;
+
+export function useQueryhostNodeTaskById(
+    options: Omit<
+        Urql.UseQueryArgs<HostNodeTaskByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<HostNodeTaskByIdQuery>({
+        query: HostNodeTaskByIdDocument,
+        ...options,
+    });
+}
+export const HostNodeTaskIsRunningDocument = gql`
+    query hostNodeTaskIsRunning($identifier: ID!) {
+        host_node_task_running(identifier: $identifier)
+    }
+`;
+
+export function useQueryhostNodeTaskIsRunning(
+    options: Omit<
+        Urql.UseQueryArgs<HostNodeTaskIsRunningQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<HostNodeTaskIsRunningQuery>({
+        query: HostNodeTaskIsRunningDocument,
+        ...options,
+    });
+}
+export const GetPdfTemplateDocument = gql`
+    query getPdfTemplate($id: ID!) {
+        pdf_template(id: $id) {
+            ...PdfTemplatePart
+        }
+    }
+    ${PdfTemplatePartFragmentDoc}
+`;
+
+export function useQuerygetPdfTemplate(
+    options: Omit<Urql.UseQueryArgs<GetPdfTemplateQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<GetPdfTemplateQuery>({
+        query: GetPdfTemplateDocument,
+        ...options,
+    });
+}
+export const PdfTemplatesDocument = gql`
+    query pdfTemplates($filter: CordFilter) {
+        pdfTemplates(filter: $filter) {
+            edges {
+                ...PdfTemplatePart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${PdfTemplatePartFragmentDoc}
+`;
+
+export function useQuerypdfTemplates(
+    options: Omit<Urql.UseQueryArgs<PdfTemplatesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<PdfTemplatesQuery>({
+        query: PdfTemplatesDocument,
+        ...options,
+    });
+}
+export const DeletePdfTemplateDocument = gql`
+    mutation deletePdfTemplate($id: ID!) {
+        pdf_template_delete(id: $id)
+    }
+`;
+
+export function useMutationdeletePdfTemplate() {
+    return Urql.useMutation<
+        DeletePdfTemplateMutation,
+        DeletePdfTemplateMutationVariables
+    >(DeletePdfTemplateDocument);
+}
+export const EditPdfTemplateDocument = gql`
+    mutation editPdfTemplate(
+        $id: ID
+        $templateContent: String
+        $template: String!
+    ) {
+        pdf_template_edit(
+            data: {
+                id: $id
+                templateContent: $templateContent
+                template: $template
+            }
+        ) {
+            ...PdfTemplatePart
+        }
+    }
+    ${PdfTemplatePartFragmentDoc}
+`;
+
+export function useMutationeditPdfTemplate() {
+    return Urql.useMutation<
+        EditPdfTemplateMutation,
+        EditPdfTemplateMutationVariables
+    >(EditPdfTemplateDocument);
+}
+export const ProductSetAutorenewIntervalDocument = gql`
+    mutation productSetAutorenewInterval($id: ID!, $intervalId: ID) {
+        productSetAutorenewInterval(id: $id, intervalId: $intervalId) {
+            ...ProductPart
+        }
+    }
+    ${ProductPartFragmentDoc}
+`;
+
+export function useMutationproductSetAutorenewInterval() {
+    return Urql.useMutation<
+        ProductSetAutorenewIntervalMutation,
+        ProductSetAutorenewIntervalMutationVariables
+    >(ProductSetAutorenewIntervalDocument);
+}
+export const ProductsDocument = gql`
+    query Products($filter: CordFilter) {
+        products(filter: $filter) {
+            edges {
+                ...ProductPart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${ProductPartFragmentDoc}
+`;
+
+export function useQueryProducts(
+    options: Omit<Urql.UseQueryArgs<ProductsQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<ProductsQuery>({
+        query: ProductsDocument,
+        ...options,
+    });
+}
+export const ProductByIdDocument = gql`
+    query ProductById($id: ID!) {
+        productById(id: $id) {
+            ...ProductPart
+        }
+    }
+    ${ProductPartFragmentDoc}
+`;
+
+export function useQueryProductById(
+    options: Omit<Urql.UseQueryArgs<ProductByIdQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<ProductByIdQuery>({
+        query: ProductByIdDocument,
+        ...options,
+    });
+}
+export const ProductById2Document = gql`
+    query ProductById2($id: ID!) {
+        productById(id: $id) {
+            ...ProductPart
+            availablePeriods {
+                id
+                days
+            }
+        }
+    }
+    ${ProductPartFragmentDoc}
+`;
+
+export function useQueryProductById2(
+    options: Omit<Urql.UseQueryArgs<ProductById2QueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<ProductById2Query>({
+        query: ProductById2Document,
+        ...options,
+    });
+}
+export const ProductEditDocument = gql`
+    mutation productEdit($data: ProductEditInput!) {
+        productEdit(data: $data) {
+            ...ProductPart
+        }
+    }
+    ${ProductPartFragmentDoc}
+`;
+
+export function useMutationproductEdit() {
+    return Urql.useMutation<ProductEditMutation, ProductEditMutationVariables>(
+        ProductEditDocument
+    );
+}
+export const ProductGameserverFsReadIndexDocument = gql`
+    query productGameserverFsReadIndex(
+        $gameserverId: ID!
+        $reloadIndex: Boolean
+    ) {
+        productGameserverFsReadIndex(
+            gameserverId: $gameserverId
+            reloadIndex: $reloadIndex
+        )
+    }
+`;
+
+export function useQueryproductGameserverFsReadIndex(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverFsReadIndexQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverFsReadIndexQuery>({
+        query: ProductGameserverFsReadIndexDocument,
+        ...options,
+    });
+}
+export const ProductGameserverFsReadDocument = gql`
+    query productGameserverFsRead($gameserverId: ID!, $file: String!) {
+        productGameserverFsRead(gameserverId: $gameserverId, file: $file)
+    }
+`;
+
+export function useQueryproductGameserverFsRead(
+    options: Omit<
+        Urql.UseQueryArgs<ProductGameserverFsReadQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductGameserverFsReadQuery>({
+        query: ProductGameserverFsReadDocument,
+        ...options,
+    });
+}
+export const ProductGameserverFsWriteDocument = gql`
+    mutation productGameserverFsWrite(
+        $gameserverId: ID!
+        $file: String!
+        $base64Content: String!
+    ) {
+        productGameserverFsWrite(
+            gameserverId: $gameserverId
+            file: $file
+            base64Content: $base64Content
+        )
+    }
+`;
+
+export function useMutationproductGameserverFsWrite() {
+    return Urql.useMutation<
+        ProductGameserverFsWriteMutation,
+        ProductGameserverFsWriteMutationVariables
+    >(ProductGameserverFsWriteDocument);
+}
+export const CreateProductGameserverScriptDocument = gql`
+    mutation createProductGameserverScript(
+        $title: String!
+        $script: String!
+        $templateId: ID!
+    ) {
+        product_gameserver_script_new(
+            data: { title: $title, script: $script, templateId: $templateId }
+        ) {
+            id
+            title
+            script
+        }
+    }
+`;
+
+export function useMutationcreateProductGameserverScript() {
+    return Urql.useMutation<
+        CreateProductGameserverScriptMutation,
+        CreateProductGameserverScriptMutationVariables
+    >(CreateProductGameserverScriptDocument);
+}
+export const RolesDocument = gql`
+    query roles($filter: CordFilter) {
+        roles(filter: $filter) {
+            edges {
+                ...RolePart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useQueryroles(
+    options: Omit<Urql.UseQueryArgs<RolesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<RolesQuery>({ query: RolesDocument, ...options });
+}
+export const RoleByIdDocument = gql`
+    query roleById($id: ID!) {
+        roleById(id: $id) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+            users {
+                id
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useQueryroleById(
+    options: Omit<Urql.UseQueryArgs<RoleByIdQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<RoleByIdQuery>({
+        query: RoleByIdDocument,
+        ...options,
+    });
+}
+export const EditRoleRoleDocument = gql`
+    mutation editRoleRole($id: ID, $name: String!) {
+        role_role_edit(data: { id: $id, name: $name }) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+            users {
+                id
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useMutationeditRoleRole() {
+    return Urql.useMutation<
+        EditRoleRoleMutation,
+        EditRoleRoleMutationVariables
+    >(EditRoleRoleDocument);
+}
+export const RoleUnAssignAclDocument = gql`
+    mutation roleUnAssignAcl($id: ID!, $aclsId: [ID!]!) {
+        roleUnAssignAcl(id: $id, aclsId: $aclsId) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useMutationroleUnAssignAcl() {
+    return Urql.useMutation<
+        RoleUnAssignAclMutation,
+        RoleUnAssignAclMutationVariables
+    >(RoleUnAssignAclDocument);
+}
+export const RoleAssignAclDocument = gql`
+    mutation roleAssignAcl($id: ID!, $aclsId: [ID!]!) {
+        roleAssignAcl(id: $id, aclsId: $aclsId) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+            users {
+                id
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useMutationroleAssignAcl() {
+    return Urql.useMutation<
+        RoleAssignAclMutation,
+        RoleAssignAclMutationVariables
+    >(RoleAssignAclDocument);
+}
+export const RoleAddUserDocument = gql`
+    mutation roleAddUser($id: ID!, $userId: ID!) {
+        roleAddUser(id: $id, userId: $userId) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+            users {
+                id
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useMutationroleAddUser() {
+    return Urql.useMutation<RoleAddUserMutation, RoleAddUserMutationVariables>(
+        RoleAddUserDocument
+    );
+}
+export const RoleRemoveUserDocument = gql`
+    mutation roleRemoveUser($id: ID!, $userId: ID!) {
+        roleRemoveUser(id: $id, userId: $userId) {
+            ...RolePart
+            acls {
+                id
+                acl
+            }
+            users {
+                id
+            }
+        }
+    }
+    ${RolePartFragmentDoc}
+`;
+
+export function useMutationroleRemoveUser() {
+    return Urql.useMutation<
+        RoleRemoveUserMutation,
+        RoleRemoveUserMutationVariables
+    >(RoleRemoveUserDocument);
+}
+export const DeleteRoleRoleDocument = gql`
+    mutation deleteRoleRole($id: ID!) {
+        role_role_delete(id: $id)
+    }
+`;
+
+export function useMutationdeleteRoleRole() {
+    return Urql.useMutation<
+        DeleteRoleRoleMutation,
+        DeleteRoleRoleMutationVariables
+    >(DeleteRoleRoleDocument);
+}
+export const ProductSimplesDocument = gql`
+    query productSimples($filter: CordFilter) {
+        productSimples(filter: $filter) {
+            edges {
+                id
+                product {
+                    id
+                    user {
+                        id
+                    }
+                    expire
+                }
+                create
+                state
+                name
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+`;
+
+export function useQueryproductSimples(
+    options: Omit<Urql.UseQueryArgs<ProductSimplesQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<ProductSimplesQuery>({
+        query: ProductSimplesDocument,
+        ...options,
+    });
+}
+export const ProductSimpleByIdDocument = gql`
+    query productSimpleById($id: ID!) {
+        productSimpleById(id: $id) {
+            id
+            name
+            description
+            product {
+                id
+                expire
+            }
+            state
+        }
+    }
+`;
+
+export function useQueryproductSimpleById(
+    options: Omit<
+        Urql.UseQueryArgs<ProductSimpleByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<ProductSimpleByIdQuery>({
+        query: ProductSimpleByIdDocument,
+        ...options,
+    });
+}
+export const MyProductSimplesDocument = gql`
+    query myProductSimples {
+        productSimplesMy {
+            id
+            name
+            product {
+                id
+                expire
+            }
+            state
+        }
+    }
+`;
+
+export function useQuerymyProductSimples(
+    options: Omit<
+        Urql.UseQueryArgs<MyProductSimplesQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<MyProductSimplesQuery>({
+        query: MyProductSimplesDocument,
+        ...options,
+    });
+}
+export const ProductSimpleEditLabelDocument = gql`
+    mutation productSimpleEditLabel($id: ID!, $label: String!) {
+        productSimpleEditLabel(id: $id, label: $label) {
+            id
+            name
+            product {
+                id
+                expire
+            }
+            state
+        }
+    }
+`;
+
+export function useMutationproductSimpleEditLabel() {
+    return Urql.useMutation<
+        ProductSimpleEditLabelMutation,
+        ProductSimpleEditLabelMutationVariables
+    >(ProductSimpleEditLabelDocument);
+}
+export const ProductSimpleDeleteDocument = gql`
+    mutation productSimpleDelete($id: ID!) {
+        productSimpleDelete(id: $id)
+    }
+`;
+
+export function useMutationproductSimpleDelete() {
+    return Urql.useMutation<
+        ProductSimpleDeleteMutation,
+        ProductSimpleDeleteMutationVariables
+    >(ProductSimpleDeleteDocument);
+}
+export const ProductSimpleSetStateDocument = gql`
+    mutation productSimpleSetState($id: ID!, $state: String!) {
+        productSimpleSetState(id: $id, state: $state) {
+            id
+            name
+            product {
+                id
+                expire
+            }
+            state
+        }
+    }
+`;
+
+export function useMutationproductSimpleSetState() {
+    return Urql.useMutation<
+        ProductSimpleSetStateMutation,
+        ProductSimpleSetStateMutationVariables
+    >(ProductSimpleSetStateDocument);
+}
+export const SupportQuickResponseDeleteDocument = gql`
+    mutation supportQuickResponseDelete($id: ID!) {
+        supportQuickResponseDelete(id: $id)
+    }
+`;
+
+export function useMutationsupportQuickResponseDelete() {
+    return Urql.useMutation<
+        SupportQuickResponseDeleteMutation,
+        SupportQuickResponseDeleteMutationVariables
+    >(SupportQuickResponseDeleteDocument);
+}
+export const SupportQuickResponseEditDocument = gql`
+    mutation supportQuickResponseEdit($dto: SupportQuickResponseEditDto!) {
+        supportQuickResponseEdit(dto: $dto) {
+            ...supportQuickResponseFragment
+        }
+    }
+    ${SupportQuickResponseFragmentFragmentDoc}
+`;
+
+export function useMutationsupportQuickResponseEdit() {
+    return Urql.useMutation<
+        SupportQuickResponseEditMutation,
+        SupportQuickResponseEditMutationVariables
+    >(SupportQuickResponseEditDocument);
+}
+export const SupportQuickResponseCreateDocument = gql`
+    mutation supportQuickResponseCreate($dto: SupportQuickResponseCreateDto!) {
+        supportQuickResponseCreate(dto: $dto) {
+            ...supportQuickResponseFragment
+        }
+    }
+    ${SupportQuickResponseFragmentFragmentDoc}
+`;
+
+export function useMutationsupportQuickResponseCreate() {
+    return Urql.useMutation<
+        SupportQuickResponseCreateMutation,
+        SupportQuickResponseCreateMutationVariables
+    >(SupportQuickResponseCreateDocument);
+}
+export const SupportQuickResponsesDocument = gql`
+    query supportQuickResponses($filter: CordFilter) {
+        supportQuickResponses(filter: $filter) {
+            edges {
+                ...supportQuickResponseFragment
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${SupportQuickResponseFragmentFragmentDoc}
+`;
+
+export function useQuerysupportQuickResponses(
+    options: Omit<
+        Urql.UseQueryArgs<SupportQuickResponsesQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<SupportQuickResponsesQuery>({
+        query: SupportQuickResponsesDocument,
+        ...options,
+    });
+}
+export const SupportQuickResponseByIdDocument = gql`
+    query supportQuickResponseById($id: ID!) {
+        supportQuickResponseById(id: $id) {
+            ...supportQuickResponseFragment
+        }
+    }
+    ${SupportQuickResponseFragmentFragmentDoc}
+`;
+
+export function useQuerysupportQuickResponseById(
+    options: Omit<
+        Urql.UseQueryArgs<SupportQuickResponseByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<SupportQuickResponseByIdQuery>({
+        query: SupportQuickResponseByIdDocument,
+        ...options,
+    });
+}
+export const SupportTicketDeleteMessageDocument = gql`
+    mutation supportTicketDeleteMessage($id: ID!) {
+        supportTicketDeleteMessage(id: $id) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketDeleteMessage() {
+    return Urql.useMutation<
+        SupportTicketDeleteMessageMutation,
+        SupportTicketDeleteMessageMutationVariables
+    >(SupportTicketDeleteMessageDocument);
+}
+export const UserMyTicketsDocument = gql`
+    query UserMyTickets {
+        user_me {
+            id
+            tickets {
+                ...SupportTicketPart
+            }
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useQueryUserMyTickets(
+    options: Omit<Urql.UseQueryArgs<UserMyTicketsQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<UserMyTicketsQuery>({
+        query: UserMyTicketsDocument,
+        ...options,
+    });
+}
+export const SupportTicketByIdDocument = gql`
+    query supportTicketById($id: ID!) {
+        supportTicketById(id: $id) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useQuerysupportTicketById(
+    options: Omit<
+        Urql.UseQueryArgs<SupportTicketByIdQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<SupportTicketByIdQuery>({
+        query: SupportTicketByIdDocument,
+        ...options,
+    });
+}
+export const SupportTicketDeleteDocument = gql`
+    mutation supportTicketDelete($id: ID!) {
+        supportTicketDelete(id: $id)
+    }
+`;
+
+export function useMutationsupportTicketDelete() {
+    return Urql.useMutation<
+        SupportTicketDeleteMutation,
+        SupportTicketDeleteMutationVariables
+    >(SupportTicketDeleteDocument);
+}
+export const SupportTicketsDocument = gql`
+    query supportTickets($filter: CordFilter) {
+        supportTickets(filter: $filter) {
+            edges {
+                ...SupportTicketPart
+            }
+            pageInfo {
+                totalCount
+            }
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useQuerysupportTickets(
+    options: Omit<Urql.UseQueryArgs<SupportTicketsQueryVariables>, 'query'> = {}
+) {
+    return Urql.useQuery<SupportTicketsQuery>({
+        query: SupportTicketsDocument,
+        ...options,
+    });
+}
+export const SupportTicketResetUnreadCounterDocument = gql`
+    mutation supportTicketResetUnreadCounter($id: ID!) {
+        supportTicketResetUnreadCounter(id: $id) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketResetUnreadCounter() {
+    return Urql.useMutation<
+        SupportTicketResetUnreadCounterMutation,
+        SupportTicketResetUnreadCounterMutationVariables
+    >(SupportTicketResetUnreadCounterDocument);
+}
+export const AddMessageToSupportTicketDocument = gql`
+    mutation addMessageToSupportTicket($message: String!, $id: ID!) {
+        support_ticket_add_message(data: { message: $message, id: $id }) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationaddMessageToSupportTicket() {
+    return Urql.useMutation<
+        AddMessageToSupportTicketMutation,
+        AddMessageToSupportTicketMutationVariables
+    >(AddMessageToSupportTicketDocument);
+}
+export const SupportTicketSetStatusDocument = gql`
+    mutation supportTicketSetStatus($id: ID!, $status: String!) {
+        supportTicketSetStatus(id: $id, status: $status) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketSetStatus() {
+    return Urql.useMutation<
+        SupportTicketSetStatusMutation,
+        SupportTicketSetStatusMutationVariables
+    >(SupportTicketSetStatusDocument);
+}
+export const SupportTicketCloseDocument = gql`
+    mutation supportTicketClose($id: ID!) {
+        supportTicketClose(id: $id) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketClose() {
+    return Urql.useMutation<
+        SupportTicketCloseMutation,
+        SupportTicketCloseMutationVariables
+    >(SupportTicketCloseDocument);
+}
+export const SupportTicketReopenDocument = gql`
+    mutation supportTicketReopen($id: ID!) {
+        supportTicketReopen(id: $id) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketReopen() {
+    return Urql.useMutation<
+        SupportTicketReopenMutation,
+        SupportTicketReopenMutationVariables
+    >(SupportTicketReopenDocument);
+}
+export const SupportTicketAssignToDocument = gql`
+    mutation supportTicketAssignTo($id: ID!, $userId: ID!) {
+        supportTicketAssignTo(id: $id, userId: $userId) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketAssignTo() {
+    return Urql.useMutation<
+        SupportTicketAssignToMutation,
+        SupportTicketAssignToMutationVariables
+    >(SupportTicketAssignToDocument);
+}
+export const SupportTicketAddFileDocument = gql`
+    mutation supportTicketAddFile($id: ID!, $fileId: ID!) {
+        supportTicketAddFile(id: $id, fileId: $fileId) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupportTicketAddFile() {
+    return Urql.useMutation<
+        SupportTicketAddFileMutation,
+        SupportTicketAddFileMutationVariables
+    >(SupportTicketAddFileDocument);
+}
+export const EditSupportTicketDocument = gql`
+    mutation editSupportTicket($id: ID!, $status: String, $priority: Int) {
+        support_ticket_edit(
+            data: { priority: $priority, status: $status }
+            id: $id
+        ) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationeditSupportTicket() {
+    return Urql.useMutation<
+        EditSupportTicketMutation,
+        EditSupportTicketMutationVariables
+    >(EditSupportTicketDocument);
+}
+export const Support_Ticket_NewDocument = gql`
+    mutation support_ticket_new($data: SupportTicketNewInput!) {
+        support_ticket_new(data: $data) {
+            ...SupportTicketPart
+        }
+    }
+    ${SupportTicketPartFragmentDoc}
+`;
+
+export function useMutationsupport_Ticket_New() {
+    return Urql.useMutation<
+        Support_Ticket_NewMutation,
+        Support_Ticket_NewMutationVariables
+    >(Support_Ticket_NewDocument);
+}
+export const SupportTicketPrioritiesDocument = gql`
+    query supportTicketPriorities {
+        supportTicketPriorities {
+            id
+            label
+            priority
+        }
+    }
+`;
+
+export function useQuerysupportTicketPriorities(
+    options: Omit<
+        Urql.UseQueryArgs<SupportTicketPrioritiesQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<SupportTicketPrioritiesQuery>({
+        query: SupportTicketPrioritiesDocument,
+        ...options,
+    });
+}
+export const SupportTicketRevisersDocument = gql`
+    query supportTicketRevisers {
+        supportTicketRevisers {
+            id
+            name
+        }
+    }
+`;
+
+export function useQuerysupportTicketRevisers(
+    options: Omit<
+        Urql.UseQueryArgs<SupportTicketRevisersQueryVariables>,
+        'query'
+    > = {}
+) {
+    return Urql.useQuery<SupportTicketRevisersQuery>({
+        query: SupportTicketRevisersDocument,
+        ...options,
+    });
+}
+export const ProductTeamspeakChangeLabelDocument = gql`
     mutation productTeamspeakChangeLabel($id: ID!, $label: String!) {
         productTeamspeakChangeLabel(id: $id, label: $label) {
             ...ProductTeamspeakPart
         }
     }
-    ${_gql_ProductTeamspeakPart}
-` as DocumentNode;
+    ${ProductTeamspeakPartFragmentDoc}
+`;
 
-export function useMutationProductTeamspeakChangeLabel() {
+export function useMutationproductTeamspeakChangeLabel() {
     return Urql.useMutation<
         ProductTeamspeakChangeLabelMutation,
         ProductTeamspeakChangeLabelMutationVariables
-    >(useMutationProductTeamspeakChangeLabel.Document);
+    >(ProductTeamspeakChangeLabelDocument);
 }
-
-useQueryProductTeamspeaks.Document = gql`
+export const ProductTeamspeaksDocument = gql`
     query productTeamspeaks($filter: CordFilter) {
         productTeamspeaks(filter: $filter) {
             edges {
@@ -10472,22 +10340,20 @@ useQueryProductTeamspeaks.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTeamspeaks(
+export function useQueryproductTeamspeaks(
     options: Omit<
         Urql.UseQueryArgs<ProductTeamspeaksQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTeamspeaksQuery>({
-        query: useQueryProductTeamspeaks.Document,
-        ...queryDefaultOptions,
+        query: ProductTeamspeaksDocument,
         ...options,
     });
 }
-
-useQueryMyProductTeamspeaks.Document = gql`
+export const MyProductTeamspeaksDocument = gql`
     query MyProductTeamspeaks {
         productTeamspeaksMy {
             id
@@ -10512,7 +10378,7 @@ useQueryMyProductTeamspeaks.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
 export function useQueryMyProductTeamspeaks(
     options: Omit<
@@ -10521,213 +10387,173 @@ export function useQueryMyProductTeamspeaks(
     > = {}
 ) {
     return Urql.useQuery<MyProductTeamspeaksQuery>({
-        query: useQueryMyProductTeamspeaks.Document,
-        ...queryDefaultOptions,
+        query: MyProductTeamspeaksDocument,
         ...options,
     });
 }
-
-useQueryProductTeamspeakById.Document = gql`
+export const ProductTeamspeakByIdDocument = gql`
     query productTeamspeakById($id: ID!) {
         productTeamspeakById(id: $id) {
             ...ProductTeamspeakPart
         }
     }
-    ${_gql_ProductTeamspeakPart}
-` as DocumentNode;
+    ${ProductTeamspeakPartFragmentDoc}
+`;
 
-export function useQueryProductTeamspeakById(
+export function useQueryproductTeamspeakById(
     options: Omit<
         Urql.UseQueryArgs<ProductTeamspeakByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTeamspeakByIdQuery>({
-        query: useQueryProductTeamspeakById.Document,
-        ...queryDefaultOptions,
+        query: ProductTeamspeakByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTeamspeakTokens.Document = gql`
+export const ProductTeamspeakTokensDocument = gql`
     query productTeamspeakTokens($teamspeakId: ID!) {
         productTeamspeakTokens(teamspeakId: $teamspeakId) {
             group
             token
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTeamspeakTokens(
+export function useQueryproductTeamspeakTokens(
     options: Omit<
         Urql.UseQueryArgs<ProductTeamspeakTokensQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTeamspeakTokensQuery>({
-        query: useQueryProductTeamspeakTokens.Document,
-        ...queryDefaultOptions,
+        query: ProductTeamspeakTokensDocument,
         ...options,
     });
 }
-
-useQueryProductTeamspeakRunning.Document = gql`
+export const ProductTeamspeakRunningDocument = gql`
     query productTeamspeakRunning($teamspeakId: ID!) {
         productTeamspeakRunning(teamspeakId: $teamspeakId)
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTeamspeakRunning(
+export function useQueryproductTeamspeakRunning(
     options: Omit<
         Urql.UseQueryArgs<ProductTeamspeakRunningQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTeamspeakRunningQuery>({
-        query: useQueryProductTeamspeakRunning.Document,
-        ...queryDefaultOptions,
+        query: ProductTeamspeakRunningDocument,
         ...options,
     });
 }
-
-useMutationProductTeamspeakTokenCreate.Document = gql`
+export const ProductTeamspeakTokenCreateDocument = gql`
     mutation productTeamspeakTokenCreate($teamspeakId: ID!, $group: String!) {
         productTeamspeakTokenCreate(teamspeakId: $teamspeakId, group: $group)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductTeamspeakTokenCreate() {
+export function useMutationproductTeamspeakTokenCreate() {
     return Urql.useMutation<
         ProductTeamspeakTokenCreateMutation,
         ProductTeamspeakTokenCreateMutationVariables
-    >(useMutationProductTeamspeakTokenCreate.Document);
+    >(ProductTeamspeakTokenCreateDocument);
 }
-
-useMutationProductTeamspeakTokenDelete.Document = gql`
+export const ProductTeamspeakTokenDeleteDocument = gql`
     mutation productTeamspeakTokenDelete($teamspeakId: ID!, $token: String!) {
         productTeamspeakTokenDelete(teamspeakId: $teamspeakId, token: $token)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductTeamspeakTokenDelete() {
+export function useMutationproductTeamspeakTokenDelete() {
     return Urql.useMutation<
         ProductTeamspeakTokenDeleteMutation,
         ProductTeamspeakTokenDeleteMutationVariables
-    >(useMutationProductTeamspeakTokenDelete.Document);
+    >(ProductTeamspeakTokenDeleteDocument);
 }
-
-useQueryProductTeamspeakExist.Document = gql`
+export const ProductTeamspeakExistDocument = gql`
     query productTeamspeakExist($teamspeakId: ID!) {
         productTeamspeakExist(teamspeakId: $teamspeakId)
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTeamspeakExist(
+export function useQueryproductTeamspeakExist(
     options: Omit<
         Urql.UseQueryArgs<ProductTeamspeakExistQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTeamspeakExistQuery>({
-        query: useQueryProductTeamspeakExist.Document,
-        ...queryDefaultOptions,
+        query: ProductTeamspeakExistDocument,
         ...options,
     });
 }
-
-useMutationProductTeamspeakStart.Document = gql`
+export const ProductTeamspeakStartDocument = gql`
     mutation productTeamspeakStart($teamspeakId: ID!) {
         productTeamspeakStart(teamspeakId: $teamspeakId) {
             ...ProductTeamspeakPart
         }
     }
-    ${_gql_ProductTeamspeakPart}
-` as DocumentNode;
+    ${ProductTeamspeakPartFragmentDoc}
+`;
 
-export function useMutationProductTeamspeakStart() {
+export function useMutationproductTeamspeakStart() {
     return Urql.useMutation<
         ProductTeamspeakStartMutation,
         ProductTeamspeakStartMutationVariables
-    >(useMutationProductTeamspeakStart.Document);
+    >(ProductTeamspeakStartDocument);
 }
-
-useMutationProductTeamspeakRemove.Document = gql`
+export const ProductTeamspeakRemoveDocument = gql`
     mutation productTeamspeakRemove($id: ID!) {
         productTeamspeakRemove(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductTeamspeakRemove() {
+export function useMutationproductTeamspeakRemove() {
     return Urql.useMutation<
         ProductTeamspeakRemoveMutation,
         ProductTeamspeakRemoveMutationVariables
-    >(useMutationProductTeamspeakRemove.Document);
+    >(ProductTeamspeakRemoveDocument);
 }
-
-useMutationProductTeamspeakStop.Document = gql`
+export const ProductTeamspeakStopDocument = gql`
     mutation productTeamspeakStop($teamspeakId: ID!) {
         productTeamspeakStop(teamspeakId: $teamspeakId) {
             ...ProductTeamspeakPart
         }
     }
-    ${_gql_ProductTeamspeakPart}
-` as DocumentNode;
+    ${ProductTeamspeakPartFragmentDoc}
+`;
 
-export function useMutationProductTeamspeakStop() {
+export function useMutationproductTeamspeakStop() {
     return Urql.useMutation<
         ProductTeamspeakStopMutation,
         ProductTeamspeakStopMutationVariables
-    >(useMutationProductTeamspeakStop.Document);
+    >(ProductTeamspeakStopDocument);
 }
-
-useMutationProductTeamspeakInstall.Document = gql`
+export const ProductTeamspeakInstallDocument = gql`
     mutation productTeamspeakInstall($teamspeakId: ID!) {
         productTeamspeakInstall(teamspeakId: $teamspeakId) {
             ...ProductTeamspeakPart
         }
     }
-    ${_gql_ProductTeamspeakPart}
-` as DocumentNode;
+    ${ProductTeamspeakPartFragmentDoc}
+`;
 
-export function useMutationProductTeamspeakInstall() {
+export function useMutationproductTeamspeakInstall() {
     return Urql.useMutation<
         ProductTeamspeakInstallMutation,
         ProductTeamspeakInstallMutationVariables
-    >(useMutationProductTeamspeakInstall.Document);
+    >(ProductTeamspeakInstallDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTemplateDomainPart = gql`
-    fragment ProductTemplateDomainPart on ProductTemplateDomain {
-        id
-        options {
-            id
-        }
-        title
-        setup
-        basePrice
-        active
-        gTld
-        update
-        attributes
-        urlKey
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateDomainById.Document = gql`
+export const ProductTemplateDomainByIdDocument = gql`
     query ProductTemplateDomainById($id: ID!) {
         productTemplateDomainById(id: $id) {
             ...ProductTemplateDomainPart
         }
     }
-    ${_gql_ProductTemplateDomainPart}
-` as DocumentNode;
+    ${ProductTemplateDomainPartFragmentDoc}
+`;
 
 export function useQueryProductTemplateDomainById(
     options: Omit<
@@ -10736,13 +10562,11 @@ export function useQueryProductTemplateDomainById(
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateDomainByIdQuery>({
-        query: useQueryProductTemplateDomainById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateDomainByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateDomains.Document = gql`
+export const ProductTemplateDomainsDocument = gql`
     query ProductTemplateDomains($filter: CordFilter) {
         productTemplateDomains(filter: $filter) {
             edges {
@@ -10763,7 +10587,7 @@ useQueryProductTemplateDomains.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
 export function useQueryProductTemplateDomains(
     options: Omit<
@@ -10772,13 +10596,11 @@ export function useQueryProductTemplateDomains(
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateDomainsQuery>({
-        query: useQueryProductTemplateDomains.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateDomainsDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateDomain.Document = gql`
+export const CreateProductTemplateDomainDocument = gql`
     mutation createProductTemplateDomain(
         $title: String!
         $setup: Float!
@@ -10798,16 +10620,15 @@ useMutationCreateProductTemplateDomain.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateDomain() {
+export function useMutationcreateProductTemplateDomain() {
     return Urql.useMutation<
         CreateProductTemplateDomainMutation,
         CreateProductTemplateDomainMutationVariables
-    >(useMutationCreateProductTemplateDomain.Document);
+    >(CreateProductTemplateDomainDocument);
 }
-
-useMutationEditProductTemplateDomain.Document = gql`
+export const EditProductTemplateDomainDocument = gql`
     mutation editProductTemplateDomain(
         $id: ID!
         $title: String!
@@ -10829,38 +10650,28 @@ useMutationEditProductTemplateDomain.Document = gql`
             ...ProductTemplateDomainPart
         }
     }
-    ${_gql_ProductTemplateDomainPart}
-` as DocumentNode;
+    ${ProductTemplateDomainPartFragmentDoc}
+`;
 
-export function useMutationEditProductTemplateDomain() {
+export function useMutationeditProductTemplateDomain() {
     return Urql.useMutation<
         EditProductTemplateDomainMutation,
         EditProductTemplateDomainMutationVariables
-    >(useMutationEditProductTemplateDomain.Document);
+    >(EditProductTemplateDomainDocument);
 }
-
-useMutationDeleteProductTemplateDomain.Document = gql`
+export const DeleteProductTemplateDomainDocument = gql`
     mutation deleteProductTemplateDomain($id: ID!) {
         productTemplateDomainDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateDomain() {
+export function useMutationdeleteProductTemplateDomain() {
     return Urql.useMutation<
         DeleteProductTemplateDomainMutation,
         DeleteProductTemplateDomainMutationVariables
-    >(useMutationDeleteProductTemplateDomain.Document);
+    >(DeleteProductTemplateDomainDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateExtendPeriods.Document = gql`
+export const ProductTemplateExtendPeriodsDocument = gql`
     query productTemplateExtendPeriods($filter: CordFilter) {
         productTemplateExtendPeriods(filter: $filter) {
             edges {
@@ -10875,22 +10686,20 @@ useQueryProductTemplateExtendPeriods.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateExtendPeriods(
+export function useQueryproductTemplateExtendPeriods(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateExtendPeriodsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateExtendPeriodsQuery>({
-        query: useQueryProductTemplateExtendPeriods.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateExtendPeriodsDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateExtendPeriodById.Document = gql`
+export const ProductTemplateExtendPeriodByIdDocument = gql`
     query productTemplateExtendPeriodById($id: ID!) {
         productTemplateExtendPeriodById(id: $id) {
             id
@@ -10900,22 +10709,20 @@ useQueryProductTemplateExtendPeriodById.Document = gql`
             globalGroup
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateExtendPeriodById(
+export function useQueryproductTemplateExtendPeriodById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateExtendPeriodByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateExtendPeriodByIdQuery>({
-        query: useQueryProductTemplateExtendPeriodById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateExtendPeriodByIdDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateExtendPeriod.Document = gql`
+export const CreateProductTemplateExtendPeriodDocument = gql`
     mutation createProductTemplateExtendPeriod(
         $expression: String!
         $globalGroup: String!
@@ -10931,16 +10738,15 @@ useMutationCreateProductTemplateExtendPeriod.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateExtendPeriod() {
+export function useMutationcreateProductTemplateExtendPeriod() {
     return Urql.useMutation<
         CreateProductTemplateExtendPeriodMutation,
         CreateProductTemplateExtendPeriodMutationVariables
-    >(useMutationCreateProductTemplateExtendPeriod.Document);
+    >(CreateProductTemplateExtendPeriodDocument);
 }
-
-useMutationEditProductTemplateExtendPeriod.Document = gql`
+export const EditProductTemplateExtendPeriodDocument = gql`
     mutation editProductTemplateExtendPeriod(
         $id: ID!
         $expression: String!
@@ -10962,84 +10768,47 @@ useMutationEditProductTemplateExtendPeriod.Document = gql`
             globalGroup
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationEditProductTemplateExtendPeriod() {
+export function useMutationeditProductTemplateExtendPeriod() {
     return Urql.useMutation<
         EditProductTemplateExtendPeriodMutation,
         EditProductTemplateExtendPeriodMutationVariables
-    >(useMutationEditProductTemplateExtendPeriod.Document);
+    >(EditProductTemplateExtendPeriodDocument);
 }
-
-useMutationDeleteProductTemplateExtendPeriod.Document = gql`
+export const DeleteProductTemplateExtendPeriodDocument = gql`
     mutation deleteProductTemplateExtendPeriod($id: ID!) {
         productTemplateExtendPeriodDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateExtendPeriod() {
+export function useMutationdeleteProductTemplateExtendPeriod() {
     return Urql.useMutation<
         DeleteProductTemplateExtendPeriodMutation,
         DeleteProductTemplateExtendPeriodMutationVariables
-    >(useMutationDeleteProductTemplateExtendPeriod.Document);
+    >(DeleteProductTemplateExtendPeriodDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTemplateGameserverPart = gql`
-    fragment ProductTemplateGameserverPart on ProductTemplateGameserver {
-        id
-        memory {
-            id
-        }
-        slot {
-            id
-        }
-        options {
-            id
-        }
-        templateOptions {
-            id
-        }
-        title
-        setup
-        basePrice
-        active
-        update
-        hostNodeFilterKey
-        attributes
-        urlKey
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateGameserverById.Document = gql`
+export const ProductTemplateGameserverByIdDocument = gql`
     query productTemplateGameserverById($id: ID!) {
         productTemplateGameserverById(id: $id) {
             ...ProductTemplateGameserverPart
         }
     }
-    ${_gql_ProductTemplateGameserverPart}
-` as DocumentNode;
+    ${ProductTemplateGameserverPartFragmentDoc}
+`;
 
-export function useQueryProductTemplateGameserverById(
+export function useQueryproductTemplateGameserverById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateGameserverByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateGameserverByIdQuery>({
-        query: useQueryProductTemplateGameserverById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateGameserverByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateGameservers.Document = gql`
+export const ProductTemplateGameserversDocument = gql`
     query productTemplateGameservers($filter: CordFilter) {
         productTemplateGameservers(filter: $filter) {
             edges {
@@ -11065,22 +10834,20 @@ useQueryProductTemplateGameservers.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateGameservers(
+export function useQueryproductTemplateGameservers(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateGameserversQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateGameserversQuery>({
-        query: useQueryProductTemplateGameservers.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateGameserversDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateGameserver.Document = gql`
+export const CreateProductTemplateGameserverDocument = gql`
     mutation createProductTemplateGameserver(
         $title: String!
         $setup: Float!
@@ -11102,16 +10869,15 @@ useMutationCreateProductTemplateGameserver.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateGameserver() {
+export function useMutationcreateProductTemplateGameserver() {
     return Urql.useMutation<
         CreateProductTemplateGameserverMutation,
         CreateProductTemplateGameserverMutationVariables
-    >(useMutationCreateProductTemplateGameserver.Document);
+    >(CreateProductTemplateGameserverDocument);
 }
-
-useMutationEditProductTemplateGameserver.Document = gql`
+export const EditProductTemplateGameserverDocument = gql`
     mutation editProductTemplateGameserver(
         $id: ID!
         $title: String!
@@ -11141,38 +10907,28 @@ useMutationEditProductTemplateGameserver.Document = gql`
             ...ProductTemplateGameserverPart
         }
     }
-    ${_gql_ProductTemplateGameserverPart}
-` as DocumentNode;
+    ${ProductTemplateGameserverPartFragmentDoc}
+`;
 
-export function useMutationEditProductTemplateGameserver() {
+export function useMutationeditProductTemplateGameserver() {
     return Urql.useMutation<
         EditProductTemplateGameserverMutation,
         EditProductTemplateGameserverMutationVariables
-    >(useMutationEditProductTemplateGameserver.Document);
+    >(EditProductTemplateGameserverDocument);
 }
-
-useMutationDeleteProductTemplateGameserver.Document = gql`
+export const DeleteProductTemplateGameserverDocument = gql`
     mutation deleteProductTemplateGameserver($id: ID!) {
         productTemplateGameserverDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateGameserver() {
+export function useMutationdeleteProductTemplateGameserver() {
     return Urql.useMutation<
         DeleteProductTemplateGameserverMutation,
         DeleteProductTemplateGameserverMutationVariables
-    >(useMutationDeleteProductTemplateGameserver.Document);
+    >(DeleteProductTemplateGameserverDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateOptionById.Document = gql`
+export const ProductTemplateOptionByIdDocument = gql`
     query productTemplateOptionById($id: ID!) {
         productTemplateOptionById(id: $id) {
             id
@@ -11195,22 +10951,20 @@ useQueryProductTemplateOptionById.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateOptionById(
+export function useQueryproductTemplateOptionById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateOptionByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateOptionByIdQuery>({
-        query: useQueryProductTemplateOptionById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateOptionByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateOptions.Document = gql`
+export const ProductTemplateOptionsDocument = gql`
     query productTemplateOptions($filter: CordFilter) {
         productTemplateOptions(filter: $filter) {
             edges {
@@ -11237,37 +10991,34 @@ useQueryProductTemplateOptions.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateOptions(
+export function useQueryproductTemplateOptions(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateOptionsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateOptionsQuery>({
-        query: useQueryProductTemplateOptions.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateOptionsDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateOption.Document = gql`
+export const CreateProductTemplateOptionDocument = gql`
     mutation createProductTemplateOption($title: String!, $display: String!) {
         productTemplateOptionCreate(title: $title, display: $display) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateOption() {
+export function useMutationcreateProductTemplateOption() {
     return Urql.useMutation<
         CreateProductTemplateOptionMutation,
         CreateProductTemplateOptionMutationVariables
-    >(useMutationCreateProductTemplateOption.Document);
+    >(CreateProductTemplateOptionDocument);
 }
-
-useMutationEditProductTemplateOption.Document = gql`
+export const EditProductTemplateOptionDocument = gql`
     mutation editProductTemplateOption(
         $id: ID!
         $title: String!
@@ -11283,24 +11034,15 @@ useMutationEditProductTemplateOption.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationEditProductTemplateOption() {
+export function useMutationeditProductTemplateOption() {
     return Urql.useMutation<
         EditProductTemplateOptionMutation,
         EditProductTemplateOptionMutationVariables
-    >(useMutationEditProductTemplateOption.Document);
+    >(EditProductTemplateOptionDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateOptionVariantById.Document = gql`
+export const ProductTemplateOptionVariantByIdDocument = gql`
     query productTemplateOptionVariantById($id: ID!) {
         productTemplateOptionVariantById(id: $id) {
             id
@@ -11318,22 +11060,20 @@ useQueryProductTemplateOptionVariantById.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateOptionVariantById(
+export function useQueryproductTemplateOptionVariantById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateOptionVariantByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateOptionVariantByIdQuery>({
-        query: useQueryProductTemplateOptionVariantById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateOptionVariantByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateOptionVariants.Document = gql`
+export const ProductTemplateOptionVariantsDocument = gql`
     query productTemplateOptionVariants($filter: CordFilter) {
         productTemplateOptionVariants(filter: $filter) {
             edges {
@@ -11359,22 +11099,20 @@ useQueryProductTemplateOptionVariants.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateOptionVariants(
+export function useQueryproductTemplateOptionVariants(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateOptionVariantsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateOptionVariantsQuery>({
-        query: useQueryProductTemplateOptionVariants.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateOptionVariantsDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateOptionVariant.Document = gql`
+export const CreateProductTemplateOptionVariantDocument = gql`
     mutation createProductTemplateOptionVariant(
         $optionId: ID!
         $key: String!
@@ -11396,16 +11134,15 @@ useMutationCreateProductTemplateOptionVariant.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateOptionVariant() {
+export function useMutationcreateProductTemplateOptionVariant() {
     return Urql.useMutation<
         CreateProductTemplateOptionVariantMutation,
         CreateProductTemplateOptionVariantMutationVariables
-    >(useMutationCreateProductTemplateOptionVariant.Document);
+    >(CreateProductTemplateOptionVariantDocument);
 }
-
-useMutationEditProductTemplateOptionVariant.Document = gql`
+export const EditProductTemplateOptionVariantDocument = gql`
     mutation editProductTemplateOptionVariant(
         $id: ID!
         $key: String!
@@ -11443,66 +11180,34 @@ useMutationEditProductTemplateOptionVariant.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationEditProductTemplateOptionVariant() {
+export function useMutationeditProductTemplateOptionVariant() {
     return Urql.useMutation<
         EditProductTemplateOptionVariantMutation,
         EditProductTemplateOptionVariantMutationVariables
-    >(useMutationEditProductTemplateOptionVariant.Document);
+    >(EditProductTemplateOptionVariantDocument);
 }
-
-useMutationDeleteProductTemplateOptionVariant.Document = gql`
+export const DeleteProductTemplateOptionVariantDocument = gql`
     mutation deleteProductTemplateOptionVariant($id: ID!) {
         productTemplateOptionVariantDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateOptionVariant() {
+export function useMutationdeleteProductTemplateOptionVariant() {
     return Urql.useMutation<
         DeleteProductTemplateOptionVariantMutation,
         DeleteProductTemplateOptionVariantMutationVariables
-    >(useMutationDeleteProductTemplateOptionVariant.Document);
+    >(DeleteProductTemplateOptionVariantDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTemplateSimplePart = gql`
-    fragment ProductTemplateSimplePart on ProductTemplateSimple {
-        id
-        options {
-            id
-        }
-        title
-        setup
-        basePrice
-        active
-        periods {
-            id
-        }
-        update
-        attributes
-        availablePeriods {
-            id
-        }
-        includedGTld
-        urlKey
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateSimpleById.Document = gql`
+export const ProductTemplateSimpleByIdDocument = gql`
     query ProductTemplateSimpleById($id: ID!) {
         productTemplateSimpleById(id: $id) {
             ...ProductTemplateSimplePart
         }
     }
-    ${_gql_ProductTemplateSimplePart}
-` as DocumentNode;
+    ${ProductTemplateSimplePartFragmentDoc}
+`;
 
 export function useQueryProductTemplateSimpleById(
     options: Omit<
@@ -11511,13 +11216,11 @@ export function useQueryProductTemplateSimpleById(
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateSimpleByIdQuery>({
-        query: useQueryProductTemplateSimpleById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateSimpleByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateSimples.Document = gql`
+export const ProductTemplateSimplesDocument = gql`
     query ProductTemplateSimples($filter: CordFilter) {
         productTemplateSimples(filter: $filter) {
             edges {
@@ -11537,7 +11240,7 @@ useQueryProductTemplateSimples.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
 export function useQueryProductTemplateSimples(
     options: Omit<
@@ -11546,13 +11249,11 @@ export function useQueryProductTemplateSimples(
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateSimplesQuery>({
-        query: useQueryProductTemplateSimples.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateSimplesDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateSimple.Document = gql`
+export const CreateProductTemplateSimpleDocument = gql`
     mutation createProductTemplateSimple(
         $title: String!
         $setup: Float!
@@ -11570,16 +11271,15 @@ useMutationCreateProductTemplateSimple.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateSimple() {
+export function useMutationcreateProductTemplateSimple() {
     return Urql.useMutation<
         CreateProductTemplateSimpleMutation,
         CreateProductTemplateSimpleMutationVariables
-    >(useMutationCreateProductTemplateSimple.Document);
+    >(CreateProductTemplateSimpleDocument);
 }
-
-useMutationEditProductTemplateSimple.Document = gql`
+export const EditProductTemplateSimpleDocument = gql`
     mutation editProductTemplateSimple(
         $id: ID!
         $title: String!
@@ -11605,78 +11305,48 @@ useMutationEditProductTemplateSimple.Document = gql`
             ...ProductTemplateSimplePart
         }
     }
-    ${_gql_ProductTemplateSimplePart}
-` as DocumentNode;
+    ${ProductTemplateSimplePartFragmentDoc}
+`;
 
-export function useMutationEditProductTemplateSimple() {
+export function useMutationeditProductTemplateSimple() {
     return Urql.useMutation<
         EditProductTemplateSimpleMutation,
         EditProductTemplateSimpleMutationVariables
-    >(useMutationEditProductTemplateSimple.Document);
+    >(EditProductTemplateSimpleDocument);
 }
-
-useMutationDeleteProductTemplateSimple.Document = gql`
+export const DeleteProductTemplateSimpleDocument = gql`
     mutation deleteProductTemplateSimple($id: ID!) {
         productTemplateSimpleDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateSimple() {
+export function useMutationdeleteProductTemplateSimple() {
     return Urql.useMutation<
         DeleteProductTemplateSimpleMutation,
         DeleteProductTemplateSimpleMutationVariables
-    >(useMutationDeleteProductTemplateSimple.Document);
+    >(DeleteProductTemplateSimpleDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTemplateTeamspeakPart = gql`
-    fragment ProductTemplateTeamspeakPart on ProductTemplateTeamspeak {
-        id
-        slot {
-            id
-        }
-        options {
-            id
-        }
-        title
-        setup
-        basePrice
-        active
-        update
-        attributes
-        urlKey
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateTeamspeakById.Document = gql`
+export const ProductTemplateTeamspeakByIdDocument = gql`
     query productTemplateTeamspeakById($id: ID!) {
         productTemplateTeamspeakById(id: $id) {
             ...ProductTemplateTeamspeakPart
         }
     }
-    ${_gql_ProductTemplateTeamspeakPart}
-` as DocumentNode;
+    ${ProductTemplateTeamspeakPartFragmentDoc}
+`;
 
-export function useQueryProductTemplateTeamspeakById(
+export function useQueryproductTemplateTeamspeakById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateTeamspeakByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateTeamspeakByIdQuery>({
-        query: useQueryProductTemplateTeamspeakById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateTeamspeakByIdDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateTeamspeaks.Document = gql`
+export const ProductTemplateTeamspeaksDocument = gql`
     query productTemplateTeamspeaks($filter: CordFilter) {
         productTemplateTeamspeaks(filter: $filter) {
             edges {
@@ -11699,22 +11369,20 @@ useQueryProductTemplateTeamspeaks.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductTemplateTeamspeaks(
+export function useQueryproductTemplateTeamspeaks(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateTeamspeaksQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateTeamspeaksQuery>({
-        query: useQueryProductTemplateTeamspeaks.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateTeamspeaksDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateTeamspeak.Document = gql`
+export const CreateProductTemplateTeamspeakDocument = gql`
     mutation createProductTemplateTeamspeak(
         $title: String!
         $setup: Float!
@@ -11734,16 +11402,15 @@ useMutationCreateProductTemplateTeamspeak.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductTemplateTeamspeak() {
+export function useMutationcreateProductTemplateTeamspeak() {
     return Urql.useMutation<
         CreateProductTemplateTeamspeakMutation,
         CreateProductTemplateTeamspeakMutationVariables
-    >(useMutationCreateProductTemplateTeamspeak.Document);
+    >(CreateProductTemplateTeamspeakDocument);
 }
-
-useMutationEditProductTemplateTeamspeak.Document = gql`
+export const EditProductTemplateTeamspeakDocument = gql`
     mutation editProductTemplateTeamspeak(
         $id: ID!
         $title: String!
@@ -11765,60 +11432,28 @@ useMutationEditProductTemplateTeamspeak.Document = gql`
             ...ProductTemplateTeamspeakPart
         }
     }
-    ${_gql_ProductTemplateTeamspeakPart}
-` as DocumentNode;
+    ${ProductTemplateTeamspeakPartFragmentDoc}
+`;
 
-export function useMutationEditProductTemplateTeamspeak() {
+export function useMutationeditProductTemplateTeamspeak() {
     return Urql.useMutation<
         EditProductTemplateTeamspeakMutation,
         EditProductTemplateTeamspeakMutationVariables
-    >(useMutationEditProductTemplateTeamspeak.Document);
+    >(EditProductTemplateTeamspeakDocument);
 }
-
-useMutationDeleteProductTemplateTeamspeak.Document = gql`
+export const DeleteProductTemplateTeamspeakDocument = gql`
     mutation deleteProductTemplateTeamspeak($id: ID!) {
         productTemplateTeamspeakDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateTeamspeak() {
+export function useMutationdeleteProductTemplateTeamspeak() {
     return Urql.useMutation<
         DeleteProductTemplateTeamspeakMutation,
         DeleteProductTemplateTeamspeakMutationVariables
-    >(useMutationDeleteProductTemplateTeamspeak.Document);
+    >(DeleteProductTemplateTeamspeakDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductTemplateVserverPart = gql`
-    fragment ProductTemplateVserverPart on ProductTemplateVserver {
-        id
-        urlKey
-        title
-        setup
-        basePrice
-        active
-        platform
-        update
-        hostNodeFilterKey
-        memory {
-            id
-        }
-        space {
-            id
-        }
-        cores {
-            id
-        }
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductTemplateVservers.Document = gql`
+export const ProductTemplateVserversDocument = gql`
     query productTemplateVservers($filter: CordFilter) {
         productTemplateVservers(filter: $filter) {
             edges {
@@ -11829,45 +11464,41 @@ useQueryProductTemplateVservers.Document = gql`
             }
         }
     }
-    ${_gql_ProductTemplateVserverPart}
-` as DocumentNode;
+    ${ProductTemplateVserverPartFragmentDoc}
+`;
 
-export function useQueryProductTemplateVservers(
+export function useQueryproductTemplateVservers(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateVserversQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateVserversQuery>({
-        query: useQueryProductTemplateVservers.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateVserversDocument,
         ...options,
     });
 }
-
-useQueryProductTemplateVserverById.Document = gql`
+export const ProductTemplateVserverByIdDocument = gql`
     query productTemplateVserverById($id: ID!) {
         productTemplateVserverById(id: $id) {
             ...ProductTemplateVserverPart
         }
     }
-    ${_gql_ProductTemplateVserverPart}
-` as DocumentNode;
+    ${ProductTemplateVserverPartFragmentDoc}
+`;
 
-export function useQueryProductTemplateVserverById(
+export function useQueryproductTemplateVserverById(
     options: Omit<
         Urql.UseQueryArgs<ProductTemplateVserverByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductTemplateVserverByIdQuery>({
-        query: useQueryProductTemplateVserverById.Document,
-        ...queryDefaultOptions,
+        query: ProductTemplateVserverByIdDocument,
         ...options,
     });
 }
-
-useMutationCreateProductTemplateVserver.Document = gql`
+export const CreateProductTemplateVserverDocument = gql`
     mutation createProductTemplateVserver(
         $data: ProductTemplateVserverCreateInput!
     ) {
@@ -11875,17 +11506,16 @@ useMutationCreateProductTemplateVserver.Document = gql`
             ...ProductTemplateVserverPart
         }
     }
-    ${_gql_ProductTemplateVserverPart}
-` as DocumentNode;
+    ${ProductTemplateVserverPartFragmentDoc}
+`;
 
-export function useMutationCreateProductTemplateVserver() {
+export function useMutationcreateProductTemplateVserver() {
     return Urql.useMutation<
         CreateProductTemplateVserverMutation,
         CreateProductTemplateVserverMutationVariables
-    >(useMutationCreateProductTemplateVserver.Document);
+    >(CreateProductTemplateVserverDocument);
 }
-
-useMutationEditProductTemplateVserver.Document = gql`
+export const EditProductTemplateVserverDocument = gql`
     mutation editProductTemplateVserver(
         $data: ProductTemplateVserverEditInput!
     ) {
@@ -11893,46 +11523,28 @@ useMutationEditProductTemplateVserver.Document = gql`
             ...ProductTemplateVserverPart
         }
     }
-    ${_gql_ProductTemplateVserverPart}
-` as DocumentNode;
+    ${ProductTemplateVserverPartFragmentDoc}
+`;
 
-export function useMutationEditProductTemplateVserver() {
+export function useMutationeditProductTemplateVserver() {
     return Urql.useMutation<
         EditProductTemplateVserverMutation,
         EditProductTemplateVserverMutationVariables
-    >(useMutationEditProductTemplateVserver.Document);
+    >(EditProductTemplateVserverDocument);
 }
-
-useMutationDeleteProductTemplateVserver.Document = gql`
+export const DeleteProductTemplateVserverDocument = gql`
     mutation deleteProductTemplateVserver($id: ID!) {
         productTemplateVserverDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductTemplateVserver() {
+export function useMutationdeleteProductTemplateVserver() {
     return Urql.useMutation<
         DeleteProductTemplateVserverMutation,
         DeleteProductTemplateVserverMutationVariables
-    >(useMutationDeleteProductTemplateVserver.Document);
+    >(DeleteProductTemplateVserverDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_TranslationPart = gql`
-    fragment TranslationPart on Translation {
-        id
-        language
-        key
-        value
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryTranslations.Document = gql`
+export const TranslationsDocument = gql`
     query translations($filter: CordFilter) {
         translations(filter: $filter) {
             edges {
@@ -11943,42 +11555,38 @@ useQueryTranslations.Document = gql`
             }
         }
     }
-    ${_gql_TranslationPart}
-` as DocumentNode;
+    ${TranslationPartFragmentDoc}
+`;
 
-export function useQueryTranslations(
+export function useQuerytranslations(
     options: Omit<Urql.UseQueryArgs<TranslationsQueryVariables>, 'query'> = {}
 ) {
     return Urql.useQuery<TranslationsQuery>({
-        query: useQueryTranslations.Document,
-        ...queryDefaultOptions,
+        query: TranslationsDocument,
         ...options,
     });
 }
-
-useQueryTranslationById.Document = gql`
+export const TranslationByIdDocument = gql`
     query translationById($id: ID!) {
         translationById(id: $id) {
             ...TranslationPart
         }
     }
-    ${_gql_TranslationPart}
-` as DocumentNode;
+    ${TranslationPartFragmentDoc}
+`;
 
-export function useQueryTranslationById(
+export function useQuerytranslationById(
     options: Omit<
         Urql.UseQueryArgs<TranslationByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<TranslationByIdQuery>({
-        query: useQueryTranslationById.Document,
-        ...queryDefaultOptions,
+        query: TranslationByIdDocument,
         ...options,
     });
 }
-
-useMutationTranslationEdit.Document = gql`
+export const TranslationEditDocument = gql`
     mutation translationEdit(
         $id: ID!
         $value: String!
@@ -11994,128 +11602,69 @@ useMutationTranslationEdit.Document = gql`
             ...TranslationPart
         }
     }
-    ${_gql_TranslationPart}
-` as DocumentNode;
+    ${TranslationPartFragmentDoc}
+`;
 
-export function useMutationTranslationEdit() {
+export function useMutationtranslationEdit() {
     return Urql.useMutation<
         TranslationEditMutation,
         TranslationEditMutationVariables
-    >(useMutationTranslationEdit.Document);
+    >(TranslationEditDocument);
 }
-
-useMutationTranslationCreate.Document = gql`
+export const TranslationCreateDocument = gql`
     mutation translationCreate {
         translationCreate {
             ...TranslationPart
         }
     }
-    ${_gql_TranslationPart}
-` as DocumentNode;
+    ${TranslationPartFragmentDoc}
+`;
 
-export function useMutationTranslationCreate() {
+export function useMutationtranslationCreate() {
     return Urql.useMutation<
         TranslationCreateMutation,
         TranslationCreateMutationVariables
-    >(useMutationTranslationCreate.Document);
+    >(TranslationCreateDocument);
 }
-
-useMutationTranslationDelete.Document = gql`
+export const TranslationDeleteDocument = gql`
     mutation translationDelete($id: ID!) {
         translationDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationTranslationDelete() {
+export function useMutationtranslationDelete() {
     return Urql.useMutation<
         TranslationDeleteMutation,
         TranslationDeleteMutationVariables
-    >(useMutationTranslationDelete.Document);
+    >(TranslationDeleteDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_UserPart = gql`
-    fragment UserPart on User {
-        avatar
-        nickname
-        credits
-        email
-        active
-        supportId
-        localAvatar {
-            id
-            url
-        }
-        id
-        forceEmailLogin
-    }
-`;
-const _gql_UserPartAddress = gql`
-    fragment UserPartAddress on UserAddress {
-        firstname
-        lastname
-        street1
-        zip
-        country
-        title
-        city
-
-        birthdate
-        phone
-        phoneMobile
-        company
-        vatId
-        id
-        verified
-        vat
-        verifyDocument {
-            id
-            originalname
-            url
-            create
-        }
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useMutationUserSetActive.Document = gql`
+export const UserSetActiveDocument = gql`
     mutation userSetActive($id: ID!, $active: Boolean!) {
         userSetActive(id: $id, active: $active) {
             ...UserPart
         }
     }
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+`;
 
-export function useMutationUserSetActive() {
+export function useMutationuserSetActive() {
     return Urql.useMutation<
         UserSetActiveMutation,
         UserSetActiveMutationVariables
-    >(useMutationUserSetActive.Document);
+    >(UserSetActiveDocument);
 }
-
-useQueryPing.Document = gql`
+export const PingDocument = gql`
     query ping {
         ping
     }
-` as DocumentNode;
+`;
 
-export function useQueryPing(
+export function useQueryping(
     options: Omit<Urql.UseQueryArgs<PingQueryVariables>, 'query'> = {}
 ) {
-    return Urql.useQuery<PingQuery>({
-        query: useQueryPing.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
+    return Urql.useQuery<PingQuery>({ query: PingDocument, ...options });
 }
-
-useQueryUsers.Document = gql`
+export const UsersDocument = gql`
     query users($filter: CordFilter) {
         users(filter: $filter) {
             edges {
@@ -12126,33 +11675,27 @@ useQueryUsers.Document = gql`
             }
         }
     }
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+`;
 
-export function useQueryUsers(
+export function useQueryusers(
     options: Omit<Urql.UseQueryArgs<UsersQueryVariables>, 'query'> = {}
 ) {
-    return Urql.useQuery<UsersQuery>({
-        query: useQueryUsers.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
+    return Urql.useQuery<UsersQuery>({ query: UsersDocument, ...options });
 }
-
-useMutationUserTestMyPassword.Document = gql`
+export const UserTestMyPasswordDocument = gql`
     mutation userTestMyPassword($password: String!) {
         userTestMyPassword(password: $password)
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserTestMyPassword() {
+export function useMutationuserTestMyPassword() {
     return Urql.useMutation<
         UserTestMyPasswordMutation,
         UserTestMyPasswordMutationVariables
-    >(useMutationUserTestMyPassword.Document);
+    >(UserTestMyPasswordDocument);
 }
-
-useQueryUserById.Document = gql`
+export const UserByIdDocument = gql`
     query userById($id: ID!) {
         userById(id: $id) {
             ...UserPart
@@ -12244,62 +11787,56 @@ useQueryUserById.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useQueryUserById(
+export function useQueryuserById(
     options: Omit<Urql.UseQueryArgs<UserByIdQueryVariables>, 'query'> = {}
 ) {
     return Urql.useQuery<UserByIdQuery>({
-        query: useQueryUserById.Document,
-        ...queryDefaultOptions,
+        query: UserByIdDocument,
         ...options,
     });
 }
-
-useQueryMeLoggedIn.Document = gql`
+export const MeLoggedInDocument = gql`
     query meLoggedIn {
         user_is_login
     }
-` as DocumentNode;
+`;
 
-export function useQueryMeLoggedIn(
+export function useQuerymeLoggedIn(
     options: Omit<Urql.UseQueryArgs<MeLoggedInQueryVariables>, 'query'> = {}
 ) {
     return Urql.useQuery<MeLoggedInQuery>({
-        query: useQueryMeLoggedIn.Document,
-        ...queryDefaultOptions,
+        query: MeLoggedInDocument,
         ...options,
     });
 }
-
-useMutationLogin.Document = gql`
+export const LoginDocument = gql`
     mutation login($username: String!, $password: String!) {
         userLoginWithEmailToken(username: $username, password: $password)
     }
-` as DocumentNode;
+`;
 
-export function useMutationLogin() {
+export function useMutationlogin() {
     return Urql.useMutation<LoginMutation, LoginMutationVariables>(
-        useMutationLogin.Document
+        LoginDocument
     );
 }
-
-useMutationAdminLoginAsUser.Document = gql`
+export const AdminLoginAsUserDocument = gql`
     mutation adminLoginAsUser($id: ID!) {
         user_admin_login(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationAdminLoginAsUser() {
+export function useMutationadminLoginAsUser() {
     return Urql.useMutation<
         AdminLoginAsUserMutation,
         AdminLoginAsUserMutationVariables
-    >(useMutationAdminLoginAsUser.Document);
+    >(AdminLoginAsUserDocument);
 }
-
-useMutationUserMakeFeedback.Document = gql`
+export const UserMakeFeedbackDocument = gql`
     mutation userMakeFeedback(
         $availableForMoreFeedback: Boolean
         $feedbackMessage: String
@@ -12314,16 +11851,15 @@ useMutationUserMakeFeedback.Document = gql`
             canMakeFeedback
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserMakeFeedback() {
+export function useMutationuserMakeFeedback() {
     return Urql.useMutation<
         UserMakeFeedbackMutation,
         UserMakeFeedbackMutationVariables
-    >(useMutationUserMakeFeedback.Document);
+    >(UserMakeFeedbackDocument);
 }
-
-useQueryUserMe.Document = gql`
+export const UserMeDocument = gql`
     query userMe {
         user_me {
             ...UserPart
@@ -12335,21 +11871,16 @@ useQueryUserMe.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useQueryUserMe(
+export function useQueryuserMe(
     options: Omit<Urql.UseQueryArgs<UserMeQueryVariables>, 'query'> = {}
 ) {
-    return Urql.useQuery<UserMeQuery>({
-        query: useQueryUserMe.Document,
-        ...queryDefaultOptions,
-        ...options,
-    });
+    return Urql.useQuery<UserMeQuery>({ query: UserMeDocument, ...options });
 }
-
-useMutationUserAddressAddVerifyDocument.Document = gql`
+export const UserAddressAddVerifyDocumentDocument = gql`
     mutation userAddressAddVerifyDocument($fileId: ID!) {
         userAddressAddVerifyDocument(fileId: $fileId) {
             ...UserPart
@@ -12359,18 +11890,17 @@ useMutationUserAddressAddVerifyDocument.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useMutationUserAddressAddVerifyDocument() {
+export function useMutationuserAddressAddVerifyDocument() {
     return Urql.useMutation<
         UserAddressAddVerifyDocumentMutation,
         UserAddressAddVerifyDocumentMutationVariables
-    >(useMutationUserAddressAddVerifyDocument.Document);
+    >(UserAddressAddVerifyDocumentDocument);
 }
-
-useMutationUserAddressDelVerifyDocument.Document = gql`
+export const UserAddressDelVerifyDocumentDocument = gql`
     mutation userAddressDelVerifyDocument {
         userAddressDelVerifyDocument {
             ...UserPart
@@ -12380,18 +11910,17 @@ useMutationUserAddressDelVerifyDocument.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useMutationUserAddressDelVerifyDocument() {
+export function useMutationuserAddressDelVerifyDocument() {
     return Urql.useMutation<
         UserAddressDelVerifyDocumentMutation,
         UserAddressDelVerifyDocumentMutationVariables
-    >(useMutationUserAddressDelVerifyDocument.Document);
+    >(UserAddressDelVerifyDocumentDocument);
 }
-
-useQueryUserMeCustomCredits.Document = gql`
+export const UserMeCustomCreditsDocument = gql`
     query userMeCustomCredits {
         user_me {
             id
@@ -12401,22 +11930,20 @@ useQueryUserMeCustomCredits.Document = gql`
             canHaveBonusCredits
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryUserMeCustomCredits(
+export function useQueryuserMeCustomCredits(
     options: Omit<
         Urql.UseQueryArgs<UserMeCustomCreditsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<UserMeCustomCreditsQuery>({
-        query: useQueryUserMeCustomCredits.Document,
-        ...queryDefaultOptions,
+        query: UserMeCustomCreditsDocument,
         ...options,
     });
 }
-
-useQueryUserCustomCredits.Document = gql`
+export const UserCustomCreditsDocument = gql`
     query userCustomCredits($id: ID!) {
         userById(id: $id) {
             id
@@ -12425,22 +11952,20 @@ useQueryUserCustomCredits.Document = gql`
             credits
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryUserCustomCredits(
+export function useQueryuserCustomCredits(
     options: Omit<
         Urql.UseQueryArgs<UserCustomCreditsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<UserCustomCreditsQuery>({
-        query: useQueryUserCustomCredits.Document,
-        ...queryDefaultOptions,
+        query: UserCustomCreditsDocument,
         ...options,
     });
 }
-
-useMutationUserEditSelfGeneral.Document = gql`
+export const UserEditSelfGeneralDocument = gql`
     mutation userEditSelfGeneral(
         $new_password: String
         $nickname: String!
@@ -12459,18 +11984,17 @@ useMutationUserEditSelfGeneral.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useMutationUserEditSelfGeneral() {
+export function useMutationuserEditSelfGeneral() {
     return Urql.useMutation<
         UserEditSelfGeneralMutation,
         UserEditSelfGeneralMutationVariables
-    >(useMutationUserEditSelfGeneral.Document);
+    >(UserEditSelfGeneralDocument);
 }
-
-useMutationUserEditSelfAddress.Document = gql`
+export const UserEditSelfAddressDocument = gql`
     mutation userEditSelfAddress($data: UserInputUserEditAddress!) {
         userEditSelfAddress(data: $data) {
             ...UserPart
@@ -12479,117 +12003,108 @@ useMutationUserEditSelfAddress.Document = gql`
             }
         }
     }
-    ${_gql_UserPartAddress}
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+    ${UserPartAddressFragmentDoc}
+`;
 
-export function useMutationUserEditSelfAddress() {
+export function useMutationuserEditSelfAddress() {
     return Urql.useMutation<
         UserEditSelfAddressMutation,
         UserEditSelfAddressMutationVariables
-    >(useMutationUserEditSelfAddress.Document);
+    >(UserEditSelfAddressDocument);
 }
-
-useMutationUserEditSelfEmail.Document = gql`
+export const UserEditSelfEmailDocument = gql`
     mutation userEditSelfEmail($email: String!, $password: String!) {
         userEditSelfEmail(email: $email, password: $password) {
             ...UserPart
         }
     }
-    ${_gql_UserPart}
-` as DocumentNode;
+    ${UserPartFragmentDoc}
+`;
 
-export function useMutationUserEditSelfEmail() {
+export function useMutationuserEditSelfEmail() {
     return Urql.useMutation<
         UserEditSelfEmailMutation,
         UserEditSelfEmailMutationVariables
-    >(useMutationUserEditSelfEmail.Document);
+    >(UserEditSelfEmailDocument);
 }
-
-useQueryUserCountries.Document = gql`
+export const UserCountriesDocument = gql`
     query userCountries {
         userCountries
     }
-` as DocumentNode;
+`;
 
-export function useQueryUserCountries(
+export function useQueryuserCountries(
     options: Omit<Urql.UseQueryArgs<UserCountriesQueryVariables>, 'query'> = {}
 ) {
     return Urql.useQuery<UserCountriesQuery>({
-        query: useQueryUserCountries.Document,
-        ...queryDefaultOptions,
+        query: UserCountriesDocument,
         ...options,
     });
 }
-
-useMutationRegisterNewUser.Document = gql`
+export const RegisterNewUserDocument = gql`
     mutation registerNewUser(
         $googleCaptcha: String!
         $data: UserInputRegister!
     ) {
         user_register(data: $data, googleCaptcha: $googleCaptcha)
     }
-` as DocumentNode;
+`;
 
-export function useMutationRegisterNewUser() {
+export function useMutationregisterNewUser() {
     return Urql.useMutation<
         RegisterNewUserMutation,
         RegisterNewUserMutationVariables
-    >(useMutationRegisterNewUser.Document);
+    >(RegisterNewUserDocument);
 }
-
-useMutationUserAdminLogout.Document = gql`
+export const UserAdminLogoutDocument = gql`
     mutation userAdminLogout {
         userAdminLogout
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserAdminLogout() {
+export function useMutationuserAdminLogout() {
     return Urql.useMutation<
         UserAdminLogoutMutation,
         UserAdminLogoutMutationVariables
-    >(useMutationUserAdminLogout.Document);
+    >(UserAdminLogoutDocument);
 }
-
-useMutationUserVerify.Document = gql`
-    mutation userVerify($token: String!) {
+export const User_VerifyDocument = gql`
+    mutation user_verify($token: String!) {
         user_verify(token: $token)
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserVerify() {
-    return Urql.useMutation<UserVerifyMutation, UserVerifyMutationVariables>(
-        useMutationUserVerify.Document
+export function useMutationuser_Verify() {
+    return Urql.useMutation<User_VerifyMutation, User_VerifyMutationVariables>(
+        User_VerifyDocument
     );
 }
-
-useMutationResetPassword.Document = gql`
-    mutation resetPassword($token: String!, $password: String!) {
+export const Reset_PasswordDocument = gql`
+    mutation reset_password($token: String!, $password: String!) {
         user_reset_password_token(token: $token, password: $password)
     }
-` as DocumentNode;
+`;
 
-export function useMutationResetPassword() {
+export function useMutationreset_Password() {
     return Urql.useMutation<
-        ResetPasswordMutation,
-        ResetPasswordMutationVariables
-    >(useMutationResetPassword.Document);
+        Reset_PasswordMutation,
+        Reset_PasswordMutationVariables
+    >(Reset_PasswordDocument);
 }
-
-useMutationUserResetPassword.Document = gql`
+export const UserResetPasswordDocument = gql`
     mutation userResetPassword($email: String!, $captcha: String!) {
         user_reset_password(email: $email, captcha: $captcha)
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserResetPassword() {
+export function useMutationuserResetPassword() {
     return Urql.useMutation<
         UserResetPasswordMutation,
         UserResetPasswordMutationVariables
-    >(useMutationUserResetPassword.Document);
+    >(UserResetPasswordDocument);
 }
-
-useQueryProductAdminInfo.Document = gql`
+export const ProductAdminInfoDocument = gql`
     query productAdminInfo {
         productAdminInfo {
             domains
@@ -12622,30 +12137,20 @@ useQueryProductAdminInfo.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductAdminInfo(
+export function useQueryproductAdminInfo(
     options: Omit<
         Urql.UseQueryArgs<ProductAdminInfoQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductAdminInfoQuery>({
-        query: useQueryProductAdminInfo.Document,
-        ...queryDefaultOptions,
+        query: ProductAdminInfoDocument,
         ...options,
     });
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryUserAddresss.Document = gql`
+export const UserAddresssDocument = gql`
     query userAddresss($filter: CordFilter) {
         userAddresss(filter: $filter) {
             edges {
@@ -12656,7 +12161,6 @@ useQueryUserAddresss.Document = gql`
                 country
                 title
                 city
-
                 birthdate
                 phone
                 phoneMobile
@@ -12681,19 +12185,17 @@ useQueryUserAddresss.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryUserAddresss(
+export function useQueryuserAddresss(
     options: Omit<Urql.UseQueryArgs<UserAddresssQueryVariables>, 'query'> = {}
 ) {
     return Urql.useQuery<UserAddresssQuery>({
-        query: useQueryUserAddresss.Document,
-        ...queryDefaultOptions,
+        query: UserAddresssDocument,
         ...options,
     });
 }
-
-useMutationUserAddressConfirmVerify.Document = gql`
+export const UserAddressConfirmVerifyDocument = gql`
     mutation userAddressConfirmVerify($id: ID!) {
         userAddressConfirmVerify(id: $id) {
             firstname
@@ -12703,7 +12205,6 @@ useMutationUserAddressConfirmVerify.Document = gql`
             country
             title
             city
-
             birthdate
             phone
             phoneMobile
@@ -12724,16 +12225,15 @@ useMutationUserAddressConfirmVerify.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserAddressConfirmVerify() {
+export function useMutationuserAddressConfirmVerify() {
     return Urql.useMutation<
         UserAddressConfirmVerifyMutation,
         UserAddressConfirmVerifyMutationVariables
-    >(useMutationUserAddressConfirmVerify.Document);
+    >(UserAddressConfirmVerifyDocument);
 }
-
-useMutationUserAddressRejectVerify.Document = gql`
+export const UserAddressRejectVerifyDocument = gql`
     mutation userAddressRejectVerify($id: ID!) {
         userAddressRejectVerify(id: $id) {
             firstname
@@ -12743,7 +12243,6 @@ useMutationUserAddressRejectVerify.Document = gql`
             country
             title
             city
-
             birthdate
             phone
             phoneMobile
@@ -12764,24 +12263,15 @@ useMutationUserAddressRejectVerify.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserAddressRejectVerify() {
+export function useMutationuserAddressRejectVerify() {
     return Urql.useMutation<
         UserAddressRejectVerifyMutation,
         UserAddressRejectVerifyMutationVariables
-    >(useMutationUserAddressRejectVerify.Document);
+    >(UserAddressRejectVerifyDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryUserCommentsByUser.Document = gql`
+export const UserCommentsByUserDocument = gql`
     query userCommentsByUser($userId: ID!) {
         userCommentsByUser(userId: $userId) {
             message
@@ -12789,22 +12279,20 @@ useQueryUserCommentsByUser.Document = gql`
             create
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryUserCommentsByUser(
+export function useQueryuserCommentsByUser(
     options: Omit<
         Urql.UseQueryArgs<UserCommentsByUserQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<UserCommentsByUserQuery>({
-        query: useQueryUserCommentsByUser.Document,
-        ...queryDefaultOptions,
+        query: UserCommentsByUserDocument,
         ...options,
     });
 }
-
-useMutationUserCommentCreate.Document = gql`
+export const UserCommentCreateDocument = gql`
     mutation userCommentCreate($userId: ID!, $message: String!) {
         userCommentCreate(userId: $userId, message: $message) {
             message
@@ -12812,24 +12300,15 @@ useMutationUserCommentCreate.Document = gql`
             create
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserCommentCreate() {
+export function useMutationuserCommentCreate() {
     return Urql.useMutation<
         UserCommentCreateMutation,
         UserCommentCreateMutationVariables
-    >(useMutationUserCommentCreate.Document);
+    >(UserCommentCreateDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useQueryMyUserOAuthTokens.Document = gql`
+export const MyUserOAuthTokensDocument = gql`
     query myUserOAuthTokens {
         myUserOAuthTokens {
             id
@@ -12837,22 +12316,20 @@ useQueryMyUserOAuthTokens.Document = gql`
             confirmed
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryMyUserOAuthTokens(
+export function useQuerymyUserOAuthTokens(
     options: Omit<
         Urql.UseQueryArgs<MyUserOAuthTokensQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<MyUserOAuthTokensQuery>({
-        query: useQueryMyUserOAuthTokens.Document,
-        ...queryDefaultOptions,
+        query: MyUserOAuthTokensDocument,
         ...options,
     });
 }
-
-useMutationUserOauthTokenConfirm.Document = gql`
+export const UserOauthTokenConfirmDocument = gql`
     mutation userOauthTokenConfirm($password: String!, $id: ID!) {
         userOauthTokenConfirm(id: $id, password: $password) {
             id
@@ -12860,82 +12337,27 @@ useMutationUserOauthTokenConfirm.Document = gql`
             confirmed
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserOauthTokenConfirm() {
+export function useMutationuserOauthTokenConfirm() {
     return Urql.useMutation<
         UserOauthTokenConfirmMutation,
         UserOauthTokenConfirmMutationVariables
-    >(useMutationUserOauthTokenConfirm.Document);
+    >(UserOauthTokenConfirmDocument);
 }
-
-useMutationUserOAuthDeleteToken.Document = gql`
+export const UserOAuthDeleteTokenDocument = gql`
     mutation userOAuthDeleteToken($id: ID!) {
         userOAuthDeleteToken(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationUserOAuthDeleteToken() {
+export function useMutationuserOAuthDeleteToken() {
     return Urql.useMutation<
         UserOAuthDeleteTokenMutation,
         UserOAuthDeleteTokenMutationVariables
-    >(useMutationUserOAuthDeleteToken.Document);
+    >(UserOAuthDeleteTokenDocument);
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductVserverPart = gql`
-    fragment ProductVserverPart on ProductVserver {
-        id
-        create
-        name
-        hasRunningTask
-        sshPassword
-        vserverId
-        cores
-        memory
-        platform
-        diskspace
-        networkSpeed
-        attributes
-        ips {
-            id
-            ip
-            active
-            gateway
-            netmask
-        }
-        hostNode {
-            id
-            name
-            cpuInfo
-            cpuCores
-        }
-        product {
-            id
-            locked
-            user {
-                id
-                publicName
-            }
-            expire
-        }
-        images {
-            id
-            logo {
-                id
-                url
-            }
-        }
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductVserverByIdBackups.Document = gql`
+export const ProductVserverByIdBackupsDocument = gql`
     query productVserverByIdBackups($id: ID!) {
         productVserverById(id: $id) {
             ...ProductVserverPart
@@ -12947,36 +12369,33 @@ useQueryProductVserverByIdBackups.Document = gql`
             }
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useQueryProductVserverByIdBackups(
+export function useQueryproductVserverByIdBackups(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverByIdBackupsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverByIdBackupsQuery>({
-        query: useQueryProductVserverByIdBackups.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverByIdBackupsDocument,
         ...options,
     });
 }
-
-useMutationProductVserverDelete.Document = gql`
+export const ProductVserverDeleteDocument = gql`
     mutation productVserverDelete($id: ID!) {
         productVserverDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverDelete() {
+export function useMutationproductVserverDelete() {
     return Urql.useMutation<
         ProductVserverDeleteMutation,
         ProductVserverDeleteMutationVariables
-    >(useMutationProductVserverDelete.Document);
+    >(ProductVserverDeleteDocument);
 }
-
-useQueryProductVservers.Document = gql`
+export const ProductVserversDocument = gql`
     query productVservers($filter: CordFilter) {
         productVservers(filter: $filter) {
             edges {
@@ -12987,42 +12406,38 @@ useQueryProductVservers.Document = gql`
             }
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useQueryProductVservers(
+export function useQueryproductVservers(
     options: Omit<
         Urql.UseQueryArgs<ProductVserversQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserversQuery>({
-        query: useQueryProductVservers.Document,
-        ...queryDefaultOptions,
+        query: ProductVserversDocument,
         ...options,
     });
 }
-
-useQueryProductVserverExist.Document = gql`
+export const ProductVserverExistDocument = gql`
     query productVserverExist($id: ID!) {
         productVserverExist(vserverId: $id)
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverExist(
+export function useQueryproductVserverExist(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverExistQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverExistQuery>({
-        query: useQueryProductVserverExist.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverExistDocument,
         ...options,
     });
 }
-
-useQueryProductVserverStats.Document = gql`
+export const ProductVserverStatsDocument = gql`
     query productVserverStats($id: ID!) {
         productVserverStats(vserverId: $id) {
             cpu
@@ -13048,258 +12463,239 @@ useQueryProductVserverStats.Document = gql`
             vmid
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverStats(
+export function useQueryproductVserverStats(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverStatsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverStatsQuery>({
-        query: useQueryProductVserverStats.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverStatsDocument,
         ...options,
     });
 }
-
-useQueryProductVserverRunning.Document = gql`
+export const ProductVserverRunningDocument = gql`
     query productVserverRunning($id: ID!) {
         productVserverRunning(vserverId: $id)
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverRunning(
+export function useQueryproductVserverRunning(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverRunningQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverRunningQuery>({
-        query: useQueryProductVserverRunning.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverRunningDocument,
         ...options,
     });
 }
-
-useMutationProductVserverMakeVncPort.Document = gql`
+export const ProductVserverMakeVncPortDocument = gql`
     mutation productVserverMakeVncPort($id: ID!) {
         productVserverMakeVncPort(vserverId: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverMakeVncPort() {
+export function useMutationproductVserverMakeVncPort() {
     return Urql.useMutation<
         ProductVserverMakeVncPortMutation,
         ProductVserverMakeVncPortMutationVariables
-    >(useMutationProductVserverMakeVncPort.Document);
+    >(ProductVserverMakeVncPortDocument);
 }
-
-useMutationProductVserverInstall.Document = gql`
+export const ProductVserverInstallDocument = gql`
     mutation productVserverInstall($id: ID!, $recreate: Boolean) {
         productVserverInstall(vserverId: $id, recreate: $recreate) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverInstall() {
+export function useMutationproductVserverInstall() {
     return Urql.useMutation<
         ProductVserverInstallMutation,
         ProductVserverInstallMutationVariables
-    >(useMutationProductVserverInstall.Document);
+    >(ProductVserverInstallDocument);
 }
-
-useMutationProductVserverBackupRestore.Document = gql`
+export const ProductVserverBackupRestoreDocument = gql`
     mutation productVserverBackupRestore($id: ID!, $backupId: ID!) {
         productVserverBackupRestore(id: $id, backupId: $backupId) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverBackupRestore() {
+export function useMutationproductVserverBackupRestore() {
     return Urql.useMutation<
         ProductVserverBackupRestoreMutation,
         ProductVserverBackupRestoreMutationVariables
-    >(useMutationProductVserverBackupRestore.Document);
+    >(ProductVserverBackupRestoreDocument);
 }
-
-useMutationProductVserverBackupDownload.Document = gql`
+export const ProductVserverBackupDownloadDocument = gql`
     mutation productVserverBackupDownload($id: ID!) {
         productVserverBackupDownload(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverBackupDownload() {
+export function useMutationproductVserverBackupDownload() {
     return Urql.useMutation<
         ProductVserverBackupDownloadMutation,
         ProductVserverBackupDownloadMutationVariables
-    >(useMutationProductVserverBackupDownload.Document);
+    >(ProductVserverBackupDownloadDocument);
 }
-
-useMutationProductVserverBackupCreate.Document = gql`
+export const ProductVserverBackupCreateDocument = gql`
     mutation productVserverBackupCreate($id: ID!) {
         productVserverBackupCreate(id: $id) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverBackupCreate() {
+export function useMutationproductVserverBackupCreate() {
     return Urql.useMutation<
         ProductVserverBackupCreateMutation,
         ProductVserverBackupCreateMutationVariables
-    >(useMutationProductVserverBackupCreate.Document);
+    >(ProductVserverBackupCreateDocument);
 }
-
-useMutationProductVserverBackupDelete.Document = gql`
+export const ProductVserverBackupDeleteDocument = gql`
     mutation productVserverBackupDelete($id: ID!, $backupId: ID!) {
         productVserverBackupDelete(id: $id, backupId: $backupId)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverBackupDelete() {
+export function useMutationproductVserverBackupDelete() {
     return Urql.useMutation<
         ProductVserverBackupDeleteMutation,
         ProductVserverBackupDeleteMutationVariables
-    >(useMutationProductVserverBackupDelete.Document);
+    >(ProductVserverBackupDeleteDocument);
 }
-
-useMutationProductVserverStart.Document = gql`
+export const ProductVserverStartDocument = gql`
     mutation productVserverStart($id: ID!, $withImages: Boolean) {
         productVserverStart(vserverId: $id, withImages: $withImages) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverStart() {
+export function useMutationproductVserverStart() {
     return Urql.useMutation<
         ProductVserverStartMutation,
         ProductVserverStartMutationVariables
-    >(useMutationProductVserverStart.Document);
+    >(ProductVserverStartDocument);
 }
-
-useMutationProductVserverStop.Document = gql`
+export const ProductVserverStopDocument = gql`
     mutation productVserverStop($id: ID!) {
         productVserverStop(vserverId: $id) {
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverStop() {
+export function useMutationproductVserverStop() {
     return Urql.useMutation<
         ProductVserverStopMutation,
         ProductVserverStopMutationVariables
-    >(useMutationProductVserverStop.Document);
+    >(ProductVserverStopDocument);
 }
-
-useMutationProductVserverSetSshPassword.Document = gql`
+export const ProductVserverSetSshPasswordDocument = gql`
     mutation productVserverSetSshPassword($id: ID!, $password: String!) {
         productVserverSetSshPassword(vserverId: $id, password: $password) {
             ...ProductVserverPart
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useMutationProductVserverSetSshPassword() {
+export function useMutationproductVserverSetSshPassword() {
     return Urql.useMutation<
         ProductVserverSetSshPasswordMutation,
         ProductVserverSetSshPasswordMutationVariables
-    >(useMutationProductVserverSetSshPassword.Document);
+    >(ProductVserverSetSshPasswordDocument);
 }
-
-useMutationProductVserverChangeLabel.Document = gql`
+export const ProductVserverChangeLabelDocument = gql`
     mutation productVserverChangeLabel($id: ID!, $label: String!) {
         productVserverChangeLabel(id: $id, label: $label) {
             ...ProductVserverPart
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useMutationProductVserverChangeLabel() {
+export function useMutationproductVserverChangeLabel() {
     return Urql.useMutation<
         ProductVserverChangeLabelMutation,
         ProductVserverChangeLabelMutationVariables
-    >(useMutationProductVserverChangeLabel.Document);
+    >(ProductVserverChangeLabelDocument);
 }
-
-useMutationProductVserverAddImage.Document = gql`
+export const ProductVserverAddImageDocument = gql`
     mutation productVserverAddImage($id: ID!, $imageId: ID!) {
         productVserverAddImage(id: $id, imageId: $imageId) {
             ...ProductVserverPart
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useMutationProductVserverAddImage() {
+export function useMutationproductVserverAddImage() {
     return Urql.useMutation<
         ProductVserverAddImageMutation,
         ProductVserverAddImageMutationVariables
-    >(useMutationProductVserverAddImage.Document);
+    >(ProductVserverAddImageDocument);
 }
-
-useMutationProductVserverRemoveImage.Document = gql`
+export const ProductVserverRemoveImageDocument = gql`
     mutation productVserverRemoveImage($id: ID!, $imageId: ID!) {
         productVserverRemoveImage(id: $id, imageId: $imageId) {
             ...ProductVserverPart
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useMutationProductVserverRemoveImage() {
+export function useMutationproductVserverRemoveImage() {
     return Urql.useMutation<
         ProductVserverRemoveImageMutation,
         ProductVserverRemoveImageMutationVariables
-    >(useMutationProductVserverRemoveImage.Document);
+    >(ProductVserverRemoveImageDocument);
 }
-
-useQueryProductVserverById.Document = gql`
+export const ProductVserverByIdDocument = gql`
     query productVserverById($id: ID!) {
         productVserverById(id: $id) {
             ...ProductVserverPart
             trafficTransferredInMB
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useQueryProductVserverById(
+export function useQueryproductVserverById(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverByIdQuery>({
-        query: useQueryProductVserverById.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverByIdDocument,
         ...options,
     });
 }
-
-useMutationProductVserverUnlockNetworkSpeed.Document = gql`
+export const ProductVserverUnlockNetworkSpeedDocument = gql`
     mutation productVserverUnlockNetworkSpeed($id: ID!) {
         productVserverUnlockNetworkSpeed(id: $id) {
             ...ProductVserverPart
         }
     }
-    ${_gql_ProductVserverPart}
-` as DocumentNode;
+    ${ProductVserverPartFragmentDoc}
+`;
 
-export function useMutationProductVserverUnlockNetworkSpeed() {
+export function useMutationproductVserverUnlockNetworkSpeed() {
     return Urql.useMutation<
         ProductVserverUnlockNetworkSpeedMutation,
         ProductVserverUnlockNetworkSpeedMutationVariables
-    >(useMutationProductVserverUnlockNetworkSpeed.Document);
+    >(ProductVserverUnlockNetworkSpeedDocument);
 }
-
-useQueryMyProductVservers.Document = gql`
+export const MyProductVserversDocument = gql`
     query myProductVservers {
         productVserverMy {
             id
@@ -13316,44 +12712,20 @@ useQueryMyProductVservers.Document = gql`
             name
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryMyProductVservers(
+export function useQuerymyProductVservers(
     options: Omit<
         Urql.UseQueryArgs<MyProductVserversQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<MyProductVserversQuery>({
-        query: useQueryMyProductVservers.Document,
-        ...queryDefaultOptions,
+        query: MyProductVserversDocument,
         ...options,
     });
 }
-
-/*,
- * Fragments from undefined,
- */
-const _gql_ProductVserverImagePart = gql`
-    fragment ProductVserverImagePart on ProductVserverImage {
-        id
-        title
-        platform
-        resourceUrl
-        logo {
-            id
-            url
-        }
-
-        active
-    }
-`;
-
-/*,
- * Operations from undefined,
- */
-
-useQueryProductVserverImages.Document = gql`
+export const ProductVserverImagesDocument = gql`
     query productVserverImages($filter: CordFilter) {
         productVserverImages(filter: $filter) {
             edges {
@@ -13364,90 +12736,83 @@ useQueryProductVserverImages.Document = gql`
             }
         }
     }
-    ${_gql_ProductVserverImagePart}
-` as DocumentNode;
+    ${ProductVserverImagePartFragmentDoc}
+`;
 
-export function useQueryProductVserverImages(
+export function useQueryproductVserverImages(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverImagesQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverImagesQuery>({
-        query: useQueryProductVserverImages.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverImagesDocument,
         ...options,
     });
 }
-
-useMutationProductVserverImageCreate.Document = gql`
+export const ProductVserverImageCreateDocument = gql`
     mutation productVserverImageCreate($data: ProductVserverImageCreateInput!) {
         productVserverImageCreate(data: $data) {
             ...ProductVserverImagePart
         }
     }
-    ${_gql_ProductVserverImagePart}
-` as DocumentNode;
+    ${ProductVserverImagePartFragmentDoc}
+`;
 
-export function useMutationProductVserverImageCreate() {
+export function useMutationproductVserverImageCreate() {
     return Urql.useMutation<
         ProductVserverImageCreateMutation,
         ProductVserverImageCreateMutationVariables
-    >(useMutationProductVserverImageCreate.Document);
+    >(ProductVserverImageCreateDocument);
 }
-
-useMutationProductVserverImageEdit.Document = gql`
+export const ProductVserverImageEditDocument = gql`
     mutation productVserverImageEdit($data: ProductVserverImageEditInput!) {
         productVserverImageEdit(data: $data) {
             ...ProductVserverImagePart
         }
     }
-    ${_gql_ProductVserverImagePart}
-` as DocumentNode;
+    ${ProductVserverImagePartFragmentDoc}
+`;
 
-export function useMutationProductVserverImageEdit() {
+export function useMutationproductVserverImageEdit() {
     return Urql.useMutation<
         ProductVserverImageEditMutation,
         ProductVserverImageEditMutationVariables
-    >(useMutationProductVserverImageEdit.Document);
+    >(ProductVserverImageEditDocument);
 }
-
-useMutationProductVserverImageDelete.Document = gql`
+export const ProductVserverImageDeleteDocument = gql`
     mutation productVserverImageDelete($id: ID!) {
         productVserverImageDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverImageDelete() {
+export function useMutationproductVserverImageDelete() {
     return Urql.useMutation<
         ProductVserverImageDeleteMutation,
         ProductVserverImageDeleteMutationVariables
-    >(useMutationProductVserverImageDelete.Document);
+    >(ProductVserverImageDeleteDocument);
 }
-
-useQueryProductVserverImageById.Document = gql`
+export const ProductVserverImageByIdDocument = gql`
     query productVserverImageById($id: ID!) {
         productVserverImageById(id: $id) {
             ...ProductVserverImagePart
         }
     }
-    ${_gql_ProductVserverImagePart}
-` as DocumentNode;
+    ${ProductVserverImagePartFragmentDoc}
+`;
 
-export function useQueryProductVserverImageById(
+export function useQueryproductVserverImageById(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverImageByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverImageByIdQuery>({
-        query: useQueryProductVserverImageById.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverImageByIdDocument,
         ...options,
     });
 }
-
-useQueryProductVserverImagePlatformImages.Document = gql`
+export const ProductVserverImagePlatformImagesDocument = gql`
     query productVserverImagePlatformImages(
         $platform: String!
         $search: String
@@ -13459,31 +12824,21 @@ useQueryProductVserverImagePlatformImages.Document = gql`
             ...ProductVserverImagePart
         }
     }
-    ${_gql_ProductVserverImagePart}
-` as DocumentNode;
+    ${ProductVserverImagePartFragmentDoc}
+`;
 
-export function useQueryProductVserverImagePlatformImages(
+export function useQueryproductVserverImagePlatformImages(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverImagePlatformImagesQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverImagePlatformImagesQuery>({
-        query: useQueryProductVserverImagePlatformImages.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverImagePlatformImagesDocument,
         ...options,
     });
 }
-
-/*,
- * Fragments from undefined,
- */
-
-/*,
- * Operations from undefined,
- */
-
-useMutationCreateProductVserverIp.Document = gql`
+export const CreateProductVserverIpDocument = gql`
     mutation createProductVserverIp(
         $ip: String!
         $hostNodeId: ID
@@ -13503,16 +12858,15 @@ useMutationCreateProductVserverIp.Document = gql`
             id
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationCreateProductVserverIp() {
+export function useMutationcreateProductVserverIp() {
     return Urql.useMutation<
         CreateProductVserverIpMutation,
         CreateProductVserverIpMutationVariables
-    >(useMutationCreateProductVserverIp.Document);
+    >(CreateProductVserverIpDocument);
 }
-
-useMutationEditProductVserverIp.Document = gql`
+export const EditProductVserverIpDocument = gql`
     mutation editProductVserverIp(
         $ip: String!
         $hostNodeId: ID
@@ -13546,29 +12900,27 @@ useMutationEditProductVserverIp.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useMutationEditProductVserverIp() {
+export function useMutationeditProductVserverIp() {
     return Urql.useMutation<
         EditProductVserverIpMutation,
         EditProductVserverIpMutationVariables
-    >(useMutationEditProductVserverIp.Document);
+    >(EditProductVserverIpDocument);
 }
-
-useMutationDeleteProductVserverIp.Document = gql`
+export const DeleteProductVserverIpDocument = gql`
     mutation deleteProductVserverIp($id: ID!) {
         productVserverIpDelete(id: $id)
     }
-` as DocumentNode;
+`;
 
-export function useMutationDeleteProductVserverIp() {
+export function useMutationdeleteProductVserverIp() {
     return Urql.useMutation<
         DeleteProductVserverIpMutation,
         DeleteProductVserverIpMutationVariables
-    >(useMutationDeleteProductVserverIp.Document);
+    >(DeleteProductVserverIpDocument);
 }
-
-useQueryProductVserverIps.Document = gql`
+export const ProductVserverIpsDocument = gql`
     query productVserverIps($filter: CordFilter) {
         productVserverIps(filter: $filter) {
             edges {
@@ -13582,22 +12934,20 @@ useQueryProductVserverIps.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverIps(
+export function useQueryproductVserverIps(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverIpsQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverIpsQuery>({
-        query: useQueryProductVserverIps.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverIpsDocument,
         ...options,
     });
 }
-
-useQueryProductVserverIpById.Document = gql`
+export const ProductVserverIpByIdDocument = gql`
     query productVserverIpById($id: ID!) {
         productVserverIpById(id: $id) {
             id
@@ -13615,22 +12965,20 @@ useQueryProductVserverIpById.Document = gql`
             }
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverIpById(
+export function useQueryproductVserverIpById(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverIpByIdQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverIpByIdQuery>({
-        query: useQueryProductVserverIpById.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverIpByIdDocument,
         ...options,
     });
 }
-
-useQueryProductVserverIpFree.Document = gql`
+export const ProductVserverIpFreeDocument = gql`
     query productVserverIpFree {
         productVserverIpFree {
             id
@@ -13642,38 +12990,28 @@ useQueryProductVserverIpFree.Document = gql`
             gateway
         }
     }
-` as DocumentNode;
+`;
 
-export function useQueryProductVserverIpFree(
+export function useQueryproductVserverIpFree(
     options: Omit<
         Urql.UseQueryArgs<ProductVserverIpFreeQueryVariables>,
         'query'
     > = {}
 ) {
     return Urql.useQuery<ProductVserverIpFreeQuery>({
-        query: useQueryProductVserverIpFree.Document,
-        ...queryDefaultOptions,
+        query: ProductVserverIpFreeDocument,
         ...options,
     });
 }
-
-useMutationProductVserverIpReassignIp.Document = gql`
+export const ProductVserverIpReassignIpDocument = gql`
     mutation productVserverIpReassignIp($id: ID!, $newId: ID!) {
         productVserverIpReassignIp(id: $id, newId: $newId)
     }
-` as DocumentNode;
+`;
 
-export function useMutationProductVserverIpReassignIp() {
+export function useMutationproductVserverIpReassignIp() {
     return Urql.useMutation<
         ProductVserverIpReassignIpMutation,
         ProductVserverIpReassignIpMutationVariables
-    >(useMutationProductVserverIpReassignIp.Document);
+    >(ProductVserverIpReassignIpDocument);
 }
-
-/*
- * Boilerplate
- */
-
-const queryDefaultOptions = {
-    fetchPolicy: 'cache-and-network' as 'cache-and-network',
-};

@@ -5,5 +5,8 @@ generates:
     generated/graphql.generated.tsx:
         config:
             noNamespaces: true
+            noExport: true
         plugins:
+            - 'typescript'
+            - 'typescript-operations'
             - dist/index.js

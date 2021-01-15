@@ -1,26 +1,26 @@
-import { FileIR } from '../types'
-import { formatFragment } from './Fragment'
-import { formatOperation } from './Operation'
+import { FileIR } from '../types';
+import { gqlDocument } from './gqlDocument';
+import { formatOperation } from './Operation';
 
 export function formatFile(file: FileIR): string {
-  let output = ''
-  output += `
+    let output = '';
+    output += `
 /*,
  * Fragments from ${file.filePath},
  */
-`
-  for (const fragment of file.fragments) {
-    output += formatFragment(fragment)
-  }
+`;
+    for (const fragment of file.fragments) {
+        output += gqlDocument(fragment);
+    }
 
-  output += `
+    output += `
 /*,
  * Operations from ${file.filePath},
  */
-`
-  for (const operation of file.operations) {
-    output += formatOperation(operation)
-  }
+`;
+    for (const operation of file.operations) {
+        output += formatOperation(operation);
+    }
 
-  return output
+    return output;
 }

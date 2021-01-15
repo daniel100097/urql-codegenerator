@@ -7,6 +7,7 @@ export const disclaimer = `
 
 export const imports = `
 import gql from 'graphql-tag';
+import { DocumentNode } from 'graphql';
 import * as Urql from 'urql';
 `;
 
@@ -15,22 +16,8 @@ export const boilerplate = `
  * Boilerplate
  */
 
-type MutationHookFn<TData, TVariables> = [(options?: MutationFunctionOptions<TData, TVariables>) => Promise<ExecutionResult<TData>>, MutationResult<TData>];
-
-export interface ExecutionResult<T = Record<string, any>> {
-    data: T;
-    extensions?: Record<string, any>;
-    errors?: GraphQLError[];
-}
-
-type Nullable<T> = T | null;
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-
 const queryDefaultOptions = {
     fetchPolicy: 'cache-and-network' as 'cache-and-network',
 };
-const lazyQueryDefaultOptions = {};
-const mutationDefaultOptions = {};
-const subscriptionDefaultOptions = {};
 
 `;
